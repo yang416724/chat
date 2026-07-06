@@ -63,8 +63,6 @@
     <script src="main-app.js" defer></script>
     <script src="game-hall.js" defer></script>
     <script src="forum.js" defer></script>
-    <script src="lovers-space.js" defer></script>
-    <script src="taobao.js" defer></script>
     <script src="weibo.js" defer></script>
     <script src="date.js" defer></script>
     <script src="studio.js" defer></script>
@@ -72,7 +70,6 @@
     <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.84/darkreader.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-    <script src="tukey-accounting.js" defer></script>
     <script src="kk-checkin.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
@@ -354,31 +351,6 @@
                 </div>
                 <span class="label">圈子</span>
               </div>
-              <div class="desktop-app-icon" id="lovers-space-app-icon">
-                <div class="icon-bg-desktop">
-                  <img
-                    id="icon-img-lovers-space"
-                    src="https://i.postimg.cc/d1wZ39xW/lovers-space-icon.png"
-                    alt="情侣空间"
-                  />
-                </div>
-                <span class="label">情侣空间</span>
-              </div>
-
-              <div
-                id="second-page-x-social-app"
-                class="desktop-app-icon"
-                onclick="showScreen('x-social-screen')"
-              >
-                <div class="icon-bg-desktop">
-                  <img
-                    id="icon-img-x-social"
-                    src="https://i.postimg.cc/8P1H0vQ8/x-logo.png"
-                    alt="X社交"
-                  />
-                </div>
-                <span class="label">X社交</span>
-              </div>
               <div style="position: absolute; top: 100px; right: 85px">
                 <div
                   class="desktop-app-icon"
@@ -487,24 +459,7 @@
               </div>
             </div>
             <div style="position: absolute; bottom: 105px; left: 35px">
-              <div class="desktop-app-icon" id="taobao-app-icon">
-                <div class="icon-bg-desktop">
-                  <img
-                    id="icon-img-taobao"
-                    src="https://i.postimg.cc/k47tXg1j/taologo.png"
-                    alt="桃宝"
-                  />
-                </div>
-                <span
-                  class="label"
-                  style="
-                    color: white;
-                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-                  "
-                  >桃宝</span
-                >
               </div>
-            </div>
             <div style="position: absolute; bottom: 105px; left: 120px">
               <div class="desktop-app-icon" id="date-a-live-app-icon">
                 <div class="icon-bg-desktop">
@@ -544,24 +499,7 @@
               </div>
             </div>
             <div style="position: absolute; bottom: 15px; left: 35px">
-              <div class="desktop-app-icon" id="tukey-accounting-app-icon">
-                <div class="icon-bg-desktop">
-                  <img
-                    id="icon-img-tukey-accounting"
-                    src="https://i.postimg.cc/k4fZKVXP/tu-tu.png"
-                    alt="兔兔记账"
-                  />
-                </div>
-                <span
-                  class="label"
-                  style="
-                    color: white;
-                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-                  "
-                  >兔兔记账</span
-                >
               </div>
-            </div>
           </div>
         </div>
 
@@ -1231,6 +1169,20 @@
               >
                 🎵 拉取语音模型
               </button>
+            </div>
+          </div>
+
+          <!-- Deepgram 语音识别卡片 -->
+          <div class="moe-card">
+            <div class="moe-card-header">
+              <span class="icon">🎙️</span>
+              <h3>Deepgram 语音识别</h3>
+            </div>
+            <div class="moe-card-body">
+              <div class="form-group">
+                <label>API Key</label>
+                <input type="password" id="deepgram-api-key" class="moe-input" />
+              </div>
             </div>
           </div>
 
@@ -4719,6 +4671,20 @@
         <div id="video-call-messages-visual" class="video-call-main">
           <!-- 聊天气泡会由JS动态生成在这里 -->
         </div>
+        <!-- 语音输入区域 -->
+        <div id="voice-input-area-visual" class="voice-input-area">
+          <div class="voice-input-row">
+            <button id="mic-btn-visual" class="mic-btn" title="点击开始语音输入">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+            </button>
+            <div id="voice-transcript-visual" class="voice-transcript">点击麦克风开始说话...</div>
+          </div>
+        </div>
         <!-- ▼▼▼ 用下面这【一整块】代码，替换掉 id="visual-call-interface" 里面那个旧的 video-call-controls 的 div ▼▼▼ -->
         <div class="video-call-controls">
           <!-- 重-roll按钮 -->
@@ -4789,6 +4755,19 @@
         </div>
         <div id="video-call-main" class="video-call-main">
           <!-- 对话内容会动态生成在这里 -->
+        </div>
+        <div id="voice-input-area-text" class="voice-input-area">
+          <div class="voice-input-row">
+            <button id="mic-btn-text" class="mic-btn" title="点击开始语音输入">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+            </button>
+            <div id="voice-transcript-text" class="voice-transcript">点击麦克风开始说话...</div>
+          </div>
         </div>
         <div class="video-call-controls">
           <!-- 【新增】为旧模式也加上重roll按钮 -->
@@ -4893,378 +4872,6 @@
         <div class="password-actions">
           <button id="password-cancel-btn">取消</button>
           <button id="password-confirm-btn">进入</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="lovers-space-screen" class="screen">
-      <!-- 头部 -->
-      <div id="ls-header">
-        <div class="ls-header-overlay"></div>
-        <div class="ls-header-top-bar">
-          <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
-          <span id="ls-char-name"></span>
-          <div class="header-actions">
-            <span class="action-btn" id="ls-settings-btn" title="空间设置">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="3"></circle>
-                <path
-                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
-                ></path>
-              </svg>
-            </span>
-            <span class="action-btn" id="ls-change-bg-btn" title="更换背景">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                <polyline points="21 15 16 10 5 21"></polyline>
-              </svg>
-            </span>
-            <span class="action-btn" id="ls-switch-char-btn">切换</span>
-          </div>
-        </div>
-        <div class="ls-avatar-and-counter-wrapper">
-          <div class="ls-header-avatars">
-            <img id="ls-user-avatar" src="" />
-            <span class="heart-icon">❤</span>
-            <img id="ls-char-avatar" src="" />
-          </div>
-          <div id="ls-days-counter"></div>
-        </div>
-      </div>
-
-      <div id="ls-tab-bar">
-        <div
-          class="ls-tab-item active"
-          data-view="ls-moments-view"
-          title="说说"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-            ></path>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-album-view" title="相册">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <circle cx="8.5" cy="8.5" r="1.5"></circle>
-            <polyline points="21 15 16 10 5 21"></polyline>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-letters-view" title="情书">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-            ></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-shares-view" title="分享">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="18" cy="5" r="3"></circle>
-            <circle cx="6" cy="12" r="3"></circle>
-            <circle cx="18" cy="19" r="3"></circle>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-questions-view" title="提问">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-diary-view" title="日记">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-pomodoro-view" title="番茄钟">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-activity-view" title="今日足迹">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-          </svg>
-        </div>
-      </div>
-
-      <!-- 内容显示区域 -->
-      <div id="ls-content-area">
-        <div id="ls-moments-view" class="ls-view active">
-          <div id="ls-moments-list"></div>
-          <button id="ls-add-moment-btn" class="ls-fab-btn">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="12"
-                y1="5"
-                x2="12"
-                y2="19"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-              <line
-                x1="5"
-                y1="12"
-                x2="19"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-        <div id="ls-album-view" class="ls-view">
-          <div id="ls-album-list"></div>
-          <button id="ls-add-album-btn" class="ls-fab-btn">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="12"
-                y1="5"
-                x2="12"
-                y2="19"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-              <line
-                x1="5"
-                y1="12"
-                x2="19"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div id="ls-letters-view" class="ls-view">
-          <div id="ls-letters-list"></div>
-          <button id="ls-add-letter-btn" class="ls-fab-btn">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="12"
-                y1="5"
-                x2="12"
-                y2="19"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-              <line
-                x1="5"
-                y1="12"
-                x2="19"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div id="ls-shares-view" class="ls-view">
-          <div id="ls-shares-list"></div>
-        </div>
-        <div id="ls-questions-view" class="ls-view">
-          <div id="ls-questions-list"></div>
-          <button id="ls-add-question-btn" class="ls-fab-btn">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="12"
-                y1="5"
-                x2="12"
-                y2="19"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-              <line
-                x1="5"
-                y1="12"
-                x2="19"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div id="ls-diary-view" class="ls-view">
-          <!-- 日历和心情罐子的内容将由JS动态生成在这里 -->
-        </div>
-
-        <!-- ★★★ 这就是我们为番茄钟准备的全新界面 ★★★ -->
-        <div id="ls-pomodoro-view" class="ls-view">
-          <!-- 番茄钟主页，显示历史记录和开始按钮 -->
-          <div id="ls-pomodoro-home">
-            <div id="ls-pomodoro-start-btn-container">
-              <div id="ls-pomodoro-start-icon">＋</div>
-              <p>开启新的专注时光</p>
-            </div>
-            <div id="ls-pomodoro-history-list">
-              <!-- 历史记录会由JS生成在这里 -->
-            </div>
-          </div>
-          <div id="ls-pomodoro-timer-active" style="display: none">
-            <div class="pomodoro-char-avatar-container">
-              <img id="pomodoro-char-avatar" src="" />
-              <div id="pomodoro-char-log"></div>
-            </div>
-            <div class="pomodoro-timer-display">
-              <div id="pomodoro-current-task"></div>
-              <div id="pomodoro-time">25:00</div>
-            </div>
-            <div
-              class="pomodoro-controls"
-              style="display: flex; gap: 15px; margin-top: 20px"
-            >
-              <!-- 新的萌系音乐按钮 -->
-              <button id="pomodoro-music-btn" title="音乐歌单">
-                <!-- 这里用一个SVG图标代替简单的音符字符，更精致 -->
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M9 18V5l12-2v13"></path>
-                  <circle cx="6" cy="18" r="3"></circle>
-                  <circle cx="18" cy="16" r="3"></circle>
-                </svg>
-              </button>
-              <button
-                id="pomodoro-pause-btn"
-                style="background-color: #ffca28; color: #fff"
-              >
-                暂停 / 休息
-              </button>
-              <button id="pomodoro-end-btn">结束专注</button>
-            </div>
-          </div>
-        </div>
-        <div id="ls-activity-view" class="ls-view">
-          <!-- 今日足迹的内容将由JS动态生成在这里 -->
         </div>
       </div>
     </div>
@@ -8643,288 +8250,13 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
     </div>
 
     <!-- 2. 切换角色的弹窗 -->
-    <div id="ls-char-selector-modal" class="modal">
-      <div class="modal-content" style="height: 60%">
-        <div class="modal-header">
-          <span>选择空间</span>
-        </div>
-        <div class="modal-body" id="ls-char-selector-list" style="padding: 0">
-          <!-- 角色列表会由JS动态生成 -->
-        </div>
-        <div class="modal-footer">
-          <button
-            class="cancel"
-            id="ls-cancel-switch-char-btn"
-            style="width: 100%"
-          >
-            取消
-          </button>
-        </div>
-      </div>
-    </div>
-
     <!-- 3. 发布说说的弹窗 -->
-    <div id="ls-create-moment-modal" class="modal">
-      <div class="modal-content" style="height: auto">
-        <div class="modal-header">
-          <span>想对Ta说...</span>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <textarea
-              id="ls-moment-content-input"
-              rows="5"
-              placeholder="在这里写下你们的私密话语..."
-            ></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="ls-cancel-moment-btn">取消</button>
-          <button class="save" id="ls-confirm-moment-btn">发布</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 4. 创建相册/上传照片的弹窗 (这是修改后的版本) -->
-    <div id="ls-create-album-modal" class="modal">
-      <div class="modal-content" style="height: auto">
-        <div class="modal-header">
-          <!-- 标题已修改 -->
-          <span id="ls-album-modal-title">上传照片</span>
-        </div>
-        <div class="modal-body">
-          <!-- 新增：模式切换开关 (复用动态的样式) -->
-          <div class="post-mode-switcher">
-            <button id="ls-switch-to-image-mode" class="mode-btn active">
-              上传图片
-            </button>
-            <button id="ls-switch-to-text-image-mode" class="mode-btn">
-              使用文字图
-            </button>
-          </div>
-
-          <!-- 模式1: 上传图片 -->
-          <div id="ls-image-mode-content" class="post-mode-content active">
-            <div class="form-group">
-              <label>选择照片 (仅限单张)</label>
-              <div id="ls-photo-preview-container"></div>
-              <button
-                class="form-button form-button-secondary"
-                id="ls-select-photos-btn"
-              >
-                选择照片
-              </button>
-              <!-- 关键：这里的 input 移除了 multiple 属性，现在只能单选 -->
-              <input type="file" id="ls-photo-input" accept="image/*" hidden />
-            </div>
-            <div class="form-group">
-              <label>图片描述 (必填)</label>
-              <textarea
-                id="ls-photo-desc-input"
-                rows="3"
-                placeholder="为这张照片写下注脚..."
-              ></textarea>
-            </div>
-          </div>
-
-          <!-- 模式2: 使用文字图 -->
-          <div
-            id="ls-text-image-mode-content"
-            class="post-mode-content"
-            style="display: none"
-          >
-            <div class="form-group">
-              <label>文字图描述 (必填)</label>
-              <textarea
-                id="ls-text-image-desc-input"
-                rows="5"
-                placeholder="在这里写下你的心情或故事..."
-              ></textarea>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="ls-cancel-album-btn">取消</button>
-          <button class="save" id="ls-confirm-album-btn">确认上传</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 情侣空间-写情书/回信的弹窗 -->
-    <div id="ls-create-letter-modal" class="modal">
-      <div class="modal-content" style="height: auto">
-        <div class="modal-header">
-          <span id="ls-letter-modal-title">给Ta写一封信</span>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="ls-letter-recipient-input">收信人</label>
-            <!-- 收信人通常是固定的，所以我们禁用这个输入框 -->
-            <input type="text" id="ls-letter-recipient-input" disabled />
-          </div>
-          <div class="form-group">
-            <label for="ls-letter-content-input">情书内容</label>
-            <textarea
-              id="ls-letter-content-input"
-              rows="8"
-              placeholder="在这里写下你的心意..."
-            ></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="ls-cancel-letter-btn">取消</button>
-          <button class="save" id="ls-confirm-letter-btn">寄出</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 情侣空间-情书查看器 -->
-    <div id="ls-letter-viewer-modal" class="modal">
-      <div class="ls-letter-viewer-content">
-        <!-- 头部：收信人信息 -->
-        <div class="letter-viewer-header">
-          <img id="ls-viewer-recipient-avatar" class="meta-avatar" />
-          <div class="recipient-info">
-            <div class="label">To my dear:</div>
-            <div id="ls-viewer-recipient-name" class="name"></div>
-          </div>
-        </div>
-        <!-- 中间：信件正文 -->
-        <div id="ls-viewer-body" class="letter-viewer-body">
-          <!-- JS会在这里填充信件内容 -->
-        </div>
-        <!-- 底部：发信人信息和操作按钮 -->
-        <div class="letter-viewer-footer">
-          <div class="sender-info">
-            <div id="ls-viewer-sender-name"></div>
-            <div id="ls-viewer-timestamp" class="timestamp"></div>
-          </div>
-          <div class="letter-actions">
-            <button id="ls-close-letter-viewer-btn">关闭</button>
-            <button id="ls-reply-letter-btn" class="primary">回信</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- 情侣空间设置弹窗 -->
-    <div id="ls-settings-modal" class="modal">
-      <div class="modal-content" style="height: auto">
-        <div class="modal-header">
-          <span>情侣空间设置</span>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="ls-start-date-input">我们在一起的第一天</label>
-            <input
-              type="date"
-              id="ls-start-date-input"
-              style="width: 100%; padding: 10px; box-sizing: border-box"
-            />
-          </div>
-
-          <hr style="opacity: 0.2; margin: 20px 0" />
-          <div class="form-group">
-            <label>危险操作</label>
-            <div style="display: flex; gap: 10px">
-              <button
-                id="ls-cancel-space-btn"
-                class="form-button form-button-secondary"
-                style="
-                  background-color: #ffe5e5;
-                  color: #ff3b30;
-                  border-color: #ffc2d1;
-                  flex: 1;
-                  margin: 0;
-                "
-              >
-                取消空间
-              </button>
-              <button
-                id="ls-disconnect-space-btn"
-                class="form-button form-button-secondary"
-                style="
-                  background-color: #ff3b30;
-                  color: white;
-                  border-color: #ff3b30;
-                  flex: 1;
-                  margin: 0;
-                "
-              >
-                解除关系
-              </button>
-            </div>
-            <p style="font-size: 12px; color: #8a8a8a; margin-top: 8px">
-              <strong>取消空间</strong>:
-              将空间变为未启用状态，但保留所有数据。不会通知对方。<br />
-              <strong>解除关系</strong>:
-              同样会取消空间，但会通知对方关系已解除，对方会对此发表意见。
-            </p>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="ls-settings-cancel-btn">取消</button>
-          <button class="save" id="ls-settings-save-btn">保存</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 情侣空间-提问弹窗 -->
-    <div id="ls-ask-question-modal" class="modal">
-      <div class="modal-content" style="height: auto">
-        <div class="modal-header">
-          <span>发起一个提问</span>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <textarea
-              id="ls-question-content-input"
-              rows="5"
-              placeholder="向Ta提个问题吧..."
-            ></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="ls-cancel-ask-btn">取消</button>
-          <button class="save" id="ls-confirm-ask-btn">向Ta提问</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 情侣空间-回答弹窗 -->
-    <div id="ls-answer-question-modal" class="modal">
-      <div class="modal-content" style="height: auto">
-        <div class="modal-header">
-          <span>回答Ta的问题</span>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label>问题：</label>
-            <p
-              id="ls-answer-question-text"
-              style="
-                background-color: #f0f2f5;
-                padding: 10px;
-                border-radius: 8px;
-              "
-            ></p>
-          </div>
-          <div class="form-group">
-            <label for="ls-answer-content-input">你的回答：</label>
-            <textarea
-              id="ls-answer-content-input"
-              rows="5"
-              placeholder="认真回答哦..."
-            ></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="ls-cancel-answer-btn">取消</button>
-          <button class="save" id="ls-confirm-answer-btn">确认回答</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 1. 这是播放器专属的音频引擎 -->
     <audio id="ls-audio-player" style="display: none"></audio>
 
@@ -9044,191 +8376,7 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
     </div>
 
     <!-- 情侣番茄钟-设置弹窗 -->
-    <div id="ls-pomodoro-setup-modal" class="modal">
-      <div class="modal-content" style="height: auto">
-        <div class="modal-header">
-          <span>新的专注时光</span>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="pomodoro-task-input">专注任务</label>
-            <input
-              type="text"
-              id="pomodoro-task-input"
-              placeholder="例如：学习JS、完成工作报告"
-            />
-          </div>
-          <div class="form-group">
-            <label for="pomodoro-duration-input">专注时长 (分钟)</label>
-            <input
-              type="number"
-              id="pomodoro-duration-input"
-              value="25"
-              min="1"
-            />
-          </div>
-          <div class="form-group">
-            <label>计时模式</label>
-            <div style="display: flex; gap: 20px">
-              <label
-                ><input
-                  type="radio"
-                  name="pomodoro-mode"
-                  value="countdown"
-                  checked
-                />
-                倒计时</label
-              >
-              <label
-                ><input type="radio" name="pomodoro-mode" value="countup" />
-                正计时</label
-              >
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="pomodoro-talk-interval-input"
-              >角色鼓励间隔 (分钟, 0为不自动鼓励)</label
-            >
-            <input
-              type="number"
-              id="pomodoro-talk-interval-input"
-              value="5"
-              min="0"
-            />
-          </div>
-          <div class="form-group">
-            <label>背景音乐 (BGM)</label>
-            <select
-              id="pomodoro-bgm-source-select"
-              style="
-                width: 100%;
-                padding: 8px;
-                border-radius: 6px;
-                border: 1px solid #ccc;
-                margin-bottom: 10px;
-              "
-            >
-              <option value="none">🔕 静音 / 不播放</option>
-              <option value="global">🎵 一起听播放列表</option>
-              <option value="custom">📂 自定义番茄钟歌单</option>
-            </select>
-
-            <!-- 自定义歌单管理面板 (默认隐藏) -->
-            <div
-              id="pomodoro-custom-playlist-panel"
-              style="
-                display: none;
-                background: #f5f5f5;
-                padding: 10px;
-                border-radius: 8px;
-              "
-            >
-              <div
-                id="pomodoro-custom-list"
-                style="
-                  max-height: 100px;
-                  overflow-y: auto;
-                  margin-bottom: 8px;
-                  font-size: 13px;
-                "
-              >
-                <p style="color: #999; text-align: center; margin: 10px 0">
-                  暂无歌曲
-                </p>
-              </div>
-              <div style="display: flex; gap: 5px">
-                <button
-                  id="pomo-add-bgm-local"
-                  class="form-button-secondary"
-                  style="margin: 0; padding: 5px 10px; font-size: 12px"
-                >
-                  + 本地
-                </button>
-                <button
-                  id="pomo-add-bgm-url"
-                  class="form-button-secondary"
-                  style="margin: 0; padding: 5px 10px; font-size: 12px"
-                >
-                  + URL
-                </button>
-                <button
-                  id="pomo-clear-bgm"
-                  class="form-button-secondary"
-                  style="
-                    margin: 0;
-                    padding: 5px 10px;
-                    font-size: 12px;
-                    color: #ff3b30;
-                    border-color: #ff3b30;
-                  "
-                >
-                  清空
-                </button>
-              </div>
-              <!-- 隐藏的文件输入框 -->
-              <input
-                type="file"
-                id="pomo-bgm-file-input"
-                accept="audio/*"
-                multiple
-                style="display: none"
-              />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>自定义背景 (可选)</label>
-            <div style="display: flex; gap: 10px; align-items: center">
-              <input
-                type="text"
-                id="pomodoro-bg-url-input"
-                placeholder="粘贴图片URL"
-                style="flex-grow: 1"
-              />
-              <button
-                id="pomodoro-bg-local-upload-btn"
-                class="form-button-secondary"
-                style="margin: 0; padding: 12px; width: auto"
-              >
-                本地上传
-              </button>
-            </div>
-            <input
-              type="file"
-              id="pomodoro-bg-file-input"
-              accept="image/*"
-              hidden
-            />
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="pomodoro-cancel-setup-btn">取消</button>
-          <button class="save" id="pomodoro-confirm-setup-btn">开始专注</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 情侣番茄钟-历史详情弹窗 -->
-    <div id="ls-pomodoro-history-viewer-modal" class="modal">
-      <div class="modal-content" style="height: 70%">
-        <div class="modal-header">
-          <span id="pomodoro-history-viewer-title">专注记录</span>
-        </div>
-        <div class="modal-body" id="pomodoro-history-viewer-content">
-          <!-- 聊天记录会由JS生成在这里 -->
-        </div>
-        <div class="modal-footer">
-          <button
-            class="save"
-            id="pomodoro-close-history-viewer-btn"
-            style="width: 100%"
-          >
-            关闭
-          </button>
-        </div>
-      </div>
-    </div>
-
     <!-- 1. 小组编辑器弹窗 (用于修改小组信息和世界观) -->
     <div id="forum-group-editor-modal" class="modal">
       <div class="modal-content" style="height: auto; max-height: 80%">
@@ -10860,154 +10008,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
 
     <!-- index.html -->
 
-    <div id="taobao-screen" class="screen">
-      <div class="header">
-        <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
-        <span>桃宝</span>
-        <div class="header-actions">
-          <span
-            class="action-btn"
-            id="clear-taobao-products-btn"
-            style="font-size: 16px; font-weight: 500"
-            >清空</span
-          >
-          <span class="action-btn" id="add-product-btn" title="添加商品"
-            >+</span
-          >
-        </div>
-      </div>
-
-      <!-- 1. 顶部页签导航 (已加入“饿了么”) -->
-      <div class="taobao-tabs">
-        <button class="taobao-tab active" data-view="products-view">
-          首页
-        </button>
-
-        <button class="taobao-tab" data-view="eleme-view">饿了么</button>
-
-        <button class="taobao-tab" data-view="cart-view">
-          购物车<span id="cart-item-count-badge" style="display: none">0</span>
-        </button>
-        <button class="taobao-tab" data-view="orders-view">我的订单</button>
-        <button class="taobao-tab" data-view="my-view">我的</button>
-      </div>
-
-      <!-- 2. 页面内容容器 -->
-      <div class="taobao-content">
-        <!-- “首页”视图 (保持不变) -->
-        <div id="products-view" class="taobao-view active">
-          <div class="taobao-search-bar">
-            <input
-              type="search"
-              id="product-search-input"
-              placeholder="搜一搜，让AI为你创造好物！"
-            />
-            <button id="product-search-btn">搜索</button>
-          </div>
-          <div id="product-category-tabs"></div>
-          <div id="product-grid" class="product-grid"></div>
-        </div>
-
-        <div id="eleme-view" class="taobao-view">
-          <div class="taobao-search-bar">
-            <!-- 新增：这是第一行的“搜索”组 -->
-            <div class="eleme-search-group">
-              <input
-                type="search"
-                id="eleme-search-input"
-                placeholder="想吃点什么？让AI帮你找！"
-              />
-              <button id="eleme-search-btn">搜索</button>
-            </div>
-
-            <!-- 新增：这是第二行的“功能”组 -->
-            <div class="eleme-actions-group">
-              <button
-                id="eleme-add-manual-btn"
-                class="header-actions"
-                title="手动添加美食"
-              >
-                +
-              </button>
-              <button
-                id="eleme-generate-ai-btn"
-                class="header-actions"
-                title="AI生成美食"
-              >
-                ✨
-              </button>
-              <button id="eleme-clear-all-btn" class="header-btn">🗑️</button>
-            </div>
-          </div>
-
-          <div id="eleme-grid" class="product-grid">
-            <!-- 美食列表将由JS动态生成在这里 -->
-          </div>
-        </div>
-
-        <!-- “购物车”视图 -->
-        <div id="cart-view" class="taobao-view">
-          <div id="cart-item-list"></div>
-          <div id="cart-checkout-bar" style="display: none">
-            <div class="total-price">
-              合计: <span id="cart-total-price">¥ 0.00</span>
-            </div>
-            <div style="display: flex; gap: 10px">
-              <button id="share-cart-to-char-btn">分享给Ta代付</button>
-              <button id="buy-for-char-btn">为Ta购买</button>
-              <button id="checkout-btn">结算(0)</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- “我的订单”视图 -->
-        <div id="orders-view" class="taobao-view">
-          <div id="order-list" class="order-list"></div>
-        </div>
-
-        <!-- “我的”视图 -->
-        <div id="my-view" class="taobao-view">
-          <div id="user-balance-container">
-            <p>我的余额</p>
-            <h2 id="user-balance-display">¥ 0.00</h2>
-            <button id="top-up-btn" class="form-button">给钱包充点钱</button>
-          </div>
-          <div
-            id="balance-details-list"
-            class="order-list"
-            style="padding: 0 15px"
-          ></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="product-detail-modal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span>商品详情</span>
-        </div>
-        <div class="modal-body" id="product-detail-body">
-          <!-- 详情内容将由JS动态生成 -->
-        </div>
-        <!-- 评价区域 -->
-        <div id="product-reviews-section">
-          <h3>宝贝评价</h3>
-          <div id="product-reviews-list"></div>
-          <button
-            id="generate-reviews-btn"
-            class="form-button form-button-secondary"
-          >
-            ✨ AI生成评价
-          </button>
-        </div>
-
-        <div class="modal-footer">
-          <button class="cancel" id="close-product-detail-btn">关闭</button>
-          <button class="save" id="detail-add-to-cart-btn">加入购物车</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 2. 添加商品的方式选择弹窗 -->
     <div id="add-product-choice-modal" class="modal">
       <div id="custom-modal" style="width: 250px">
@@ -11031,40 +10031,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
     </div>
 
     <!-- 3. 手动添加/编辑商品弹窗 -->
-    <div id="product-editor-modal" class="modal">
-      <div class="modal-content" style="height: auto">
-        <div class="modal-header">
-          <span id="product-editor-title">添加新商品</span>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="product-name-input">商品名称</label>
-            <input type="text" id="product-name-input" />
-          </div>
-          <div class="form-group">
-            <label for="product-price-input">价格 (元)</label>
-            <input type="number" id="product-price-input" />
-          </div>
-          <div class="form-group">
-            <label for="product-image-input">图片 URL</label>
-            <input type="text" id="product-image-input" />
-          </div>
-          <div class="form-group">
-            <label for="product-category-input">分类 (选填)</label>
-            <input
-              type="text"
-              id="product-category-input"
-              placeholder="例如：衣服, 零食..."
-            />
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="cancel-product-editor-btn">取消</button>
-          <button class="save" id="save-product-btn">保存</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 4. 识别链接弹窗 -->
     <div id="add-from-link-modal" class="modal">
       <div class="modal-content" style="height: auto">
@@ -11086,18 +10052,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
     </div>
 
     <!-- 物流详情页面 -->
-    <div id="logistics-screen" class="screen">
-      <div class="header">
-        <span class="back-btn" id="logistics-back-btn">‹</span>
-        <span>物流详情</span>
-        <span style="width: 30px"></span>
-        <!-- 占位符，让标题居中 -->
-      </div>
-      <div id="logistics-content-area" class="list-container">
-        <!-- 物流信息将由JS动态生成在这里 -->
-      </div>
-    </div>
-
     <!-- 1. “谁是卧底”游戏设置屏幕 -->
     <div id="undercover-setup-screen" class="screen">
       <div class="header">
@@ -11882,80 +10836,8 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
     </div>
 
     <!-- 情侣空间-情绪日记编辑弹窗 -->
-    <div id="ls-diary-editor-modal" class="modal">
-      <div class="modal-content" style="height: auto; max-height: 80%">
-        <div class="modal-header">
-          <span id="ls-diary-editor-title">记录今天的心情</span>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label>选择一个表情代表今天的心情</label>
-            <div
-              id="ls-emoji-selector"
-              style="
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                font-size: 24px;
-                cursor: pointer;
-                justify-content: center;
-                padding: 10px 0;
-              "
-            >
-              <!-- Emoji将由JS生成 -->
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="ls-diary-content-input">写下你的日记</label>
-            <textarea
-              id="ls-diary-content-input"
-              rows="6"
-              placeholder="今天发生了什么特别的事吗..."
-            ></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="ls-cancel-diary-btn">取消</button>
-          <button class="save" id="ls-save-diary-btn">保存日记</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 情侣空间-日记查看弹窗 -->
-    <div id="ls-diary-viewer-modal" class="modal">
-      <div class="modal-content" style="height: auto; max-height: 80%">
-        <div class="modal-header">
-          <span id="ls-diary-viewer-title">查看日记</span>
-        </div>
-        <div
-          id="ls-diary-viewer-body"
-          class="modal-body"
-          style="display: flex; flex-direction: column; gap: 20px"
-        >
-          <!-- 日记内容将由JS动态生成 -->
-        </div>
-        <div class="modal-footer">
-          <button
-            class="save"
-            id="ls-close-diary-viewer-btn"
-            style="width: 100%"
-          >
-            关闭
-          </button>
-        </div>
-      </div>
-    </div>
-
     <!-- 情侣空间 - 每日足迹日历弹窗 -->
-    <div id="ls-activity-calendar-modal" class="modal">
-      <div class="modal-content" style="max-width: 380px">
-        <div class="modal-header">
-          <span id="ls-activity-calendar-title">💕 足迹日历 💕</span>
-        </div>
-        <div class="modal-body" id="ls-activity-calendar-body"></div>
-      </div>
-    </div>
-
     <div id="summary-viewer-modal" class="modal">
       <div class="modal-content" style="height: 80%">
         <div class="modal-header">
@@ -12892,442 +11774,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
       accept="image/*"
       hidden
     />
-
-    <div id="tukey-accounting-screen" class="screen">
-      <!-- 1. 页面头部 (保持不变) -->
-      <div class="header">
-        <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
-        <span id="tukey-header-title">记账群聊</span>
-        <span style="width: 30px"></span>
-      </div>
-
-      <!-- 2. 页面内容容器 (保持不变) -->
-      <div class="tukey-content">
-        <!-- 视图1: 钱包 (这是我们要修改的核心) -->
-        <div id="tukey-wallet-view" class="tukey-view">
-          <div id="wallet-summary-card">
-            <div class="summary-item net-assets">
-              <span class="label">净资产</span>
-              <span class="value" id="net-assets-value">¥ 0.00</span>
-            </div>
-            <div class="summary-details">
-              <div class="summary-item">
-                <span class="label">总资产</span>
-                <span class="value" id="total-assets-value">¥ 0.00</span>
-              </div>
-              <div class="summary-item">
-                <span class="label">总负债</span>
-                <span class="value" id="total-liabilities-value">¥ 0.00</span>
-              </div>
-            </div>
-          </div>
-          <div id="wallet-accounts-list">
-            <!-- 账户列表将由JS动态生成在这里 -->
-          </div>
-          <button
-            id="add-new-account-fab"
-            class="ls-fab-btn"
-            title="添加新账户"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="12"
-                y1="5"
-                x2="12"
-                y2="19"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-              <line
-                x1="5"
-                y1="12"
-                x2="19"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div id="tukey-reports-view" class="tukey-view">
-          <!-- 1. 报表控制/筛选区域 -->
-          <div class="report-controls">
-            <select id="report-account-filter">
-              <!-- 账户选项将由JS动态生成 -->
-            </select>
-            <select id="report-month-filter">
-              <!-- 月份选项将由JS动态生成 -->
-            </select>
-            <select id="report-type-filter">
-              <option value="daily_details">每日明细</option>
-              <option value="monthly_summary">月度统计</option>
-            </select>
-          </div>
-
-          <!-- 2. 报表内容显示区域 -->
-          <div id="report-display-area">
-            <!-- 视图切换容器 -->
-            <div id="daily-report-view" class="report-view active">
-              <!-- 每日明细将由JS动态生成在这里 -->
-              <p class="report-placeholder">正在加载报表...</p>
-            </div>
-            <div id="monthly-report-view" class="report-view">
-              <!-- 月度统计将由JS动态生成在这里 -->
-              <div id="monthly-summary-card">
-                <!-- 月度总收支 -->
-              </div>
-              <div class="chart-container">
-                <h3>支出分类占比</h3>
-                <canvas id="category-pie-chart"></canvas>
-              </div>
-              <div class="chart-container">
-                <h3>月度支出趋势</h3>
-                <canvas id="expenditure-line-chart"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="tukey-group-chat-view" class="tukey-view active">
-          <!-- 这个容器会在没有群聊时显示 -->
-          <div id="tukey-no-group-placeholder">
-            <p>你还没有创建记账群聊哦</p>
-            <button id="tukey-create-group-btn" class="form-button">
-              立即创建
-            </button>
-          </div>
-
-          <div id="tukey-group-chat-container" style="display: none">
-            <div id="tukey-group-chat-header">
-              <span id="tukey-group-name">群聊名称</span>
-              <button id="tukey-group-settings-btn" title="群聊设置">⚙️</button>
-            </div>
-
-            <!-- 记账和回复历史记录 -->
-            <div id="tukey-records-list">
-              <!-- JS会在这里渲染内容 -->
-            </div>
-
-            <!-- 记账输入区域 -->
-            <div id="tukey-record-input-area">
-              <button id="tukey-add-record-btn">+</button>
-            </div>
-
-            <div id="tukey-record-input-card">
-              <div class="card-header">
-                <button class="close-card-btn">×</button>
-                <div class="type-selector">
-                  <button class="type-btn active" data-type="expense">
-                    支出
-                  </button>
-                  <button class="type-btn" data-type="income">收入</button>
-                </div>
-              </div>
-              <div class="card-body">
-                <!-- 金额和备注输入区域 -->
-                <div class="input-fields">
-                  <div class="amount-input-wrapper">
-                    <span class="currency-symbol">¥</span>
-                    <input
-                      type="number"
-                      id="tukey-card-amount-input"
-                      placeholder="0.00"
-                    />
-                    <!-- 已选分类显示区 -->
-                    <div id="tukey-card-selected-category">
-                      <img src="" alt="" />
-                      <span>请选择分类</span>
-                    </div>
-                  </div>
-                  <input
-                    type="text"
-                    id="tukey-card-remarks-input"
-                    placeholder="点击输入备注..."
-                  />
-                </div>
-                <!-- 分类网格 -->
-                <div class="category-grid">
-                  <!-- 分类将由JS动态生成 -->
-                </div>
-              </div>
-              <div class="card-footer">
-                <!-- 账户和时间选择器 -->
-                <div class="additional-options">
-                  <div class="option-item">
-                    <label for="tukey-card-account-select">账户</label>
-                    <select id="tukey-card-account-select">
-                      <!-- 账户将由JS动态生成 -->
-                    </select>
-                  </div>
-                  <div class="option-item">
-                    <label for="tukey-card-time-input">时间</label>
-                    <input type="datetime-local" id="tukey-card-time-input" />
-                  </div>
-                </div>
-                <button id="tukey-save-from-card-btn">保 存</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="tukey-settings-view" class="tukey-view">
-          <div class="form-container" style="padding-top: 20px">
-            <!-- 1. 个人资料设置 -->
-            <div class="form-group">
-              <label>我的个人资料</label>
-              <div class="avatar-upload">
-                <img
-                  id="tukey-user-avatar-preview"
-                  src="https://i.postimg.cc/PxZrFFFL/o-o-1.jpg"
-                />
-                <button
-                  onclick="
-                    document.getElementById('tukey-user-avatar-input').click()
-                  "
-                >
-                  上传我的头像
-                </button>
-                <input
-                  type="file"
-                  id="tukey-user-avatar-input"
-                  accept="image/*"
-                  hidden
-                />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="tukey-user-name-input">用户名</label>
-              <input
-                type="text"
-                id="tukey-user-name-input"
-                placeholder="输入你在群聊中显示的昵称"
-              />
-            </div>
-            <div class="form-group">
-              <label for="tukey-user-profession-input">职业 (选填)</label>
-              <input
-                type="text"
-                id="tukey-user-profession-input"
-                placeholder="你的职业，会展示给群友"
-              />
-            </div>
-
-            <hr style="opacity: 0.2; margin: 20px 0" />
-
-            <!-- 2. 同步设置 -->
-            <div class="form-group">
-              <label for="sync-to-taobao-toggle" class="toggle-switch-label">
-                <span class="toggle-switch-text">
-                  同步至桃宝余额
-                  <p
-                    style="
-                      font-size: 12px;
-                      font-weight: normal;
-                      color: #999;
-                      margin-top: 5px;
-                    "
-                  >
-                    开启后，所有记账记录将同步影响桃宝的余额和收支明细。
-                  </p>
-                </span>
-                <input type="checkbox" id="sync-to-taobao-toggle" />
-                <span class="toggle-switch-slider"></span>
-              </label>
-            </div>
-
-            <hr style="opacity: 0.2; margin: 20px 0" />
-
-            <!-- 3. 导出设置 (新增) -->
-            <div class="form-group">
-              <label>数据导出</label>
-              <button
-                id="export-tukey-report-btn"
-                class="form-button form-button-secondary"
-              >
-                导出账单为 Excel
-              </button>
-            </div>
-
-            <button class="form-button" id="save-tukey-settings-btn">
-              保存所有设置
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. 底部导航栏 (保持不变) -->
-      <div id="tukey-bottom-nav">
-        <div class="tukey-nav-item" data-view="tukey-wallet-view">
-          <svg width="24" height="24" viewBox="0 0 1024 1024">
-            <path
-              d="M517.7 660c-4 26.6-19.2 46.3-37.3 46.3H290.1c-21.2 0-38.4-27-38.4-60.3V435.3c0-33.3 17.2-60.3 38.4-60.3h190.3c17.6 0 32.5 18.7 37 44.1"
-              fill="#BAF4EA"
-            ></path>
-            <path
-              d="M668.7 761.8H321.6c-54 0-97.9-43.9-97.9-97.9V419.6c0-54 43.9-97.9 97.9-97.9h347.1c43.8 0 82.6 29.5 94.4 71.6 4.1 14.9-4.6 30.3-19.5 34.5-14.9 4.1-30.3-4.6-34.5-19.5-5-18-21.6-30.6-40.4-30.6H321.6c-23.1 0-41.9 18.8-41.9 41.9v244.3c0 23.1 18.8 41.9 41.9 41.9h347.1c19.5 0 36.3-13.2 40.8-32.2 3.6-15 18.7-24.3 33.7-20.8 15 3.6 24.3 18.7 20.8 33.7-5 21.1-17.1 40.2-34.1 53.8-17.3 13.9-39 21.5-61.2 21.5z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M719.9 614.4H641c-39.9 0-72.6-32.7-72.6-72.6 0-39.9 32.7-72.6 72.6-72.6h78.9c39.9 0 72.6 32.7 72.6 72.6 0 39.9-32.7 72.6-72.6 72.6z"
-              fill="#BAF4EA"
-            ></path>
-            <path
-              d="M719.9 642.4H641c-55.5 0-100.6-45.1-100.6-100.6 0-55.5 45.1-100.6 100.6-100.6h78.9c55.5 0 100.6 45.1 100.6 100.6 0 55.4-45.2 100.6-100.6 100.6zM641 497.1c-24.6 0-44.6 20-44.6 44.6s20 44.6 44.6 44.6h78.9c24.6 0 44.6-20 44.6-44.6s-20-44.6-44.6-44.6H641z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M650.1 542.4m-0.4 0a0.4 0.4 0 1 0 0.8 0 0.4 0.4 0 1 0-0.8 0Z"
-              fill="#FFFFFF"
-            ></path>
-            <path
-              d="M650.1 570.8c-15.7 0-28.4-12.7-28.4-28.4s12.7-28.4 28.4-28.4 28.4 12.7 28.4 28.4-12.7 28.4-28.4 28.4z m0-56c-15.2 0-27.6 12.4-27.6 27.6s12.4 27.6 27.6 27.6 27.6-12.4 27.6-27.6-12.4-27.6-27.6-27.6z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M155.2 152.2c12 0 21.7 9.7 21.7 21.7s-9.7 21.7-21.7-21.7-21.7-9.7-21.7-21.7 9.7-21.7 21.7-21.7m0-40c-34 0-61.7 27.7-61.7 61.7s27.7 61.7 61.7 61.7 61.7-27.7 61.7-61.7-27.7-61.7-61.7-61.7zM162.7 956.8h-0.2c-8.3-0.1-14.9-6.9-14.8-15.2l1-69.5c0.1-8.2 6.8-14.8 15-14.8h0.2c8.3 0.1 14.9 6.9 14.8 15.2l-1 69.5c-0.1 8.2-6.8 14.8-15 14.8z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M212.9 907.5v0.2c-0.1 8.3-6.9 14.9-15.2 14.8l-69.5-1c-8.2-0.1-14.8-6.8-14.8-15v-0.2c0.1-8.3 6.9-14.9 15.2-14.8l69.5 1c8.3 0.2 14.8 6.9 14.8 15z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M895.4 905.5m-30.9 0a30.9 30.9 0 1 0 61.8 0 30.9 30.9 0 1 0-61.8 0Z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M121.4 613.5m-20.7 0a20.7 20.7 0 1 0 41.4 0 20.7 20.7 0 1 0-41.4 0Z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M861.5 115.5v30.8M861.5 156.3c-5.5 0-10-4.5-10-10v-30.8c0-5.5 4.5-10 10-10s10 4.5 10 10v30.8c0 5.5-4.5 10-10 10zM804.8 172.2h30.8M835.6 182.2h-30.8c-5.5 0-10-4.5-10-10s4.5-10 10-10h30.8c5.5 0 10 4.5 10 10s-4.5 10-10 10zM887.4 172.2h30.8M918.2 182.2h-30.8c-5.5 0-10-4.5-10-10s4.5-10 10-10h30.8c5.5 0 10 4.5 10 10s-4.5 10-10 10z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M821.4 212.3l21.8-21.8M821.4 222.3c-2.6 0-5.1-1-7.1-2.9-3.9-3.9-3.9-10.2 0-14.1l21.8-21.8c3.9-3.9 10.2-3.9 14.1 0 3.9 3.9 3.9 10.2 0 14.1l-21.8 21.8c-1.8 1.9-4.4 2.9-7 2.9z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M879.8 153.9l21.8-21.8M879.8 163.9c-2.6 0-5.1-1-7.1-2.9-3.9-3.9-3.9-10.2 0-14.1l21.8-21.8c3.9-3.9 10.2-3.9 14.1 0 3.9 3.9 3.9 10.2 0 14.1L886.9 161c-2 1.9-4.5 2.9-7.1 2.9z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M901.6 212.3l-21.8-21.8M901.6 222.3c-2.6 0-5.1-1-7.1-2.9l-21.8-21.8c-3.9-3.9-3.9-10.2 0-14.1 3.9-3.9 10.2-3.9 14.1 0l21.8 21.8c3.9 3.9 3.9 10.2 0 14.1-1.9 1.9-4.5 2.9-7 2.9z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M843.2 153.9l-21.8-21.8M843.2 163.9c-2.6 0-5.1-1-7.1-2.9l-21.8-21.8c-3.9-3.9-3.9-10.2 0-14.1 3.9-3.9 10.2-3.9 14.1 0l21.8 21.8c3.9 3.9 3.9 10.2 0 14.1-1.9 1.9-4.4 2.9-7 2.9z"
-              fill="#2D5B56"
-            ></path>
-          </svg>
-          <span>钱包</span>
-        </div>
-        <div class="tukey-nav-item" data-view="tukey-reports-view">
-          <svg width="24" height="24" viewBox="0 0 1024 1024">
-            <path
-              d="M692.24 787.29h-175.3a24.65 24.65 0 0 1 0-49.3h175.3a24.65 24.65 0 0 1 0 49.3z"
-              fill="#303030"
-              p-id="13093"
-            ></path>
-            <path
-              d="M692.24 186.92v89.18H336.29v463.27h-89.34V186.92h445.29z"
-              fill="#279ACC"
-              p-id="13094"
-            ></path>
-            <path
-              d="M810.83 869.58H322.21V660.12a24.65 24.65 0 0 1 49.3 0v160.16h390V318.74h-390v148.19a24.65 24.65 0 1 1-49.3 0V269.44h488.62z"
-              fill="#303030"
-              p-id="13095"
-            ></path>
-            <path
-              d="M346.86 767H225.28V166.87H713.9v127.22a24.65 24.65 0 1 1-49.29 0v-77.93h-390v501.55h72.28a24.65 24.65 0 1 1 0 49.29z"
-              fill="#303030"
-              p-id="13096"
-            ></path>
-            <path
-              d="M751.63 395.07m-78.65 0a78.65 78.65 0 1 0 157.3 0 78.65 78.65 0 1 0-157.3 0Z"
-              fill="#279ACC"
-              p-id="13097"
-            ></path>
-            <path
-              d="M317.28 626.59a24.65 24.65 0 0 1-17.42-42.07l89.58-89.59c10.84-10.85 25-16.36 40.58-16.34a55.34 55.34 0 0 1 39.89 18l64.43 69.85 150.17-148a24.65 24.65 0 0 1 34.63 35.08l-150 148.05a49.43 49.43 0 0 1-71-1.66L433.68 530a6.42 6.42 0 0 0-4.65-2.1 5.84 5.84 0 0 0-4.73 1.91l-89.59 89.59a24.58 24.58 0 0 1-17.43 7.19z"
-              fill="#303030"
-              p-id="13098"
-            ></path>
-            <path
-              d="M751.63 481.75a86.67 86.67 0 1 1 86.67-86.67 86.77 86.77 0 0 1-86.67 86.67z m0-124A37.38 37.38 0 1 0 789 395.08a37.42 37.42 0 0 0-37.37-37.38z"
-              fill="#303030"
-              p-id="13099"
-            ></path>
-          </svg>
-          <span>报表</span>
-        </div>
-        <div class="tukey-nav-item active" data-view="tukey-group-chat-view">
-          <svg width="24" height="24" viewBox="0 0 1024 1024">
-            <path
-              d="M134.588 151C118.247 151 105 164.247 105 180.584v557.964c0 16.339 13.255 29.584 29.599 29.584h155.746l31.872 99.6c2.489 7.777 8.981 9.197 14.504 3.169l94.146-102.769h457.72c16.341 0 29.59-13.247 29.59-29.584V180.584c0-16.339-13.248-29.584-29.588-29.584H134.588z"
-              fill="#0FC8B2"
-              p-id="32320"
-            ></path>
-            <path
-              d="M511.213 422c19.045 0 34.484 15.44 34.484 34.486s-15.44 34.483-34.484 34.483c-19.046 0-34.485-15.438-34.485-34.483 0-19.046 15.439-34.486 34.485-34.486z m-199.727 0c19.046 0 34.483 15.44 34.483 34.486s-15.437 34.483-34.483 34.483S277 475.531 277 456.486C277 437.44 292.44 422 311.486 422z m399.454 0c19.045 0 34.485 15.439 34.485 34.484 0 19.046-15.439 34.483-34.485 34.483-19.045 0-34.485-15.438-34.485-34.483 0-19.045 15.44-34.484 34.485-34.484z"
-              fill="#FFFFFF"
-              p-id="32321"
-            ></path>
-          </svg>
-          <span>记账群聊</span>
-        </div>
-        <div class="tukey-nav-item" data-view="tukey-settings-view">
-          <svg width="24" height="24" viewBox="0 0 1024 1024">
-            <path
-              d="M785.749333 564.770133a231.150933 231.150933 0 0 0 47.035734-258.730666l-145.476267 145.442133a41.5744 41.5744 0 0 1-58.811733 0l-55.876267-55.876267a41.5744 41.5744 0 0 1 0-58.811733l145.476267-145.476267a230.843733 230.843733 0 0 0-305.834667 305.664l-263.509333 263.406934a41.5744 41.5744 0 0 0 0 58.811733l55.842133 55.842133a41.5744 41.5744 0 0 0 58.811733 0l263.406934-263.3728a230.638933 230.638933 0 0 0 258.730666-47.069866l0.170667 0.170666z"
-              fill="#FFFFFF"
-              p-id="33627"
-            ></path>
-            <path
-              d="M435.2 214.084267a264.977067 264.977067 0 0 1 297.028267-53.828267 34.133333 34.133333 0 0 1 10.001066 55.227733l-145.476266 145.442134a7.441067 7.441067 0 0 0 0 10.581333l55.876266 55.842133a7.441067 7.441067 0 0 0 10.5472 0l145.476267-145.476266a34.133333 34.133333 0 0 1 55.227733 10.069333 265.216 265.216 0 0 1-54.033066 296.96 34.474667 34.474667 0 0 1-3.208534 2.833067l-0.238933 0.170666-3.925333 3.822934a264.704 264.704 0 0 1-262.144 57.7536l-5.290667-1.8432-247.5008 247.534933a75.707733 75.707733 0 0 1-102.741333 4.027733l-4.334934-4.027733-55.876266-55.842133a75.707733 75.707733 0 0 1 0-107.1104l247.7056-247.569067-1.809067-5.2224a265.216 265.216 0 0 1 57.719467-262.075733l6.997333-7.2704z m211.285333-7.850667a196.539733 196.539733 0 0 0-163.0208 56.1152 196.983467 196.983467 0 0 0-40.072533 220.535467 34.133333 34.133333 0 0 1-6.9632 38.229333l-263.5776 263.406933a7.441067 7.441067 0 0 0 0 10.513067l55.876267 55.876267a7.441067 7.441067 0 0 0 10.5472 0l263.406933-263.406934a34.133333 34.133333 0 0 1 38.229333-6.929066 196.5056 196.5056 0 0 0 220.501334-40.072534l1.9456-1.7408 4.334933-4.5056a196.8128 196.8128 0 0 0 50.107733-156.672l-1.058133-7.304533-105.301333 105.335467a75.707733 75.707733 0 0 1-102.741334 4.027733l-4.334933-4.027733-55.876267-55.876267a75.707733 75.707733 0 0 1 0-107.076267l105.3696-105.3696-7.3728-1.058133z"
-              fill="#222222"
-              p-id="33628"
-            ></path>
-            <path
-              d="M284.8768 690.858667a34.133333 34.133333 0 0 1 48.298667 48.264533l-61.781334 61.7472a34.133333 34.133333 0 1 1-48.264533-48.264533l61.781333-61.781334z"
-              fill="#009898"
-              p-id="33629"
-            ></path>
-          </svg>
-          <span>设置</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ... </div> 标签来自 id="tukey-accounting-screen" -->
-
-    <!-- 兔k记账导出选项模态框 -->
-    <div id="tukey-export-modal" class="modal">
-      <div class="modal-content" style="height: auto; max-height: 70%">
-        <div class="modal-header">
-          <span>选择要导出的账户</span>
-        </div>
-        <div class="modal-body">
-          <div id="tukey-export-account-list" class="contact-picker-list">
-            <!-- 账户列表将由JS动态生成 -->
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="cancel-tukey-export-btn">取消</button>
-          <button class="save" id="confirm-tukey-export-btn">确认导出</button>
-        </div>
-      </div>
-    </div>
 
     <!-- 1. 查岗 - 角色选择屏幕 -->
     <div id="kk-char-selection-screen" class="screen">
@@ -14297,180 +12743,8 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
     </div>
 
     <!-- 1. 创建/管理记账群聊的弹窗 (添加解散按钮) -->
-    <div id="tukey-group-manager-modal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span id="tukey-group-manager-title">创建记账群聊</span>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="tukey-group-name-input">群聊名称</label>
-            <input
-              type="text"
-              id="tukey-group-name-input"
-              placeholder="给你的群聊起个名吧"
-            />
-          </div>
-          <div class="form-group">
-            <label>选择群成员 (勾选=拉人，取消勾选=踢人)</label>
-            <div id="tukey-member-picker-list" class="contact-picker-list">
-              <!-- 角色列表将由JS动态生成 -->
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <!-- 解散按钮 (默认隐藏) -->
-          <button
-            class="form-button-secondary"
-            id="tukey-disband-group-btn"
-            style="
-              background-color: #ffe5e5;
-              color: #ff3b30;
-              border-color: #ffc2d1;
-              display: none;
-              margin-right: auto;
-            "
-          >
-            解散群聊
-          </button>
-
-          <button class="cancel" id="tukey-cancel-group-manager-btn">
-            取消
-          </button>
-          <button class="save" id="tukey-save-group-btn">保存</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 2. 群聊AI回复设置的弹窗 -->
-    <div id="tukey-reply-settings-modal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span>AI回复设置</span>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="tukey-reply-threshold-input"
-              >每记账 ____ 条后，AI进行回复：</label
-            >
-            <input
-              type="number"
-              id="tukey-reply-threshold-input"
-              min="1"
-              value="1"
-            />
-          </div>
-          <hr style="opacity: 0.2" />
-          <div class="form-group">
-            <label>选择回复模式：</label>
-            <div
-              class="theme-selector"
-              style="flex-direction: column; align-items: flex-start; gap: 10px"
-            >
-              <label
-                ><input
-                  type="radio"
-                  name="tukey-reply-mode"
-                  value="all"
-                  checked
-                />
-                所有成员都回复</label
-              >
-              <label
-                ><input type="radio" name="tukey-reply-mode" value="random" />
-                随机选择成员回复</label
-              >
-              <label
-                ><input type="radio" name="tukey-reply-mode" value="specific" />
-                指定成员回复</label
-              >
-            </div>
-          </div>
-          <div id="tukey-specific-reply-options" style="display: none">
-            <div class="form-group">
-              <label for="tukey-random-count-input"
-                >随机回复人数 (当选择“随机”时):</label
-              >
-              <input
-                type="number"
-                id="tukey-random-count-input"
-                min="1"
-                value="2"
-              />
-            </div>
-            <div class="form-group">
-              <label>指定回复的成员 (当选择“指定”时):</label>
-              <div
-                id="tukey-specific-member-picker-list"
-                class="contact-picker-list"
-                style="max-height: 150px"
-              >
-                <!-- 成员列表将由JS动态生成 -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="tukey-cancel-reply-settings-btn">
-            取消
-          </button>
-          <button class="save" id="tukey-save-reply-settings-btn">保存</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 3. 新建/编辑记账记录的弹窗 -->
-    <div id="tukey-record-editor-modal" class="modal">
-      <div class="modal-content" style="height: auto; max-height: 90%">
-        <div class="modal-header">
-          <span id="tukey-record-editor-title">记一笔</span>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label>类型</label>
-            <div class="tukey-type-selector">
-              <button class="type-btn active" data-type="expense">支出</button>
-              <button class="type-btn" data-type="income">收入</button>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="tukey-record-amount-input">金额</label>
-            <input
-              type="number"
-              id="tukey-record-amount-input"
-              placeholder="0.00"
-            />
-          </div>
-          <div class="form-group">
-            <label for="tukey-record-category-select">分类</label>
-            <select id="tukey-record-category-select">
-              <!-- 分类将由JS动态生成 -->
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="tukey-record-account-select">账户</label>
-            <select id="tukey-record-account-select">
-              <!-- 账户将由JS动态生成 -->
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="tukey-record-time-input">时间</label>
-            <input type="datetime-local" id="tukey-record-time-input" />
-          </div>
-          <div class="form-group">
-            <label for="tukey-record-remarks-input">备注 (可选)</label>
-            <textarea id="tukey-record-remarks-input" rows="2"></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="tukey-cancel-record-editor-btn">
-            取消
-          </button>
-          <button class="save" id="tukey-save-record-btn">保存</button>
-        </div>
-      </div>
-    </div>
-
     <!-- 4. 查岗 - 电脑屏幕 (模态框) -->
     <div id="kk-computer-modal" class="modal">
       <div
@@ -15132,85 +13406,7 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
     <!-- 在 body 结束标签前，其他 modal 的旁边添加 -->
 
     <!-- 情侣空间-照片详情与评论弹窗 (萌系升级版) -->
-    <div id="ls-photo-detail-modal" class="modal">
-      <div class="modal-content ls-photo-modal-content">
-        <!-- 1. 顶部标题栏 -->
-        <div class="ls-photo-modal-header">
-          <span>✨ 甜蜜瞬间 ✨</span>
-          <span id="ls-photo-detail-close-btn" class="close-btn">×</span>
-        </div>
-
-        <!-- 2. 中间滚动区域 -->
-        <div class="ls-photo-modal-body">
-          <!-- 图片展示区 (类似拍立得风格) -->
-          <div class="ls-polaroid-container">
-            <div class="ls-photo-wrapper">
-              <img id="ls-photo-detail-img" src="" alt="照片" />
-            </div>
-            <div id="ls-photo-detail-desc" class="ls-photo-desc"></div>
-            <div id="ls-photo-detail-meta" class="ls-photo-date"></div>
-          </div>
-
-          <!-- 评论区标题 -->
-          <div class="ls-comments-section-title">
-            <span class="icon">💬</span> 悄悄话
-          </div>
-
-          <!-- 评论列表 -->
-          <div id="ls-photo-comments-list" class="ls-comments-list">
-            <!-- JS生成评论 -->
-          </div>
-        </div>
-
-        <!-- 3. 底部输入栏 -->
-        <div class="ls-photo-modal-footer">
-          <input
-            type="text"
-            id="ls-photo-comment-input"
-            placeholder="写下你的想法( •̀ ω •́ )✧..."
-          />
-          <button id="ls-photo-comment-send-btn">发送</button>
-        </div>
-      </div>
-    </div>
     <!-- 情侣空间 - 分享详情专用弹窗 (Ver 2.0 萌系版) -->
-    <div id="ls-share-detail-modal" class="modal">
-      <div class="modal-content ls-share-card-container">
-        <!-- 1. 顶部装饰区 -->
-        <div class="ls-share-header-bg"></div>
-
-        <!-- 2. 头像与徽章 (核心视觉) -->
-        <div class="ls-share-avatar-wrapper">
-          <img id="ls-share-char-avatar" src="" class="ls-share-avatar-img" />
-          <!-- 类型徽章 -->
-          <div class="ls-share-badge" id="ls-share-badge-icon">🎬</div>
-        </div>
-
-        <!-- 3. 内容区域 -->
-        <div class="ls-share-content-body">
-          <!-- 推荐语气泡 (像是在说话) -->
-          <div class="ls-share-speech-bubble">
-            <div class="bubble-arrow"></div>
-            <p id="ls-share-thoughts">在这里显示 TA 的感想...</p>
-          </div>
-
-          <!-- 作品信息卡片 -->
-          <div class="ls-share-info-box">
-            <h3 id="ls-share-detail-title">作品标题</h3>
-            <span class="ls-share-pill" id="ls-share-type-text">电影</span>
-            <div class="ls-share-divider"></div>
-            <div class="ls-share-summary-text" id="ls-share-summary">
-              这里是作品的简介内容...
-            </div>
-          </div>
-        </div>
-
-        <!-- 4. 底部按钮 -->
-        <div class="ls-share-footer-action">
-          <button id="ls-share-detail-close-btn">收到安利 (o´ω`o)ﾉ</button>
-        </div>
-      </div>
-    </div>
     <!-- 莫兰迪风娃娃机充值弹窗 -->
     <div id="claw-machine-modal" class="modal">
       <!-- 容器背景改为透明，去除默认阴影 -->
@@ -17667,12 +15863,8 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
           "check-phone": "https://i.postimg.cc/RVwpwr0r/IMG-8348.jpg",
           weibo: "https://i.postimg.cc/PqBY5wBq/weibo-icon.png",
           forum: "https://i.postimg.cc/pr0T3WfC/douban-icon.png",
-          "lovers-space": "https://i.postimg.cc/d1wZ39xW/lovers-space-icon.png",
           "game-hall": "https://i.postimg.cc/P5gL5z2g/game-controller-icon.png",
-          "x-social": "https://i.postimg.cc/8P1H0vQ8/x-logo.png",
-          taobao: "https://i.postimg.cc/k47tXg1j/taologo.png",
           "date-a-live": "https://i.postimg.cc/Kjdss1j9/1761142686734.png",
-          "tukey-accounting": "https://i.postimg.cc/k4fZKVXP/tu-tu.png",
           "kk-checkin": "https://i.postimg.cc/MGwrL0nf/kitty.png",
           studio: "https://i.postimg.cc/W3sLz11s/clapperboard-icon.png",
         };
@@ -17686,12 +15878,8 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
           "check-phone": "查手机",
           weibo: "微博",
           forum: "圈子",
-          "lovers-space": "情侣空间",
           "game-hall": "游戏大厅",
-          "x-social": "X社交",
-          taobao: "桃宝",
           "date-a-live": "约会大作战",
-          "tukey-accounting": "兔兔记账",
           "kk-checkin": "kk查岗",
           studio: "lrq小剧场",
         };
@@ -17943,9 +16131,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
             tarotReadings: "++id, timestamp",
             pomodoroSessions: "++id, chatId, startTime",
             scriptKillScripts: "++id, name, isBuiltIn",
-            taobaoProducts: "++id, name, category",
-            taobaoOrders: "++id, productId, timestamp",
-            taobaoCart: "++id, productId",
             userWalletTransactions: "++id, timestamp",
             charPhonePresets: "++id, name",
             ludoQuestionBanks: "++id, name",
@@ -17956,17 +16141,8 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
             datingSprites: "++id, groupId, description, url",
             datingHistory: "++id, characterId, timestamp",
             offlinePresets: "++id, name",
-            elemeFoods: "++id, name, category",
-            elemeOrders: "++id, recipientId, timestamp",
             studioScripts: "++id, name",
             studioHistory: "++id, timestamp",
-            tukeyAccounts: "++id, category, type", // 这是你已有的，保持不变
-            tukeyAccountingGroups: "&id", // 记账群聊设置 (id, name, members, replySettings)
-            tukeyAccountingRecords:
-              "++id, groupId, timestamp, isRepliedTo, accountId",
-            tukeyAccountingReplies: "++id, recordId, charId", // AI的回复记录
-            tukeyUserSettings: "&id",
-            tukeyCustomConfig: "&id",
             auroraBooks: "++id, title, content, addedAt",
             passerbyAvatars: "++id, url",
             clawMachineDolls: "++id, url",
@@ -19460,9 +17636,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
               ludoQuestionBanks,
               ludoQuestions,
               scriptKillScripts,
-              taobaoProducts,
-              taobaoOrders,
-              taobaoCart,
               userWalletTransactions,
               userStickerCategories,
             ] = await Promise.all([
@@ -19498,9 +17671,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
               db.ludoQuestionBanks.toArray(),
               db.ludoQuestions.toArray(),
               db.scriptKillScripts.toArray(),
-              db.taobaoProducts.toArray(),
-              db.taobaoOrders.toArray(),
-              db.taobaoCart.toArray(),
               db.userWalletTransactions.toArray(),
               db.userStickerCategories.toArray(),
             ]);
@@ -19538,9 +17708,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
               ludoQuestionBanks,
               ludoQuestions,
               scriptKillScripts,
-              taobaoProducts,
-              taobaoOrders,
-              taobaoCart,
               userWalletTransactions,
               userStickerCategories,
             });
@@ -19697,9 +17864,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
             ludoQuestionBanks,
             ludoQuestions,
             scriptKillScripts,
-            taobaoProducts,
-            taobaoOrders,
-            taobaoCart,
             userWalletTransactions,
             userStickerCategories,
           ] = await Promise.all([
@@ -19735,9 +17899,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
             db.ludoQuestionBanks.toArray(),
             db.ludoQuestions.toArray(),
             db.scriptKillScripts.toArray(),
-            db.taobaoProducts.toArray(),
-            db.taobaoOrders.toArray(),
-            db.taobaoCart.toArray(),
             db.userWalletTransactions.toArray(),
             db.userStickerCategories.toArray(),
           ]);
@@ -19776,9 +17937,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
             ludoQuestionBanks,
             ludoQuestions,
             scriptKillScripts,
-            taobaoProducts,
-            taobaoOrders,
-            taobaoCart,
             userWalletTransactions,
             userStickerCategories,
           });
@@ -20905,6 +19063,7 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
             minimaxProvider: "cn",
             minimaxSpeechModel: "speech-01-turbo",
             pollinationsApiKey: "", // <--- 新增这一行
+            deepgramApiKey: "",
           };
 
           // 兼容旧数据，如果加载的设置里没有温度，也给一个默认值
@@ -22094,6 +20253,8 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
             novelaiEnabled ? "block" : "none";
           document.getElementById("pollinations-api-key").value =
             state.apiConfig.pollinationsApiKey || "";
+          document.getElementById("deepgram-api-key").value =
+            state.apiConfig.deepgramApiKey || "";
 
           // 2. 更新后台活动相关的开关和输入框
           document.getElementById("background-activity-switch").checked =
@@ -24403,16 +22564,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
 			            </div>
 			            <div class="tarot-reading-body">
 			                ${cardsText}
-			            </div>
-			        </div>
-			    `;
-          } else if (msg.type === "lovers_space_disconnect") {
-            bubble.classList.add("is-ls-disconnect"); // 应用我们写的透明气泡CSS
-            contentHtml = `
-			        <div class="lovers-space-disconnect-card">
-			            <div class="icon">💔</div>
-			            <div class="text-content">
-			                <div class="title">情侣空间已解除</div>
 			            </div>
 			        </div>
 			    `;
@@ -34961,6 +33112,11 @@ ${libraryList}
         }
 
         async function endVideoCall() {
+          // 0. 停止语音输入
+          if (typeof stopVoiceInput === 'function') {
+            stopVoiceInput();
+          }
+
           // 1. 隐藏界面元素
           document.getElementById("visual-call-interface").style.display =
             "none";
@@ -37323,12 +35479,8 @@ ${libraryList}
             "check-phone": "查手机",
             weibo: "微博",
             forum: "圈子",
-            "lovers-space": "情侣空间",
             "game-hall": "游戏大厅",
-            "x-social": "X社交",
-            taobao: "桃宝",
             "date-a-live": "约会大作战",
-            "tukey-accounting": "兔兔记账",
             "kk-checkin": "kk查岗",
             studio: "lrq小剧场",
           };
@@ -47432,67 +45584,6 @@ ${libraryList}
         }
 
         /**
-         * 处理解除情侣关系
-         */
-        async function handleDisconnectLoversSpace() {
-          if (!activeLoversSpaceCharId) return;
-          const chat = state.chats[activeLoversSpaceCharId];
-          if (!chat) return;
-
-          const confirmed = await showCustomConfirm(
-            "解除关系",
-            `确定要与“${chat.name}”解除关系吗？情侣空间将被取消，并且对方会收到通知并对此发表意见。`,
-            { confirmButtonClass: "btn-danger" },
-          );
-
-          if (confirmed) {
-            // 1. 禁用空间
-            chat.loversSpaceData = null;
-
-            // 2. 创建您发出的、在右侧的“解除卡片”
-            const userDisconnectCardMessage = {
-              role: "user",
-              type: "lovers_space_disconnect", // 一个新类型，用于渲染卡片
-              content: `情侣空间已解除`, // 卡片底层可编辑的文字
-              timestamp: Date.now(),
-            };
-            chat.history.push(userDisconnectCardMessage);
-
-            // 3. 创建居中的、灰色的“系统通知”
-            const systemNotification = {
-              role: "system",
-              type: "pat_message", // 复用“拍一拍”的居中灰色气泡样式
-              content: `你和 ${chat.name} 的情侣空间已解除`,
-              timestamp: Date.now() + 1, // 时间戳+1确保在卡片之后
-            };
-            chat.history.push(systemNotification);
-
-            // 4. 给AI看的隐藏指令
-            const hiddenMessageForAI = {
-              role: "system",
-              content: `[系统指令：用户刚刚解除了与你的情侣关系。]`,
-              timestamp: Date.now() + 2, // 时间戳再+1
-              isHidden: true,
-            };
-            chat.history.push(hiddenMessageForAI);
-
-            // 5. 保存、关闭弹窗、跳转、触发回应
-            await db.chats.put(chat);
-            document
-              .getElementById("ls-settings-modal")
-              .classList.remove("visible");
-            document
-              .getElementById("lovers-space-screen")
-              .classList.remove("visible");
-
-            openChat(activeLoversSpaceCharId);
-
-            alert("关系已解除，对方已知晓。");
-            triggerAiResponse();
-          }
-        }
-
-        /**
          * 打开手动总结的模式选择弹窗
          */
         async function openManualSummaryOptions() {
@@ -48816,6 +46907,218 @@ ${libraryList}
           }
         }
 
+        let deepgramSocket = null;
+        let mediaRecorder = null;
+        let audioStream = null;
+        let isRecording = false;
+        let currentTranscript = "";
+        let finalTranscript = "";
+        let currentVoiceMode = null;
+
+        async function toggleVoiceInput(mode) {
+          if (isRecording) {
+            stopVoiceInput();
+          } else {
+            await startVoiceInput(mode);
+          }
+        }
+
+        async function startVoiceInput(mode) {
+          const apiKey = state.apiConfig.deepgramApiKey;
+          if (!apiKey) {
+            alert("请先在API设置中配置Deepgram API Key");
+            return;
+          }
+
+          if (!videoCallState.isActive) return;
+
+          try {
+            currentVoiceMode = mode;
+            audioStream = await navigator.mediaDevices.getUserMedia({ 
+              audio: {
+                sampleRate: 16000,
+                channelCount: 1,
+                echoCancellation: true,
+                noiseSuppression: true
+              } 
+            });
+
+            const wsUrl = `wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=16000&channels=1&interim_results=true&vad_turnoff=true&smart_format=true`;
+            deepgramSocket = new WebSocket(wsUrl, ['token', apiKey]);
+
+            deepgramSocket.onopen = () => {
+              console.log("Deepgram WebSocket connected");
+              isRecording = true;
+              updateMicButtonState(mode, true);
+              updateTranscriptDisplay(mode, "正在监听...");
+
+              const AudioContext = window.AudioContext || window.webkitAudioContext;
+              const audioContext = new AudioContext({ sampleRate: 16000 });
+              const source = audioContext.createMediaStreamSource(audioStream);
+              const processor = audioContext.createScriptProcessor(4096, 1, 1);
+
+              source.connect(processor);
+              processor.connect(audioContext.destination);
+
+              processor.onaudioprocess = (e) => {
+                if (deepgramSocket && deepgramSocket.readyState === WebSocket.OPEN) {
+                  const inputData = e.inputBuffer.getChannelData(0);
+                  const pcmData = new Int16Array(inputData.length);
+                  for (let i = 0; i < inputData.length; i++) {
+                    const s = Math.max(-1, Math.min(1, inputData[i]));
+                    pcmData[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+                  }
+                  deepgramSocket.send(pcmData.buffer);
+                }
+              };
+
+              window._deepgramAudioContext = audioContext;
+              window._deepgramProcessor = processor;
+              window._deepgramSource = source;
+            };
+
+            deepgramSocket.onmessage = (event) => {
+              try {
+                const data = JSON.parse(event.data);
+                if (data.type === "Results") {
+                  const transcript = data.channel.alternatives[0].transcript;
+                  if (data.is_final) {
+                    finalTranscript += transcript + " ";
+                    currentTranscript = finalTranscript;
+                    updateTranscriptDisplay(currentVoiceMode, currentTranscript);
+
+                    if (data.speech_final) {
+                      const textToSend = finalTranscript.trim();
+                      if (textToSend) {
+                        sendVoiceMessage(textToSend);
+                      }
+                      finalTranscript = "";
+                      currentTranscript = "";
+                      updateTranscriptDisplay(currentVoiceMode, "正在监听...");
+                    }
+                  } else {
+                    currentTranscript = finalTranscript + transcript;
+                    updateTranscriptDisplay(currentVoiceMode, currentTranscript);
+                  }
+                } else if (data.type === "Error") {
+                  console.error("Deepgram error:", data.message);
+                }
+              } catch (e) {
+                console.error("Parse error:", e, event.data);
+              }
+            };
+
+            deepgramSocket.onerror = (error) => {
+              console.error("Deepgram WebSocket error:", error);
+            };
+
+            deepgramSocket.onclose = (event) => {
+              console.log("Deepgram WebSocket closed:", event.code, event.reason);
+              if (isRecording) {
+                stopVoiceInput();
+              }
+            };
+
+          } catch (error) {
+            console.error("启动语音输入失败:", error);
+            alert("无法访问麦克风，请检查权限设置: " + error.message);
+          }
+        }
+
+        function stopVoiceInput() {
+          isRecording = false;
+
+          if (deepgramSocket) {
+            try {
+              deepgramSocket.close();
+            } catch (e) {}
+            deepgramSocket = null;
+          }
+
+          if (window._deepgramProcessor) {
+            try {
+              window._deepgramProcessor.disconnect();
+            } catch (e) {}
+            window._deepgramProcessor = null;
+          }
+          if (window._deepgramSource) {
+            try {
+              window._deepgramSource.disconnect();
+            } catch (e) {}
+            window._deepgramSource = null;
+          }
+          if (window._deepgramAudioContext) {
+            try {
+              window._deepgramAudioContext.close();
+            } catch (e) {}
+            window._deepgramAudioContext = null;
+          }
+
+          if (audioStream) {
+            audioStream.getTracks().forEach(track => track.stop());
+            audioStream = null;
+          }
+
+          currentTranscript = "";
+          finalTranscript = "";
+          currentVoiceMode = null;
+
+          updateMicButtonState('text', false);
+          updateMicButtonState('visual', false);
+          updateTranscriptDisplay('text', "点击麦克风开始说话...");
+          updateTranscriptDisplay('visual', "点击麦克风开始说话...");
+        }
+
+        function updateMicButtonState(mode, isRecording) {
+          const btnId = mode === 'text' ? 'mic-btn-text' : 'mic-btn-visual';
+          const btn = document.getElementById(btnId);
+          if (btn) {
+            if (isRecording) {
+              btn.classList.add('recording');
+            } else {
+              btn.classList.remove('recording');
+            }
+          }
+        }
+
+        function updateTranscriptDisplay(mode, text) {
+          const displayId = mode === 'text' ? 'voice-transcript-text' : 'voice-transcript-visual';
+          const el = document.getElementById(displayId);
+          if (el) {
+            el.textContent = text;
+          }
+        }
+
+        function sendVoiceMessage(text) {
+          if (!videoCallState.isActive) return;
+
+          const chat = state.chats[videoCallState.activeChatId];
+          const isVisualMode = chat.settings.visualVideoCallEnabled;
+          const callFeed = isVisualMode
+            ? document.getElementById("video-call-messages-visual")
+            : document.getElementById("video-call-main");
+
+          if (isVisualMode) {
+            const userBubble = document.createElement("div");
+            userBubble.className = "visual-call-bubble user";
+            userBubble.textContent = text;
+            callFeed.appendChild(userBubble);
+          } else {
+            const userBubble = document.createElement("div");
+            userBubble.className = "call-message-bubble user-speech";
+            userBubble.textContent = text;
+            callFeed.appendChild(userBubble);
+          }
+          callFeed.scrollTop = callFeed.scrollHeight;
+
+          videoCallState.callHistory.push({
+            role: "user",
+            content: text,
+          });
+
+          triggerAiInCallAction(text);
+        }
+
         /**
          * 初始化默认的小组
          */
@@ -48883,16 +47186,6 @@ ${libraryList}
               ],
             },
             {
-              id: "taobao",
-              name: "桃宝 (所有商品/订单/购物车/余额记录)",
-              tables: [
-                "taobaoProducts",
-                "taobaoOrders",
-                "taobaoCart",
-                "userWalletTransactions",
-              ],
-            },
-            {
               id: "worldBooks",
               name: "世界书 (全部书籍及分类)",
               tables: ["worldBooks", "worldBookCategories"],
@@ -48907,19 +47200,6 @@ ${libraryList}
                 "datingSpriteGroups",
                 "datingSprites",
                 "datingHistory",
-              ],
-            },
-
-            {
-              id: "tukeyAccounting",
-              name: "兔k记账 (账户/群聊/账单/设置)",
-              tables: [
-                "tukeyAccounts",
-                "tukeyAccountingGroups",
-                "tukeyAccountingRecords",
-                "tukeyAccountingReplies",
-                "tukeyUserSettings",
-                "tukeyCustomConfig",
               ],
             },
 
@@ -49228,12 +47508,9 @@ ${libraryList}
               const appNameMap = {
                 weibo: "微博",
                 forum: "圈子",
-                taobao: "桃宝",
                 worldBooks: "世界书",
 
                 dateALive: "约会大作战数据",
-
-                tukeyAccounting: "兔k记账数据",
 
                 studio: "小剧场数据",
 
@@ -54794,6 +53071,9 @@ ${libraryList}
               state.apiConfig.pollinationsApiKey = document
                 .getElementById("pollinations-api-key")
                 .value.trim();
+              state.apiConfig.deepgramApiKey = document
+                .getElementById("deepgram-api-key")
+                .value.trim();
 
               // 如果开启了自动备份，立即重启定时器
               handleAutoBackupTimer();
@@ -58718,6 +56998,18 @@ ${libraryList}
               }
             });
 
+          // 绑定语音输入麦克风按钮
+          document
+            .getElementById("mic-btn-text")
+            .addEventListener("click", () => {
+              toggleVoiceInput('text');
+            });
+          document
+            .getElementById("mic-btn-visual")
+            .addEventListener("click", () => {
+              toggleVoiceInput('visual');
+            });
+
           // 回忆录相关事件绑定
           // 1. 将“回忆”页签和它的视图连接起来
           document
@@ -61914,39 +60206,6 @@ ${libraryList}
               }
             });
 
-          // 1. 绑定主屏幕上的“兔k记账”图标点击事件
-          document
-            .getElementById("tukey-accounting-app-icon")
-            .addEventListener("click", () => {
-              // 打开时，确保默认显示记账群聊
-              switchTukeyView("tukey-group-chat-view");
-              showScreen("tukey-accounting-screen");
-            });
-
-          // 2. 为“兔k记账”的底部导航栏绑定事件委托
-          document
-            .getElementById("tukey-bottom-nav")
-            .addEventListener("click", (e) => {
-              const navItem = e.target.closest(".tukey-nav-item");
-              if (navItem && navItem.dataset.view) {
-                switchTukeyView(navItem.dataset.view);
-              }
-            });
-
-          // 报表页面的点击事件（处理删除）
-          document
-            .getElementById("tukey-reports-view")
-            .addEventListener("click", (e) => {
-              // 检查是否点击了删除按钮
-              const deleteBtn = e.target.closest(".delete-record-btn");
-              if (deleteBtn) {
-                const recordId = parseInt(deleteBtn.dataset.id);
-                if (!isNaN(recordId)) {
-                  deleteTukeyAccountingRecord(recordId);
-                }
-              }
-            });
-
           // “kk查岗”功能事件监听器
           document
             .getElementById("kk-checkin-app-icon")
@@ -62808,9 +61067,6 @@ ${libraryList}
           initAuroraFontControl();
           initAuroraResize();
           initVideoBubbleDrag(); // 初始化视频悬浮球拖拽
-          initLoversSpace();
-          initTaobao();
-          initTukeyAccounting();
           initDesktopManager();
 
           // ===================================================================
