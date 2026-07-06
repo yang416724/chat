@@ -9803,324 +9803,63 @@ body {
 }
 /* ▼▼▼ 第1步：从这里开始复制替换 ▼▼▼ */
 
-#lovers-space-screen {
-  background-color: #f0f2f5; /* 保留一个备用背景色 */
-  background-size: cover; /* 背景图覆盖整个区域 */
-  background-position: center; /* 背景图居中显示 */
-  background-repeat: no-repeat; /* 背景图不重复 */
-}
 
-/* 头部 */
-#ls-header {
-  height: 220px;
-  position: relative;
-  /* 【核心修改】移除了 background-size 和 background-position */
-  color: white;
-  flex-shrink: 0;
-  background-color: transparent; /* 【核心修改】让头部背景变透明，以显示下方的全屏背景 */
-}
+
+
 
 /* ▲▲▲ 第1步：复制替换到这里结束 ▲▲▲ */
 
 /* --- 【最终修复版】修复情侣空间顶部按钮无法点击的问题 --- */
 /* --- 【最终修复版】修复遮罩层拦截点击的问题 --- */
 
-.ls-header-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
 
-  /* ▼▼▼ 核心修复：让这个遮罩层对鼠标事件“透明”！ ▼▼▼ */
-  pointer-events: none;
-  /* ▲▲▲ 修复结束 ▲▲▲ */
-}
 
 /* --- 【已修复】情侣空间顶部栏层级问题 --- */
 
-.ls-header-top-bar {
-  position: relative;
-  z-index: 3; /* ★★★ 核心修改：将层级从 2 提升到 3 ★★★ */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  padding-top: calc(15px + env(safe-area-inset-top));
-}
 
-#ls-char-name {
-  font-size: 18px;
-  font-weight: 600;
-}
-#ls-switch-char-btn {
-  font-size: 16px;
-}
 
-.ls-header-avatars {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  z-index: 2;
-}
-.ls-header-avatars img {
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  border: 2px solid white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-.ls-header-avatars .heart-icon {
-  font-size: 28px;
-  color: #ff4d6d;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-}
+
+
+
 
 /* ▼▼▼ 请用这【一整块】全新的代码，完整替换旧的 #ls-tab-bar 和 .ls-tab-item 样式 ▼▼▼ */
 
 /* 页签栏 (V2 - 悬浮撑满版) */
-/* ▼▼▼ 请用这块【悬浮胶囊最终版】代码，完整替换掉你旧的 #ls-tab-bar 样式 ▼▼▼ */
-#ls-tab-bar {
-  display: flex;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 5;
-
-  /* --- 核心修改在这里 --- */
-  /* 1. 使用 margin 实现上下左右的边距，营造悬浮感 */
-  margin: -20px 5px 10px 5px; /* 把左右的 15px 改成了 5px */
-
-  /* 2. 为所有四个角都设置圆角，形成可爱的胶囊形状 */
-  border-radius: 25px;
-
-  background-color: var(--secondary-bg);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 阴影可以让悬浮感更强 */
-}
-/* ▲▲▲ 替换结束 ▲▲▲ */
-
-/* 单个页签项目 (V2) */
-.ls-tab-item {
-  flex: 1;
-  text-align: center;
-  /* 核心修改：padding 从 12px 增加到 15px，让导航栏【拉长一点】(更高) */
-  padding: 15px 0;
-  font-weight: 500;
-  color: var(--text-secondary);
-  cursor: pointer;
-  position: relative;
-  /* 新增：为图标的缩放和颜色变化添加平滑过渡 */
-  transition: color 0.2s ease;
-}
-
-/* 激活状态的页签 (V2) */
-.ls-tab-item.active {
-  color: var(--accent-color);
-}
-
-/* 激活状态的下划线指示器 (保持不变) */
-.ls-tab-item.active::after {
-  content: "";
-  position: absolute;
-  bottom: 8px; /* 微调位置以适应更高的导航栏 */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 28px;
-  height: 3px;
-  background-color: var(--accent-color);
-  border-radius: 1.5px;
-}
 
 /* ▲▲▲ 替换结束 ▲▲▲ */
 
-/* ▼▼▼ 【全新】这是为SVG图标新增的样式，请把它也粘贴到<style>里 ▼▼▼ */
-.ls-tab-item svg {
-  width: 24px;
-  height: 24px;
-  /* 为图标的大小和粗细变化添加平滑过渡 */
-  transition: all 0.2s ease-in-out;
-}
 
-/* 激活状态的图标，会变得更粗、更大一点，非常醒目 */
-.ls-tab-item.active svg {
-  stroke-width: 2.5;
-  transform: scale(1.1);
-}
+
+
+
+
+
+/* ▲▲▲ 替换结束 ▲▲▲ */
+
+
+
+
 /* ▲▲▲ 新增样式结束 ▲▲▲ */
 
-/* 内容区域 */
-#ls-content-area {
-  flex-grow: 1;
-  position: relative;
-  overflow: hidden;
-}
-.ls-view {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  display: none;
-  padding: 15px;
-  box-sizing: border-box;
-}
-.ls-view.active {
-  display: block;
-}
+
 
 /* 浮动添加按钮 */
 /* ▼▼▼ 请用这块【终极居中修复版】代码，替换旧的 .ls-fab-btn 样式 ▼▼▼ */
-/* ▼▼▼ 这是SVG适配版的最终代码 ▼▼▼ */
-.ls-fab-btn {
-  position: fixed;
-  bottom: calc(30px + env(safe-area-inset-bottom));
-  right: 30px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: var(--accent-color);
-  color: white;
-  border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  z-index: 10;
 
-  /* 依然使用Flexbox来居中SVG图标 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  /* 移除所有与字体相关的属性 */
-  /* font-size: 28px; (已移除) */
-  /* line-height: normal; (已移除) */
-}
 
-/* (可选) 如果你觉得SVG有点小或大，可以微调它的大小 */
-.ls-fab-btn svg {
-  width: 24px;
-  height: 24px;
-}
 /* ▲▲▲ 替换结束 ▲▲▲ */
 
+
 /* 说说卡片 */
-#ls-moments-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-/* 说说卡片 */
-/* ... */
-.ls-moment-card {
-  position: relative; /* ★★★ 核心修复：就是加上这一行！ ★★★ */
-  background-color: var(--secondary-bg);
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-  display: flex;
-  gap: 12px;
-}
+
 /* ... */
 
-.ls-moment-card .avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.ls-moment-card .moment-main {
-  display: flex;
-  flex-direction: column;
-}
-.ls-moment-card .author {
-  font-weight: 600;
-  color: var(--text-primary);
-}
-.ls-moment-card .content {
-  margin-top: 5px;
-  font-size: 15px;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-.ls-moment-card .timestamp {
-  margin-top: 10px;
-  font-size: 12px;
-  color: var(--text-secondary);
-}
 
-/* 相册列表 */
-/* ▼▼▼ 用这块新样式替换旧的 #ls-album-list ▼▼▼ */
-#ls-album-list {
-  display: grid;
-  /* 核心修改：从2列变为3列，间距从15px缩小为5px */
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-}
-/* ▲▲▲ 替换结束 ▲▲▲ */
-.ls-album-item {
-  cursor: pointer;
-}
-.ls-album-item .cover {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background-color: #e9ecef;
-  background-size: cover;
-  background-position: center;
-  border-radius: 8px;
-  margin-bottom: 8px;
-}
-.ls-album-item .name {
-  font-weight: 500;
-  text-align: center;
-}
 
-/* 照片上传预览 */
-#ls-photo-preview-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 15px;
-}
-.ls-photo-preview-item {
-  position: relative;
-  aspect-ratio: 1 / 1;
-}
-.ls-photo-preview-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 6px;
-}
-/* 情书和分享列表 */
-.ls-list-item {
-  background-color: var(--secondary-bg);
-  border-radius: 8px;
-  padding: 12px 15px;
-  margin-bottom: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  cursor: pointer;
-}
-.ls-list-item .title {
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-.ls-list-item .meta {
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-.ls-share-item .share-type {
-  display: inline-block;
-  padding: 2px 6px;
-  font-size: 10px;
-  border-radius: 4px;
-  margin-right: 8px;
-  color: white;
-}
+
+
+
 .share-type.song {
   background-color: #28a745;
 }
@@ -10132,192 +9871,45 @@ body {
 }
 /* ▼▼▼ 把这一整块全新的CSS，粘贴到 <style> 标签的最末尾 ▼▼▼ */
 
-/* 【核心修复】让标题绝对居中，不再受两边按钮数量影响 */
-#ls-header #ls-char-name {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%; /* 限制最大宽度，防止与按钮重叠 */
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
-/* 【新增】头像和计数器的总容器，负责整体定位 */
-.ls-avatar-and-counter-wrapper {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  flex-direction: column; /* 让头像和计数器垂直排列 */
-  align-items: center; /* 水平居中 */
-  gap: 10px; /* 头像和计数器之间的垂直间距 */
-}
 
-/* 【修改】移除旧的头像绝对定位，因为它现在被新容器管理了 */
-.ls-header-avatars {
-  position: static; /* 改为静态定位 */
-  transform: none;
-  bottom: auto;
-  left: auto;
-  /* 其他样式（如头像大小、边框等）保持不变 */
-}
 
-/* 【修改】移除旧的计数器定位样式，让它在新容器里自然排列 */
-#ls-days-counter {
-  position: static;
-  margin-top: 0;
-  /* 其他样式（如字体颜色、阴影等）保持不变 */
-}
+
+
+
+
 
 /* ▲▲▲ 粘贴结束 ▲▲▲ */
 /* ▼▼▼ 请将这段新样式粘贴到 <style> 的末尾 ▼▼▼ */
 
-/* 1. 让相册项目成为删除按钮的定位参考点 */
-.ls-album-item .cover {
-  position: relative; /* 关键！ */
-  overflow: hidden; /* 防止删除按钮溢出圆角 */
-}
 
-/* 2. 删除按钮的样式 */
-.ls-photo-delete-btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 24px;
-  height: 24px;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  font-size: 18px;
-  line-height: 24px; /* 确保 "×" 垂直居中 */
-  text-align: center;
-  cursor: pointer;
-  opacity: 0; /* 默认隐藏 */
-  transition: opacity 0.2s ease;
-  z-index: 5; /* 确保在最上层 */
-}
 
-/* 3. 鼠标悬停在封面上时，显示删除按钮 */
-.ls-album-item .cover:hover .ls-photo-delete-btn {
-  opacity: 1;
-}
+
+
+
 
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
 /* ▼▼▼ 这是为情侣空间“说说”新增的样式 ▼▼▼ */
 
-/* 说说卡片底部的互动区（评论输入、删除按钮等） */
-.ls-moment-footer {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid #f0f0f0; /* 和内容区分隔开 */
-}
 
-/* 评论列表的容器 */
-.ls-moment-comments-container {
-  display: flex;
-  flex-direction: column;
-  gap: 8px; /* 每条评论之间的间距 */
-  font-size: 14px;
-  margin-bottom: 10px;
-}
 
-/* 每一条评论的样式 */
-.ls-comment-item {
-  position: relative; /* 为了定位删除按钮 */
-  padding-right: 25px; /* 给删除按钮留出空间 */
-  line-height: 1.5;
-}
 
-.ls-comment-item .commenter-name {
-  font-weight: 600;
-  color: var(--accent-color); /* 使用主题色 */
-  margin-right: 5px;
-}
 
-/* 评论的删除按钮 */
-.ls-comment-delete-btn {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  width: 22px;
-  height: 22px;
-  line-height: 22px;
-  text-align: center;
-  border-radius: 50%;
-  color: var(--text-secondary);
-  font-size: 18px;
-  cursor: pointer;
-  opacity: 0; /* 默认隐藏 */
-  transition: all 0.2s ease;
-}
 
-/* 鼠标放上去才显示删除按钮 */
-.ls-comment-item:hover .ls-comment-delete-btn {
-  opacity: 1;
-}
-.ls-comment-delete-btn:hover {
-  background-color: #f0f0f0;
-  color: #ff3b30;
-}
 
-/* 评论输入区域的样式 */
-.ls-comment-input-area {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
 
-.ls-comment-input-area input {
-  flex-grow: 1;
-  border: none;
-  background-color: #f0f2f5;
-  border-radius: 15px;
-  padding: 8px 12px;
-  font-size: 14px;
-}
 
-.ls-comment-input-area button {
-  background-color: var(--accent-color);
-  color: white;
-  border: none;
-  border-radius: 15px;
-  padding: 8px 15px;
-  font-size: 14px;
-  cursor: pointer;
-  flex-shrink: 0; /* 防止按钮被压缩 */
-}
 
-/* 说说卡片本身的删除按钮 */
-.ls-moment-delete-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 24px;
-  height: 24px;
-  background-color: rgba(0, 0, 0, 0.08);
-  color: var(--text-secondary);
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  line-height: 24px;
-  text-align: center;
-  opacity: 0; /* 默认隐藏 */
-  transition: all 0.2s ease;
-}
-.ls-moment-card:hover .ls-moment-delete-btn {
-  opacity: 1; /* 鼠标放上去才显示 */
-}
-.ls-moment-delete-btn:hover {
-  background-color: #ff3b30;
-  color: white;
-}
+
+
+
+
+
+
+
+
+
+
 
 /* ▲▲▲ 新增样式结束 ▲▲▲ */
 
@@ -10327,98 +9919,17 @@ body {
 
 /* --- 【全新美化版】情侣空间情书功能样式 --- */
 
-/* 1. 情书列表为空时的提示 (不变) */
-#ls-letters-list .ls-empty-placeholder {
-  text-align: center;
-  color: var(--text-secondary);
-  padding: 50px 0;
-}
 
-/* 2. 单个情书卡片的样式 (已修改) */
-.ls-love-letter-item {
-  background-color: var(--secondary-bg);
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-.ls-love-letter-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
 
-/* 3. 情书图标的样式 (不变) */
-.ls-love-letter-item .letter-icon {
-  flex-shrink: 0;
-  width: 45px;
-  height: 45px;
-  color: #ff8fab;
-}
 
-/* 4. 情书主要信息区 (已修改，加入头像) */
-.ls-love-letter-item .letter-info {
-  flex-grow: 1;
-  overflow: hidden;
-}
-/* 【核心修改】收件人区域现在包含头像和名字 */
-.ls-love-letter-item .letter-recipient {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-.ls-love-letter-item .letter-recipient .avatar {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-}
-.ls-love-letter-item .letter-preview {
-  font-size: 13px;
-  color: var(--text-secondary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
-/* 5. 发信人信息 (不变) */
-.ls-love-letter-item .letter-sender {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  color: var(--text-secondary);
-}
-.ls-love-letter-item .letter-sender .avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
 
-/* 6. 【全新】情书详情查看器 (信纸样式) */
-#ls-letter-viewer-modal {
-  z-index: 1001; /* 确保在最上层 */
-}
-.ls-letter-viewer-content {
-  background-color: #fdfaef; /* 温馨的米黄色信纸背景 */
-  width: 90%;
-  max-width: 340px;
-  height: 75%;
-  border-radius: 15px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-  display: flex;
-  flex-direction: column;
-  font-family: "Kaiti", "STKaiti", serif; /* 使用更典雅的楷体 */
-}
+
+
+
+
+
+
 .letter-viewer-header {
   padding: 15px;
   border-bottom: 1px dashed #e0d9c7;
@@ -10486,58 +9997,7 @@ body {
   border-color: #ff8fab;
 }
 
-/* Love letter viewer override – airy ribbon paper */
-#ls-letter-viewer-modal {
-  z-index: 1001;
-}
-.ls-letter-viewer-content {
-  position: relative;
-  background:
-    radial-gradient(
-      circle at 18% 12%,
-      rgba(255, 205, 220, 0.4),
-      transparent 45%
-    ),
-    radial-gradient(
-      circle at 85% 18%,
-      rgba(196, 228, 255, 0.32),
-      transparent 40%
-    ),
-    linear-gradient(150deg, #fffaf6 0%, #fff3f8 45%, #fff7ef 100%);
-  width: 92%;
-  max-width: 360px;
-  height: 76%;
-  border-radius: 18px;
-  border: 2px solid rgba(255, 190, 210, 0.7);
-  box-shadow:
-    0 16px 42px rgba(255, 155, 176, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  display: flex;
-  flex-direction: column;
-  font-family: "Kaiti", "STKaiti", serif;
-  overflow: hidden;
-}
-.ls-letter-viewer-content::after {
-  content: "";
-  position: absolute;
-  inset: 14px 12px 12px;
-  border-radius: 14px;
-  border: 1px dashed rgba(255, 170, 195, 0.55);
-  pointer-events: none;
-}
-.ls-letter-viewer-content::before {
-  content: "";
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 64%;
-  height: 10px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #ffd8e6, #c7e7ff);
-  box-shadow: 0 8px 18px rgba(255, 169, 191, 0.35);
-  opacity: 0.75;
-}
+
 .letter-viewer-header {
   padding: 16px 18px;
   border-bottom: 1px dashed #f2c1d4;
@@ -10645,278 +10105,85 @@ body {
 /* ▲▲▲ 样式替换结束 ▲▲▲ */
 /* ▼▼▼ 这是为情书新增的样式 ▼▼▼ */
 
-/* 1. 让情书卡片可以作为删除按钮的定位参考点 */
-.ls-love-letter-item {
-  position: relative; /* 关键！ */
-}
 
-/* 2. 删除按钮的样式 */
-.ls-letter-delete-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 24px;
-  height: 24px;
-  background-color: rgba(0, 0, 0, 0.1);
-  color: #888;
-  border: none;
-  border-radius: 50%;
-  font-size: 18px;
-  line-height: 24px;
-  text-align: center;
-  cursor: pointer;
-  opacity: 0; /* 默认隐藏 */
-  transition: all 0.2s ease;
-  z-index: 5; /* 确保在最上层 */
-}
 
-/* 3. 鼠标悬停在整张卡片上时，才显示删除按钮 */
-.ls-love-letter-item:hover .ls-letter-delete-btn {
-  opacity: 1;
-}
 
-/* 4. 鼠标悬停在删除按钮上时，给一点反馈效果 */
-.ls-letter-delete-btn:hover {
-  background-color: #ff3b30;
-  color: white;
-}
+
+
+
+
 /* ▼▼▼ 把这一整块全新的CSS，粘贴到 <style> 标签的最末尾 ▼▼▼ */
 
 /* --- 【全新】情侣空间-情侣提问样式 --- */
 
-#ls-questions-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
 
-.ls-question-card {
-  background-color: var(--secondary-bg);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  overflow: hidden; /* 防止内部元素溢出圆角 */
-}
 
-.ls-question-section,
-.ls-answer-section {
-  padding: 15px;
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
 
-.ls-question-section {
-  border-bottom: 1px dashed var(--border-color);
-}
 
-.ls-question-card .qa-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
 
-.ls-question-card .qa-main {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
 
-.ls-question-card .qa-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
 
-.ls-question-card .qa-author {
-  font-weight: 600;
-}
 
-.ls-question-card .qa-timestamp {
-  font-size: 11px;
-  color: var(--text-secondary);
-}
 
-.ls-question-card .qa-content {
-  font-size: 15px;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
 
-.ls-answer-placeholder {
-  padding: 20px;
-  text-align: center;
-}
 
-.ls-answer-btn {
-  padding: 8px 20px;
-  border: 1px solid var(--accent-color);
-  background-color: transparent;
-  color: var(--accent-color);
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 500;
-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ▲▲▲ 新增CSS结束 ▲▲▲ */
 /* ▼▼▼ 【全新】这是为“情侣提问”新增的删除按钮样式 ▼▼▼ */
 
-/* 1. 让提问卡片可以作为删除按钮的定位参考点 */
-.ls-question-card {
-  position: relative; /* 关键！ */
-}
 
-/* 2. 删除按钮的样式 */
-.ls-question-delete-btn {
-  position: absolute; /* 绝对定位，让它浮动起来 */
-  top: 10px;
-  right: 10px;
-  width: 24px;
-  height: 24px;
-  background-color: rgba(0, 0, 0, 0.08); /* 半透明的背景 */
-  color: var(--text-secondary); /* 使用全局的次要文字颜色 */
-  border: none;
-  border-radius: 50%; /* 圆形 */
-  font-size: 18px; /* "×"号的大小 */
-  line-height: 24px; /* 让"×"号垂直居中 */
-  text-align: center;
-  cursor: pointer;
-  opacity: 0; /* 默认隐藏 */
-  transition: all 0.2s ease; /* 添加平滑的动画效果 */
-  z-index: 5; /* 确保在最上层 */
-}
 
-/* 3. 鼠标悬停在整张卡片上时，才显示删除按钮 */
-.ls-question-card:hover .ls-question-delete-btn {
-  opacity: 1;
-}
 
-/* 4. 鼠标悬停在删除按钮上时，给一点反馈效果 */
-.ls-question-delete-btn:hover {
-  background-color: #ff3b30;
-  color: white;
-}
+
+
+
+
 /* ▲▲▲ 新增样式结束 ▲▲▲ */
 /* ▼▼▼ 这是为“分享”功能新增的样式 ▼▼▼ */
 
-.ls-share-item .title {
-  font-weight: 600; /* 标题加粗 */
-}
 
-/* ▼▼▼ 用这块【已修复换行问题】的代码，替换掉旧的 .ls-share-item .summary 样式 ▼▼▼ */
-.ls-share-item .summary {
-  font-size: 14px;
-  color: #666;
-  margin-top: 8px;
-  line-height: 1.6;
-  /* --- 核心修改：允许文字自动换行 --- */
-  white-space: normal; /* <--- 允许换行 */
-  overflow: visible; /* <--- 允许内容溢出容器（即显示多行） */
-  text-overflow: clip; /* <--- 禁用省略号 */
-  word-break: break-word; /* <--- 防止超长单词或链接撑破布局 */
-}
+
+
 /* ▲▲▲ 替换结束 ▲▲▲ */
 
-#phone-screen.dark-mode .ls-share-item .summary {
-  color: #a0a0a0;
-}
+
 
 /* ▲▲▲ 新增样式结束 ▲▲▲ */
 /* ▼▼▼ 【全新】这是情侣空间专属音乐播放器的CSS样式 ▼▼▼ */
 
-/* 播放器主窗口的遮罩层 */
-#ls-music-player-overlay {
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-}
 
-/* 播放列表面板的样式 (直接复用现有的) */
-#ls-music-playlist-panel {
-  /* 我们直接使用 .music-playlist-panel 的现有样式，省去重复代码 */
-}
+
+
 
 /* ▲▲▲ CSS样式粘贴结束 ▲▲▲ */
-/* 【新增】隐藏情侣空间播放器中不需要的按钮 */
-#ls-music-player-overlay #ls-playlist-btn,
-#ls-music-player-overlay #ls-prev-btn,
-#ls-music-player-overlay #ls-next-btn {
-  display: none;
-}
 
-/* 【新增】居中播放/暂停按钮 */
-#ls-music-player-overlay .music-controls {
-  justify-content: center; /* 让剩下的按钮居中 */
-}
 
-/* ▲▲▲ CSS代码替换结束 ▲▲▲ */
-/* 【新增】情侣空间播放器封面/歌词切换样式 */
-#ls-display-area.show-lyrics #ls-album-cover {
-  display: none; /* 当有 show-lyrics 类时，隐藏封面 */
-}
-#ls-display-area.show-lyrics #ls-lyrics-container {
-  display: block !important; /* 当有 show-lyrics 类时，显示歌词 */
-}
 
-/* 【新增】歌词行样式 */
-#ls-lyrics-container .lyric-line {
-  padding: 4px 0;
-  font-size: 14px;
-  color: #666;
-  opacity: 0.7;
-  transition: all 0.5s ease;
-}
-#ls-lyrics-container .lyric-line.active {
-  font-size: 16px;
-  color: #000;
-  opacity: 1;
-  font-weight: 600;
-}
+
+
+
+
 /* ▼▼▼ 把这一整块全新的CSS，粘贴到 <style> 标签的最末尾 ▼▼▼ */
 
 /* --- 【全新】情侣空间-情侣番茄钟样式 --- */
 
-/* 主页布局 */
-#ls-pomodoro-home {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
 
-#ls-pomodoro-start-btn-container {
-  padding: 20px;
-  background-color: var(--secondary-bg);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  text-align: center;
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
-}
-#ls-pomodoro-start-btn-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
-}
-#ls-pomodoro-start-icon {
-  font-size: 32px;
-  color: var(--accent-color);
-  line-height: 1;
-}
-#ls-pomodoro-start-btn-container p {
-  margin: 8px 0 0 0;
-  font-weight: 500;
-  color: var(--text-primary);
-}
 
-/* 历史记录列表 */
-#ls-pomodoro-history-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+
+
+
 .pomodoro-history-item {
   background-color: var(--secondary-bg);
   border-radius: 8px;
@@ -10936,36 +10203,7 @@ body {
   color: var(--text-secondary);
 }
 
-/* ▼▼▼ 把下面这整块【锁机全屏版】代码，替换掉你旧的 #ls-pomodoro-timer-active 样式 ▼▼▼ */
-#ls-pomodoro-timer-active {
-  /* 核心修改1：将定位方式从 absolute 改为 fixed */
-  /* 这会让计时器界面脱离原来的“情侣空间”页面，浮动在整个手机屏幕的最顶层！*/
-  position: fixed;
 
-  /* 核心修改2：用这四个属性让它撑满整个屏幕 */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  /* 核心修改3：设置一个超高的层级，确保它能盖住所有东西，实现“锁机”效果 */
-  z-index: 2000;
-
-  background-size: cover;
-  background-position: center;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 50px 20px;
-  box-sizing: border-box;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-
-  /* (可选优化) 为iPhone的刘海和底部小黑条留出安全距离，让界面更美观 */
-  padding-top: calc(50px + env(safe-area-inset-top));
-  padding-bottom: calc(50px + env(safe-area-inset-bottom));
-}
 /* ▲▲▲ 替换结束 ▲▲▲ */
 
 /* ▼▼▼ 用这段新代码替换 ▼▼▼ */
@@ -11079,10 +10317,7 @@ body {
 
 /* --- 修复新增功能导致的滚动条问题 --- */
 
-/* 1. 强制隐藏你不要的“情侣空间播放列表” */
-#ls-music-playlist-panel {
-  display: none !important;
-}
+
 
 /* 2. 确保主屏幕容器绝对不会出现滚动条，实现固定效果 */
 #phone-screen {
@@ -12024,21 +11259,9 @@ body {
 
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
 
-/* ▼▼▼ 【这是为你新增的X社交App图标样式】粘贴到 <style> 的末尾 ▼▼▼ */
-#second-page-x-social-app {
-  position: absolute;
-  /* 控制上下位置。我把值调大了，让它更靠下，和“圈子”图标对齐 */
-  top: 100px; /* ★ 修改这里 ★ */
 
-  /* 控制左右位置。我把值调小了，让它更靠右，和“情侣空间”图标对齐 */
-  right: 0px; /* ★ 修改这里 ★ */
-}
 
-/* 把新图标的文字也变成白色，和其他图标统一 */
-#second-page-x-social-app .label {
-  color: white;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-}
+
 /* ▲▲▲ 新增样式粘贴结束 ▲▲▲ */
 /* ▼▼▼ 【全新】海龟汤游戏样式 ▼▼▼ */
 
@@ -12986,245 +12209,52 @@ body {
 
 /* --- 【全新】情侣空间-情绪日记样式 --- */
 
-/* 日记视图主容器 */
-#ls-diary-view {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 
-/* 日历容器 */
-.ls-calendar-wrapper {
-  background-color: var(--secondary-bg);
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
 
-.ls-calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  font-size: 16px;
-  font-weight: 600;
-}
 
-.ls-calendar-header button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: var(--accent-color);
-}
 
-.ls-calendar-weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-bottom: 10px;
-}
 
-.ls-calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-}
 
-.ls-calendar-day {
-  aspect-ratio: 1 / 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  position: relative;
-  padding-top: 4px;
-}
-.ls-calendar-day:hover {
-  background-color: #f0f2f5;
-}
-.ls-calendar-day.empty {
-  cursor: default;
-  pointer-events: none;
-}
-.ls-calendar-day.today .day-number {
-  background-color: var(--accent-color);
-  color: white;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  line-height: 22px;
-}
 
-.ls-calendar-day .day-number {
-  font-size: 13px;
-  font-weight: 500;
-  margin-bottom: 4px;
-}
 
-.ls-calendar-day .mood-emojis {
-  display: flex;
-  gap: 4px;
-  font-size: 16px;
-  position: absolute;
-  bottom: 5px;
-}
 
-/* 心情罐子 */
-.ls-mood-jar-wrapper {
-  background-color: var(--secondary-bg);
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  text-align: center;
-}
 
-.ls-mood-jar-wrapper h3 {
-  margin: 0 0 15px 0;
-  font-size: 16px;
-}
 
-/* ▼▼▼ 用这块【修复后】的代码替换旧的 .ls-mood-jar 样式 ▼▼▼ */
-.ls-mood-jar {
-  width: 100%;
-  max-width: 100%; /* ★ 核心修改1: 使用max-width防止溢出 */
-  box-sizing: border-box; /* ★ 核心修改2: 确保padding不会导致宽度计算错误 */
-  min-height: 80px;
-  background-color: #f0f2f5;
-  border-radius: 8px;
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-content: flex-start;
-  justify-content: center;
-  overflow: auto; /* ★ 核心修改3 (保险): 如果内容实在太多，就用滚动条兜底 */
-}
+
+
+
+
+
+
+
+
+
+
+
+
 /* ▲▲▲ 替换结束 ▲▲▲ */
 
-.ls-mood-jar .mood-emoji-item {
-  font-size: 22px;
-}
 
-/* 日记编辑弹窗 */
-#ls-emoji-selector .emoji-option {
-  padding: 5px;
-  border-radius: 8px;
-  transition: background-color 0.2s;
-}
-#ls-emoji-selector .emoji-option.selected {
-  background-color: #e0e0e0;
-  transform: scale(1.2);
-}
 
-/* 日记查看弹窗 */
-.ls-diary-entry-block {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 15px;
-  border-left: 4px solid var(--accent-color);
-}
-.ls-diary-entry-block .entry-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-.ls-diary-entry-block .entry-header .mood-emoji {
-  font-size: 32px;
-}
-.ls-diary-entry-block .entry-header .author {
-  font-weight: 600;
-  font-size: 16px;
-}
-.ls-diary-entry-block .entry-content {
-  line-height: 1.7;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
+
+
+
 /* ▲▲▲ 新增CSS结束 ▲▲▲ */
 /* ▼▼▼ 把这一整块全新的CSS，粘贴到 <style> 标签的最末尾 ▼▼▼ */
 
 /* --- 【全新】情侣空间-日记通知卡片样式 --- */
 
-/* 1. 让包裹卡片的气泡本身变透明 */
-.message-bubble.is-ls-diary-notification .content {
-  padding: 0;
-  background: transparent;
-  box-shadow: none;
-  border: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
 
-/* 2. 卡片主体样式 */
-.ls-diary-notification-card {
-  width: 220px; /* 卡片宽度 */
-  background: linear-gradient(
-    135deg,
-    #fff5f8,
-    #ffebee
-  ); /* 温柔的粉色渐变背景 */
-  border-radius: 12px;
-  padding: 15px;
-  cursor: pointer;
-  border: 1px solid #ffdde1; /* 淡淡的粉色边框 */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  position: relative;
-  overflow: hidden; /* 隐藏溢出的装饰元素 */
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s; /* 添加点击动效 */
-}
-.ls-diary-notification-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
 
-/* 3. 卡片右上角的装饰性图标 */
-.ls-diary-notification-card::before {
-  content: "💌";
-  position: absolute;
-  top: -5px;
-  right: 10px;
-  font-size: 30px;
-  opacity: 0.1;
-  transform: rotate(15deg);
-}
 
-/* 4. 卡片头部（图标和标题） */
-.ls-diary-card-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #c85c7c; /* 稍深的粉色，保证清晰度 */
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(200, 92, 124, 0.2);
-}
 
-/* 5. 卡片正文 */
-.ls-diary-card-body p {
-  font-size: 14px;
-  color: #5c474b; /* 深棕色，易于阅读 */
-  margin: 0 0 12px 0;
-  line-height: 1.6;
-}
 
-/* 6. 卡片底部提示文字 */
-.ls-diary-card-footer {
-  font-size: 12px;
-  color: #c85c7c;
-  text-align: right;
-  font-weight: 500;
-}
+
+
+
+
+
+
 /* ▲▲▲ 新增CSS结束 ▲▲▲ */
 
 /* ▼▼▼ 【独家定制】宠物互动按钮 2x2 网格布局 (最终加强版) ▼▼▼ */
@@ -13274,106 +12304,36 @@ body {
 
 /* --- 【最终版】情侣空间右上角按钮美化与独立微调 --- */
 
-/* 1. 收紧按钮容器的整体间距 */
-#ls-header .header-actions {
-  gap: 0px; /* ★ 修改这里：将按钮间的间距减小到0，让它们紧挨着 */
-}
 
-/* 2. 保持按钮的基础样式（这部分不变） */
-#ls-header .action-btn {
-  padding: 8px;
-  border-radius: 50%;
-  transition: background-color 0.2s;
-}
-#ls-header .action-btn:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
+
+
 
 /* 3. 【核心】为每个按钮添加独立的微调功能 */
 
-/* “设置”按钮的独立位置 */
-#ls-settings-btn {
-  position: relative; /* 启用相对定位，这是微调的关键 */
-  top: 0px; /* 【调上下】: 正数往下移，负数往上移 */
-  left: 40px; /* 【调左右】: 正数往右移，负数往左移 */
-}
 
-/* “更换背景”按钮的独立位置 */
-#ls-change-bg-btn {
-  position: relative;
-  top: 0px;
-  left: 30px;
-}
 
-/* “切换”按钮的独立位置 */
-#ls-switch-char-btn {
-  position: relative;
-  top: -5px;
-  left: 15px;
-}
+
+
+
 
 /* ▼▼▼ 【独家定制】情侣空间心动音波图标 ▼▼▼ */
 
-/* 1. 移除旧的爱心字符和发光效果 */
-.ls-header-avatars .heart-icon {
-  font-size: 0; /* 让'❤'字符消失 */
-  text-shadow: none; /* 移除文字阴影 */
 
-  /* 2. 为新图标设置一个容器大小，您可以根据喜好微调 */
-  width: 80px;
-  height: 28px;
-
-  /* 3. 【核心】将你图片中的音波心动图设置为背景 */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='24' viewBox='0 0 80 24'%3E%3Cg fill='%23ff8fab'%3E%3Crect x='0' y='10' width='3' height='4' rx='1.5'/%3E%3Crect x='5' y='8' width='3' height='8' rx='1.5'/%3E%3Crect x='10' y='11' width='3' height='2' rx='1.5'/%3E%3Crect x='15' y='6' width='3' height='12' rx='1.5'/%3E%3Crect x='20' y='9' width='3' height='6' rx='1.5'/%3E%3Cpath transform='translate(25 0) scale(1.1)' d='M22 8.879c0-5.323-5.326-5.323-7.5-1.121C12.277 2.235 7 3.556 7 8.879 7 14.155 14.5 20 14.5 20S22 14.155 22 8.879z'/%3E%3Crect x='55' y='9' width='3' height='6' rx='1.5'/%3E%3Crect x='60' y='6' width='3' height='12' rx='1.5'/%3E%Crect x='65' y='11' width='3' height='2' rx='1.5'/%3E%3Crect x='70' y='8' width='3' height='8' rx='1.5'/%3E%3Crect x='75' y='10' width='3' height='4' rx='1.5'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: contain; /* 确保图标完整显示 */
-  background-repeat: no-repeat;
-  background-position: center;
-
-  /* 4. （可选）微调垂直位置，让它和头像更对齐 */
-  position: relative;
-  top: -2px;
-}
 
 /* ▲▲▲ 定制样式结束 ▲▲▲ */
 
 /* ▼▼▼ 这是为你新增的日历居中修复代码 ▼▼▼ */
 
-/* 1. 强制让每一天的格子内容都不要溢出，避免互相影响 */
-.ls-calendar-day {
-  overflow: hidden;
-  text-align: center; /* 再次强调文本居中，更稳定 */
-}
+
 
 /* 2. 【核心修复】将蓝圈本身也变成一个flex居中容器 */
-/* 这能确保里面的数字，无论如何都会在圈圈的正中间 */
-.ls-calendar-day.today .day-number {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 /* ▲▲▲ 修复结束 ▲▲▲ */
 
-/* ▼▼▼ 【独家定制】情侣空间返回按钮美化 ▼▼▼ */
-#ls-header .back-btn {
-  /* 1. 核心修改：将箭头颜色设为您想要的白色 */
-  color: white;
 
-  /* 2. 统一样式：让它和圈子返回按钮一样，拥有40x40px的圆形点击区域 */
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s ease;
-  cursor: pointer;
-}
 
-/* 3. 为它添加与其他按钮统一的、漂亮的悬停效果 */
-#ls-header .back-btn:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
+
 /* ▲▲▲ 新增样式结束 ▲▲▲ */
 /* ▼▼▼ 【V6 最终修正版】心声面板（边框问题修复） ▼▼▼ */
 
@@ -13739,64 +12699,11 @@ body {
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
 /* ▼▼▼ 把这一整块全新的CSS，粘贴到 <style> 标签的最末尾 ▼▼▼ */
 
-/* --- “桃宝”App 整体布局 --- */
-#taobao-screen {
-  background-color: #f0f2f5;
-}
 
-/* 顶部页签 */
-.taobao-tabs {
-  display: flex;
-  flex-shrink: 0;
-  border-bottom: 1px solid var(--border-color);
-  background-color: var(--secondary-bg);
-}
-.taobao-tab {
-  flex: 1;
-  padding: 12px 0;
-  text-align: center;
-  font-weight: 500;
-  color: var(--text-secondary);
-  border: none;
-  background: none;
-  cursor: pointer;
-  position: relative;
-}
-.taobao-tab.active {
-  color: #ff5722; /* 淘宝橙 */
-}
-.taobao-tab.active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 3px;
-  background-color: #ff5722;
-  border-radius: 1.5px;
-}
 
-/* 内容区域 */
-.taobao-content {
-  flex-grow: 1;
-  position: relative;
-  overflow: hidden;
-}
-.taobao-view {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  display: none;
-  padding: 15px;
-  box-sizing: border-box;
-}
-.taobao-view.active {
-  display: block;
-}
+
+
+
 
 /* --- 首页/商品视图 --- */
 #product-category-tabs {
@@ -13926,12 +12833,7 @@ body {
 /* ▲▲▲ 新增CSS结束 ▲▲▲ */
 /* ▼▼▼ 把这一整块全新的CSS，粘贴到 <style> 标签的最末尾 ▼▼▼ */
 
-/* --- “桃宝”App 搜索栏样式 --- */
-.taobao-search-bar {
-  display: flex;
-  gap: 10px;
-  padding: 0 0 15px 0; /* 只在下方留出间距 */
-}
+
 
 #product-search-input {
   flex-grow: 1;
@@ -13987,10 +12889,7 @@ body {
 /* ▲▲▲ 新增CSS结束 ▲▲▲ */
 /* ▼▼▼ 把这一整块全新的CSS，粘贴到 <style> 标签的最末尾 ▼▼▼ */
 
-/* --- 购物车页签上的小红点 --- */
-.taobao-tab {
-  position: relative;
-}
+
 #cart-item-count-badge {
   position: absolute;
   top: 5px;
@@ -15428,51 +14327,15 @@ body {
 
 /* --- 【全新】用户发出的“解除关系”卡片样式 --- */
 
-/* 1. 让卡片的容器气泡变透明，消除默认背景 */
-.message-bubble.is-ls-disconnect .content {
-  padding: 0;
-  background: transparent;
-  box-shadow: none;
-  border: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
 
-/* 2. 卡片主体样式 */
-.lovers-space-disconnect-card {
-  width: 220px; /* 宽度可以自己调整 */
-  background: linear-gradient(
-    135deg,
-    #f5f7fa,
-    #e9ecef
-  ); /* 浅灰色渐变，更有质感 */
-  border-radius: 12px;
-  border: 1px solid #ced4da;
-  display: flex;
-  align-items: center;
-  gap: 15px; /* 图标和文字的间距 */
-  padding: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
 
-/* 3. 夜间模式下的卡片颜色 */
-#phone-screen.dark-mode .lovers-space-disconnect-card {
-  background: linear-gradient(135deg, #495057, #343a40);
-  border-color: #6c757d;
-}
 
-/* 4. 心碎 Emoji 图标的样式 */
-.lovers-space-disconnect-card .icon {
-  font-size: 32px; /* Emoji 大小 */
-  line-height: 1;
-}
 
-/* 5. 文字区域的样式 */
-.lovers-space-disconnect-card .text-content .title {
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--text-primary);
-}
+
+
+
+
+
 
 /* ▲▲▲ 新增CSS结束 ▲▲▲ */
 /* ▼▼▼ 【全新】这是User自己的私信功能的所有新样式 ▼▼▼ */
@@ -17829,179 +16692,47 @@ body {
 }
 /* ▼▼▼ 这是为“首页”搜索栏新增的美化代码 ▼▼▼ */
 
-/* 1. 把首页的搜索栏容器变成一个圆润的白色“胶囊” */
-#products-view .taobao-search-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: white;
-  padding: 6px 8px;
-  border-radius: 25px; /* 大圆角，形成胶囊形状 */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* 加一点淡淡的阴影 */
-  /* 移除旧的边框和内边距，以新样式为准 */
-  border: none;
-  margin-bottom: 15px; /* 和下方的分类保持一点距离 */
-}
 
-/* 2. 美化首页的输入框，让它“融入”白色胶囊背景 */
-#products-view #product-search-input {
-  flex-grow: 1; /* 占据所有可用空间 */
-  border: none; /* 去掉它自己的边框 */
-  background: transparent; /* 背景透明 */
-  outline: none; /* 去掉点击时的轮廓线 */
-  padding: 8px; /* 给文字一点呼吸的空间 */
-  font-size: 15px;
-  color: #333;
-}
 
-/* 3. 美化首页的“搜索”按钮 */
-#products-view #product-search-btn {
-  background-color: #ff5722; /* 淘宝橙色 */
-  color: white;
-  border: none;
-  border-radius: 18px; /* 让按钮也变圆润 */
-  padding: 8px 15px;
-  font-weight: 500;
-  cursor: pointer;
-}
+
+
+
 
 /* ▲▲▲ 粘贴到这里结束 ▲▲▲ */
 /* ▼▼▼ 这是为“饿了么”搜索栏新增的布局和美化代码 ▼▼▼ */
 
-/* 1. 将饿了么的搜索总容器改为垂直排列，让两组按钮上下堆叠 */
-#eleme-view .taobao-search-bar {
-  display: flex;
-  flex-direction: column; /* 改为垂直排列 */
-  gap: 12px; /* 设置两行之间的垂直间距 */
-  background-color: transparent; /* 移除容器本身的背景和边框 */
-  padding: 0;
-  box-shadow: none;
-  border: none;
-}
 
-/* 2. 为第一行（搜索框+搜索按钮）设置和首页一样的“胶囊”样式 */
-.eleme-search-group {
-  display: flex;
-  background-color: white;
-  padding: 5px;
-  border-radius: 25px; /* 圆润的胶囊形状 */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
 
-.eleme-search-group #eleme-search-input {
-  flex-grow: 1;
-  border: none;
-  background: transparent;
-  outline: none;
-  padding: 8px;
-  font-size: 15px;
-}
 
-.eleme-search-group #eleme-search-btn {
-  background-color: #ff5722; /* 淘宝橙 */
-  color: white;
-  border: none;
-  border-radius: 18px; /* 按钮也变圆润 */
-  padding: 8px 15px;
-  font-weight: 500;
-  cursor: pointer;
-}
 
-/* 3. 为第二行（三个功能按钮）设置布局，让它们居中并排 */
-.eleme-actions-group {
-  display: flex; /* 使用flex布局 */
-  justify-content: center; /* 整体居中 */
-  gap: 10px; /* 按钮之间的间距 */
-}
 
-/* 4. 美化第二行的三个功能按钮 */
-.eleme-actions-group button {
-  flex: 1; /* 让三个按钮平分宽度，排列更整齐 */
-  padding: 10px; /* 增加按钮的高度 */
-  border-radius: 12px; /* 可爱的圆角 */
-  border: 1px solid #e0e0e0;
-  background-color: white;
-  font-size: 16px;
-  font-weight: 500;
-  color: #555;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
 
-/* 为按钮添加一个漂亮的点击效果 */
-.eleme-actions-group button:active {
-  transform: scale(0.95);
-  background-color: #f0f0f0;
-}
 
-/* 适配夜间模式 */
-#phone-screen.dark-mode .eleme-search-group {
-  background-color: #2c2c2e;
-}
-#phone-screen.dark-mode .eleme-search-group #eleme-search-input {
-  color: white;
-}
-#phone-screen.dark-mode .eleme-actions-group button {
-  background-color: #2c2c2e;
-  border-color: #38383a;
-  color: white;
-}
+
+
+
+
+
+
+
+
 
 /* ▲▲▲ 新增代码结束 ▲▲▲ */
 /* ▼▼▼ 这是为你设计的“饿了么”功能按钮美化样式 v3.0 (小巧版) ▼▼▼ */
 
-/* 1. 为按钮的容器增加一个下边距 */
-.eleme-actions-group {
-  margin-bottom: 15px;
-}
 
-/* 2. 重新定义按钮的样式，让它变小 */
-.eleme-actions-group button {
-  /* --- 核心修改在这里 --- */
-  width: 90px; /* 新增：给按钮一个固定的、小巧的宽度 */
-  padding: 6px 0; /* 修改：减少了上下的内边距，让按钮变矮 */
-  font-size: 15px; /* 修改：稍微缩小字体 */
 
-  background-color: transparent;
-  border: 1.5px solid #ff9a69;
-  color: #ff5722;
-  border-radius: 20px;
-  font-weight: 600;
-  transition: all 0.2s ease;
 
-  /* 移除之前让按钮自动拉伸的属性 */
-  flex: none; /* 或者直接删除 flex: 1 那一行 */
-}
 
-/* 3. 单独微调 "+" 按钮，让它看起来更舒服 */
-#eleme-add-manual-btn {
-  font-size: 22px; /* 把加号本身放大一点，视觉上更平衡 */
-  line-height: 1; /* 辅助垂直居中 */
-}
 
-/* 4. 交互效果保持不变 */
-.eleme-actions-group button:hover {
-  background-color: #ff5722;
-  color: white;
-  border-color: #ff5722;
-}
 
-.eleme-actions-group button:active {
-  transform: scale(0.96);
-  opacity: 0.9;
-}
 
-/* 5. 适配夜间模式 */
-#phone-screen.dark-mode .eleme-actions-group button {
-  background-color: transparent;
-  border-color: #ff9a69;
-  color: #ff9a69;
-}
 
-#phone-screen.dark-mode .eleme-actions-group button:hover {
-  background-color: #ff5722;
-  color: white;
-}
+
+
+
+
+
 
 /* ▲▲▲ 新增代码结束 ▲▲▲ */
 /* ▼▼▼ 用这整块代码，替换掉所有旧的 waimai-meituan-card 和 waimai-gift-card 样式 ▼▼▼ */
@@ -18081,59 +16812,19 @@ body {
 /* ▲▲▲ 替换结束 ▲▲▲ */
 /* ▼▼▼ 【全新】情侣空间 - 今日足迹样式 ▼▼▼ */
 
-/* 生成按钮的容器 */
-.ls-activity-generate-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 20px;
-  text-align: center;
-  color: var(--text-secondary);
-}
 
-.ls-activity-generate-container p {
-  margin-bottom: 20px;
-  font-size: 16px;
-}
 
-.ls-activity-generate-container .hint {
-  font-size: 12px;
-  color: #b0b0b0;
-  margin-top: 10px;
-}
 
-#ls-generate-activity-btn {
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: var(--accent-color);
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-  transition: all 0.2s ease;
-}
 
-#ls-generate-activity-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
-}
 
-/* 活动列表样式 */
-#ls-activity-list {
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 
-.ls-activity-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-}
+
+
+
+
+
+
+
 
 .activity-icon {
   flex-shrink: 0;
@@ -18155,9 +16846,7 @@ body {
   flex-grow: 1;
 }
 
-.ls-activity-item:last-child .activity-content {
-  border-bottom: none;
-}
+
 
 .activity-time {
   font-weight: 600;
@@ -18173,94 +16862,25 @@ body {
 /* ▲▲▲ 今日足迹样式结束 ▲▲▲ */
 /* ▼▼▼ 【优化版】这是每日足迹的胶囊气泡样式 ▼▼▼ */
 
-/* 列表总容器样式（保持不变） */
-#ls-activity-list {
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
 
-/* ▼▼▼ 这是【玻璃质感修复版】的胶囊气泡样式 ▼▼▼ */
-.ls-activity-item {
-  position: relative; /* 定位基准，保持不变 */
 
-  /* --- 核心修改：实现玻璃质感 --- */
-  background-color: rgba(255, 255, 255, 0.15); /* 1. 半透明的白色背景 */
-  backdrop-filter: blur(10px) saturate(1.5); /* 2. 核心！毛玻璃模糊效果并增加一点饱和度 */
-  -webkit-backdrop-filter: blur(10px) saturate(1.5); /* 兼容 Safari 浏览器 */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* 3. 一个非常微妙的亮色边框，模拟玻璃边缘 */
-  /* --- 修改结束 --- */
 
-  border-radius: 50px; /* 胶囊形状，保持不变 */
-  padding: 12px 20px 12px 75px; /* 内边距，保持不变 */
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 38px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 可以保留一个更柔和的阴影 */
-}
 /* ▲▲▲ 替换结束 ▲▲▲ */
 
-/* ★★★ 核心修改 1：调整时间戳的位置和外观 ★★★ */
-.ls-activity-item .activity-time {
-  position: absolute;
-  left: 20px; /* 距离左边缘20px */
-  top: 13px; /* 距离顶部13px，使其在视觉上更协调 */
-  /* 移除了 transform 和垂直居中的代码 */
 
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary);
-  /* 移除了背景色，让它更纯净 */
-  padding: 0;
-  background-color: transparent;
-}
 
-/* ★★★ 核心修改 2：确保 Emoji 图标本身没有背景 ★★★ */
-.ls-activity-item .activity-icon {
-  font-size: 20px;
-  background: none; /* 明确设置背景为无，防止意外样式 */
-}
 
-/* 中间主要内容的容器（保持不变） */
-.ls-activity-item .activity-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  line-height: 1.4;
-}
 
-/* 描述文字的样式（保持不变） */
-.ls-activity-item .activity-description {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: 14px;
-}
 
-/* 时长文字的样式（保持不变） */
-.ls-activity-item .activity-duration {
-  font-size: 12px;
-  color: var(--text-secondary);
-}
+
+
+
+
 
 /* ▲▲▲ 样式替换结束 ▲▲▲ */
 /* ▼▼▼ 【全新】情侣空间 - 今日足迹HTML小剧场样式 ▼▼▼ */
 
-/* 小剧场卡片的通用容器样式 */
-.ls-activity-snippet {
-  width: 85%;
-  max-width: 280px; /* 限制最大宽度，避免在宽屏上太丑 */
-  margin: 10px auto 25px auto; /* 上下边距，左右自动居中 */
-  padding: 15px;
-  border-radius: 12px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
-    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: #333;
-}
+
 
 /* 电影票根的专属样式 */
 .movie-ticket {
@@ -18346,39 +16966,13 @@ body {
 }
 
 /* ▲▲▲ 样式添加结束 ▲▲▲ */
-/* 【全新】每日足迹 - 顶部样式 */
-.ls-activity-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
-  margin: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(5px);
-}
 
-.ls-activity-date-display {
-  font-size: 16px;
-  font-weight: bold;
-  color: var(--text-primary);
-}
 
-#ls-activity-calendar-icon {
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-#ls-activity-calendar-icon:hover {
-  transform: scale(1.1);
-}
 
-/* 【全新】每日足迹 - 日历弹窗专属样式 */
-.ls-calendar-day.has-activity {
-  background-color: #fff0f5; /* 有足迹的日期，给一个淡淡的粉色背景 */
-  border-radius: 8px;
-  position: relative;
-}
+
+
+
+
 .activity-dot {
   font-size: 12px; /* 可爱的小爪印 🐾 */
   position: absolute;
@@ -18654,53 +17248,7 @@ body {
   align-self: center; /* 核心：让整个包裹器在聊天界面上水平居中 */
 }
 
-/* ▲▲▲ 微调结束 ▲▲▲ */
-/* ▼▼▼ 【全新】兔k记账 App 样式 ▼▼▼ */
-#tukey-accounting-screen .tukey-content {
-  flex-grow: 1;
-  overflow-y: auto;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-#tukey-accounting-screen .tukey-view {
-  display: none;
-  height: 100%;
-  flex-direction: column;
-  gap: 15px;
-}
-#tukey-accounting-screen .tukey-view.active {
-  display: flex;
-}
-#tukey-bottom-nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 60px;
-  background-color: rgba(247, 247, 247, 0.8);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid var(--border-color);
-  flex-shrink: 0;
-}
-.tukey-nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  font-size: 10px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: color 0.2s;
-}
-.tukey-nav-item.active {
-  color: var(--accent-color);
-}
-.tukey-nav-item svg {
-  stroke: currentColor;
-  stroke-width: 1.5;
-}
+
 
 /* --- 钱包页面专属样式 --- */
 #wallet-summary-card {
@@ -18750,55 +17298,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
-}
-.tukey-account-category-card {
-  background-color: var(--secondary-bg);
-  border-radius: 12px;
-  overflow: hidden;
-}
-.tukey-account-category-card .category-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 15px;
-  border-bottom: 1px solid var(--border-color);
-}
-.tukey-account-category-card .category-title {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-.tukey-account-category-card .category-title .name {
-  font-weight: 500;
-}
-.tukey-account-category-card .category-title .total {
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-.category-accounts-list .tukey-account-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 15px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-.category-accounts-list .tukey-account-item:not(:last-child) {
-  border-bottom: 1px solid var(--border-color);
-}
-.category-accounts-list .tukey-account-item:hover {
-  background-color: rgba(0, 0, 0, 0.03);
-}
-.tukey-account-item .account-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.tukey-account-item .account-name {
-  font-size: 15px;
-}
-.tukey-account-item .account-balance {
-  font-weight: 500;
 }
 #add-new-account-fab {
   position: absolute;
@@ -18852,94 +17351,21 @@ body {
   color: var(--text-primary);
 }
 
-/* 账户列表项的新样式 */
-.tukey-account-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
-  cursor: pointer;
-}
-.tukey-account-item .account-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-/* 这就是你想要的账户类型名称的样式 */
-.tukey-account-item .account-type-name {
-  font-size: 12px;
-  color: var(--text-secondary);
-  background-color: var(--secondary-bg, #f0f2f5);
-  padding: 2px 6px;
-  border-radius: 4px;
-  align-self: flex-start; /* 让标签宽度自适应内容 */
-}
+
+
 /* style.css */
 
 /* ▼▼▼ 【全新】兔k记账-记账群聊功能样式 ▼▼▼ */
 
-/* 整体布局 */
-#tukey-group-chat-view {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-}
 
-/* 没有群聊时的占位符 */
-#tukey-no-group-placeholder {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  color: var(--text-secondary);
-}
-#tukey-no-group-placeholder .form-button {
-  width: auto;
-  padding: 12px 24px;
-}
 
-/* 群聊主容器 */
-#tukey-group-chat-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
 
-/* 群聊头部 */
-#tukey-group-chat-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
-  border-bottom: 1px solid var(--border-color);
-  background-color: var(--background-color);
-  flex-shrink: 0;
-}
-#tukey-group-name {
-  font-weight: 600;
-  font-size: 17px;
-}
-#tukey-group-settings-btn {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  opacity: 0.7;
-}
 
-/* 记账记录列表 */
-#tukey-records-list {
-  flex-grow: 1;
-  overflow-y: auto;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  background-color: var(--secondary-bg);
-}
+
+
+
+
+
 
 .record-header {
   display: flex;
@@ -18970,24 +17396,9 @@ body {
   margin-top: 8px;
 }
 
-/* AI回复区域 */
-.tukey-replies-container {
-  margin-top: 15px;
-  padding-top: 10px;
-  border-top: 1px solid #f0f0f0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.dark-mode .tukey-replies-container {
-  border-top-color: #333;
-}
 
-.tukey-reply-item {
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
-}
+
+
 .reply-avatar {
   width: 30px;
   height: 30px;
@@ -19013,56 +17424,9 @@ body {
   word-break: break-word;
 }
 
-/* 记账按钮 */
-#tukey-record-input-area {
-  position: relative;
-  padding: 10px;
-  border-top: 1px solid var(--border-color);
-  background-color: var(--background-color);
-}
-#tukey-add-record-btn {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: var(--accent-color);
-  color: white;
-  border: none;
-  font-size: 30px;
-  font-weight: 300;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 1;
-}
 
-/* 记一笔弹窗内的类型选择按钮 */
-.tukey-type-selector {
-  display: flex;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  overflow: hidden;
-}
-.tukey-type-selector .type-btn {
-  flex: 1;
-  padding: 10px;
-  background-color: transparent;
-  border: none;
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.tukey-type-selector .type-btn:not(:last-child) {
-  border-right: 1px solid var(--border-color);
-}
-.tukey-type-selector .type-btn.active {
-  background-color: var(--accent-color);
-  color: white;
-}
+
+
 
 /* 群聊管理/成员选择弹窗的列表样式 */
 .contact-picker-list {
@@ -19095,361 +17459,49 @@ body {
 /* ▲▲▲ 兔k记账样式结束 ▲▲▲ */
 /* ▼▼▼ 【兔k记账】新版聊天式UI的CSS样式 ▼▼▼ */
 
-#tukey-group-chat-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
 
-#tukey-records-list {
-  flex-grow: 1;
-  overflow-y: auto;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* 气泡之间的间距 */
-}
 
-#tukey-record-input-area {
-  padding: 8px 15px;
-  background-color: var(--secondary-bg, #f7f7f7);
-  border-top: 1px solid var(--border-color, #e0e0e0);
-  display: flex;
-  align-items: center;
-}
 
-#tukey-add-record-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: var(--accent-color, #007bff);
-  color: white;
-  border: none;
-  font-size: 24px;
-  line-height: 36px;
-  cursor: pointer;
-}
 
-/* 记账记录气泡 */
-.tukey-record-bubble {
-  background-color: #fff;
-  padding: 10px 15px;
-  border-radius: 18px;
-  max-width: 80%;
-  align-self: flex-end; /* 用户发的，靠右 */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  position: relative;
-  border: 1px solid #e5e5e5;
-}
 
-.dark-mode .tukey-record-bubble {
-  background-color: #2c2c2e;
-  border-color: #3a3a3c;
-}
 
-.tukey-record-bubble .record-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #f0f0f0;
-}
-.dark-mode .tukey-record-bubble .record-header {
-  border-bottom-color: #3a3a3c;
-}
 
-.tukey-record-bubble .record-category-icon {
-  width: 30px;
-  height: 30px;
-}
 
-.tukey-record-bubble .record-category-name {
-  font-weight: 500;
-  font-size: 15px;
-}
 
-.tukey-record-bubble .record-body {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 15px;
-  margin-bottom: 5px;
-}
-.tukey-record-bubble .record-remarks {
-  font-size: 14px;
-  color: var(--text-primary);
-}
-.tukey-record-bubble .record-amount {
-  font-size: 18px;
-  font-weight: bold;
-  white-space: nowrap;
-}
-.tukey-record-bubble.expense .record-amount {
-  color: #4caf50; /* 支出绿色 */
-}
-.tukey-record-bubble.income .record-amount {
-  color: #f44336; /* 收入红色 */
-}
 
-.tukey-record-bubble .record-footer {
-  font-size: 11px;
-  color: var(--text-secondary);
-  text-align: right;
-  margin-top: 5px;
-}
 
-/* AI回复气泡 */
-.tukey-replies-container {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.tukey-reply-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-}
-.tukey-reply-item .reply-avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.tukey-reply-item .reply-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.tukey-reply-item .reply-sender-name {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-bottom: 2px;
-  margin-left: 8px;
-}
-.tukey-reply-item .reply-bubble {
-  background-color: #f0f2f5;
-  padding: 8px 12px;
-  border-radius: 18px;
-  font-size: 14px;
-  max-width: 220px;
-  word-wrap: break-word;
-}
-.dark-mode .tukey-reply-item .reply-bubble {
-  background-color: #3a3a3c;
-}
 
-.tukey-category-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-  padding: 5px;
-  border-radius: 8px;
-  transition: background-color 0.2s;
-}
-.tukey-category-item:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-.tukey-category-item img {
-  width: 40px;
-  height: 40px;
-}
-.tukey-category-item span {
-  font-size: 12px;
-}
-/* ▲▲▲ CSS样式结束 ▲▲▲ */
-/* ▼▼▼ 【兔k记账】V2版记账卡片CSS样式 ▼▼▼ */
-#tukey-record-input-card {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #fff;
-  border-top: 1px solid #e0e0e0;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  transform: translateY(100%);
-  transition: transform 0.3s ease-in-out;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-}
-#tukey-record-input-card.visible {
-  transform: translateY(0);
-}
-.dark-mode #tukey-record-input-card {
-  background-color: #1c1c1e;
-  border-top-color: #38383a;
-}
-#tukey-record-input-card .card-header {
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  border-bottom: 1px solid #f0f0f0;
-}
-.dark-mode #tukey-record-input-card .card-header {
-  border-bottom-color: #38383a;
-}
-#tukey-record-input-card .close-card-btn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: var(--text-secondary);
-  padding: 0 10px;
-}
-#tukey-record-input-card .type-selector {
-  display: flex;
-  margin: 0 auto;
-  background-color: #e9ecef;
-  border-radius: 8px;
-  padding: 2px;
-}
-.dark-mode #tukey-record-input-card .type-selector {
-  background-color: #3a3a3c;
-}
-#tukey-record-input-card .type-selector .type-btn {
-  background-color: transparent;
-  border: none;
-  padding: 6px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  color: #495057;
-  font-weight: 500;
-}
-.dark-mode #tukey-record-input-card .type-selector .type-btn {
-  color: #adb5bd;
-}
-#tukey-record-input-card .type-selector .type-btn.active {
-  background-color: #fff;
-  color: #000;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-.dark-mode #tukey-record-input-card .type-selector .type-btn.active {
-  background-color: #525252;
-  color: #fff;
-}
-#tukey-record-input-card .card-body {
-  padding: 15px;
-}
-#tukey-record-input-card .category-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin-bottom: 15px;
-}
-#tukey-record-input-card .category-grid .tukey-category-item.selected {
-  background-color: var(--accent-color-light, #eaf2ff);
-  border-radius: 8px;
-}
-.dark-mode
-  #tukey-record-input-card
-  .category-grid
-  .tukey-category-item.selected {
-  background-color: rgba(var(--accent-color-rgb), 0.2);
-}
 
-#tukey-record-input-card .input-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  border-top: 1px solid #f0f0f0;
-  padding-top: 15px;
-}
-.dark-mode #tukey-record-input-card .input-fields {
-  border-top-color: #3a3a3c;
-}
-#tukey-record-input-card .amount-input-wrapper {
-  display: flex;
-  align-items: center;
-  font-size: 28px;
-  font-weight: bold;
-}
-#tukey-record-input-card #tukey-card-amount-input {
-  border: none;
-  background: none;
-  font-size: 28px;
-  font-weight: bold;
-  width: 100%;
-  outline: none;
-  padding-left: 5px;
-}
-#tukey-record-input-card #tukey-card-remarks-input {
-  width: 100%;
-  border: none;
-  background: none;
-  font-size: 14px;
-  padding: 5px 0;
-  outline: none;
-  border-bottom: 1px solid #e0e0e0;
-}
-.dark-mode #tukey-record-input-card #tukey-card-remarks-input {
-  border-bottom-color: #444;
-}
 
-#tukey-record-input-card .card-footer {
-  padding: 10px 15px;
-}
-#tukey-save-from-card-btn {
-  width: 100%;
-  padding: 12px;
-  background-color: var(--accent-color);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ▲▲▲ CSS样式结束 ▲▲▲ */
 /* ▼▼▼ 【兔k记账】V3版记账卡片新增/修改的CSS样式 ▼▼▼ */
 
-#tukey-record-input-card .card-body {
-  padding: 10px 15px; /* 调整内边距 */
-}
 
-#tukey-record-input-card .input-fields {
-  padding-top: 10px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #f0f0f0; /* 将分割线移到金额区域下方 */
-  margin-bottom: 15px;
-}
-.dark-mode #tukey-record-input-card .input-fields {
-  border-bottom-color: #38383a;
-}
 
-#tukey-record-input-card .amount-input-wrapper {
-  align-items: center; /* 垂直居中 */
-}
 
-#tukey-card-amount-input {
-  border-bottom: none; /* 移除金额输入框的下划线 */
-}
 
-#tukey-card-remarks-input {
-  padding: 8px 0; /* 增加备注输入框的上下内边距 */
-}
 
-/* 【新增】已选分类显示区 */
-#tukey-card-selected-category {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: 15px;
-  padding: 6px 12px;
-  background-color: #f0f2f5;
-  border-radius: 16px;
-  font-size: 14px;
-}
-.dark-mode #tukey-card-selected-category {
-  background-color: #3a3a3c;
-}
-#tukey-card-selected-category img {
-  width: 20px;
-  height: 20px;
-}
+
+
+
+
+
+
 
 /* 【新增】账户和时间选择器区域 */
 .additional-options {
@@ -19475,23 +17527,10 @@ body {
   max-width: 120px; /* 限制宽度防止过长 */
 }
 
-/* 【修改】卡片底部按钮 */
-#tukey-record-input-card .card-footer {
-  padding: 10px 15px;
-  border-top: 1px solid #f0f0f0;
-}
-.dark-mode #tukey-record-input-card .card-footer {
-  border-top-color: #38383a;
-}
+
 
 /* ▲▲▲ CSS样式结束 ▲▲▲ */
-/* --- 兔k记账 - 报表功能专属样式 --- */
-#tukey-reports-view {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background-color: #f7f7f7;
-}
+
 .report-controls {
   display: flex;
   gap: 10px;
@@ -19546,14 +17585,6 @@ body {
 .day-header .day-summary .expense {
   color: #f44336;
 }
-.transaction-list .tukey-record-bubble {
-  margin: 0;
-  border-radius: 0;
-  border-bottom: 1px solid #f0f0f0;
-}
-.transaction-list .tukey-record-bubble:last-child {
-  border-bottom: none;
-}
 .report-placeholder {
   text-align: center;
   color: #999;
@@ -19602,51 +17633,16 @@ body {
 }
 /* --- 兔k记账 - 用户记账气泡样式 (V2版) --- */
 
-/* 这是新的外层包裹容器，负责布局 */
-.tukey-record-wrapper.user-record {
-  display: flex;
-  justify-content: flex-end; /* 整体靠右 */
-  align-items: flex-start; /* 顶部对齐 */
-  gap: 10px;
-  margin: 10px 0;
-  width: 100%;
-}
 
-/* 这是用户的气泡本体 */
-.tukey-record-wrapper.user-record .tukey-record-bubble {
-  background-color: #a9e87a; /* 用户的气泡颜色 */
-  max-width: 75%;
-  order: 1; /* 让气泡在flex布局中排在第1位 */
-}
 
-/* 这是用户的头像 */
-.tukey-record-wrapper.user-record .record-user-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-  order: 2; /* 让头像在flex布局中排在第2位 */
-}
 
-/* 旧的AI回复容器也需要调整，以保持对齐 */
-.tukey-replies-container {
-  align-self: flex-start;
-  max-width: 85%;
-}
-/* ▼▼▼ 请将这段新CSS添加到你的样式文件中 ▼▼▼ */
-.tukey-account-item .account-info {
-  display: flex;
-  align-items: center; /* 垂直居中对齐 */
-  gap: 12px; /* 图标和文字之间的间距 */
-}
 
-.tukey-account-item .account-icon {
-  width: 32px; /* 图标宽度 */
-  height: 32px; /* 图标高度 */
-  border-radius: 50%; /* 让它变成圆形 */
-  object-fit: cover; /* 确保图片不变形 */
-}
+
+
+
+
+
+
 /* ▲▲▲ 添加结束 ▲▲▲ */
 /* ▼▼▼ 【全新】“kk查岗”功能样式 ▼▼▼ */
 
@@ -24699,121 +22695,25 @@ body {
 /* === 💎 情侣空间 V11.0 (整体大幅上移 + 紧凑高位布局) 💎 === */
 /* ================================================================= */
 
-/* --- 1. 全局容器与背景 --- */
-#lovers-space-screen {
-  background-color: transparent !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-attachment: fixed !important;
-}
 
-/* 顶部加深渐变 */
-#lovers-space-screen::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 400px;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.3) 0%,
-    rgba(0, 0, 0, 0.05) 60%,
-    transparent 100%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
 
-/* --- 2. 头部区域 --- */
-#ls-header {
-  height: 340px !important;
-  position: relative;
-  z-index: 2;
-  overflow: visible !important;
-}
 
-/* 顶部按钮栏 */
-.ls-header-top-bar {
-  padding: 20px 25px !important;
-  padding-top: calc(20px + env(safe-area-inset-top)) !important;
-}
 
-#ls-header .action-btn,
-#ls-header .back-btn {
-  background: transparent !important;
-  border: none !important;
-  color: #fff !important;
-  width: 36px !important;
-  height: 36px !important;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
-}
 
-#ls-char-name {
-  color: #fff !important;
-  font-size: 18px !important;
-  font-weight: 600 !important;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-}
 
-/* --- 3. 头像与计数器：大幅上移 --- */
-.ls-avatar-and-counter-wrapper {
-  position: absolute !important;
 
-  /* 保持右移位置 */
-  left: 110px !important;
 
-  /* ⚡️ 核心修改：大幅上提至 140px */
-  bottom: 140px !important;
 
-  width: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 15px !important;
-  z-index: 10;
-}
 
-/* 头像容器 */
-.ls-header-avatars {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 20px !important;
-  height: auto !important;
-  margin: 0 !important;
-  position: relative;
-}
 
-/* 头像样式 */
-.ls-header-avatars img {
-  width: 74px !important;
-  height: 74px !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
-  border: 2px solid rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25) !important;
-}
 
-/* 浅粉色动态爱心 */
-.ls-header-avatars .heart-icon {
-  position: absolute !important;
-  left: 70px;
-  top: 50%;
 
-  width: 28px !important;
-  height: 28px !important;
 
-  /* 🌸 浅粉色 */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffb6c1'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
 
-  z-index: 5;
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
-  animation: soft-breathe 2.5s infinite ease-in-out !important;
-}
+
+
+
+
 
 @keyframes soft-breathe {
   0% {
@@ -24830,102 +22730,21 @@ body {
   }
 }
 
-/* 纪念日文字 */
-#ls-days-counter {
-  margin: 0 !important;
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
 
-  font-size: 17px !important;
-  color: #fff !important;
-  font-weight: 600 !important;
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
 
-  border-left: 3px solid rgba(255, 255, 255, 0.9) !important;
-  padding-left: 12px !important;
-  margin-left: 5px !important;
-  line-height: 1.4 !important;
-}
 
-/* --- 4. 悬浮 Tab 栏：也跟着往上提 --- */
-#ls-tab-bar {
-  position: relative !important;
 
-  /* ⚡️ 核心修改：margin-top 改为 -60px，让它插得更高 */
-  margin: -100px 20px 25px 20px !important;
 
-  z-index: 20 !important;
-  border-radius: 24px !important;
 
-  background: rgba(255, 255, 255, 0.5) !important;
-  backdrop-filter: blur(25px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
 
-  border: 1px solid rgba(255, 255, 255, 0.4) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
-  padding: 6px !important;
-}
 
-.ls-tab-item.active {
-  background: #fff !important;
-  color: #ff8fa3 !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
-  border-radius: 18px !important;
-}
 
-/* --- 5. 内容卡片 --- */
-#ls-content-area,
-.ls-view {
-  background: transparent !important;
-  padding: 0 20px 40px 20px !important;
-}
 
-.ls-moment-card,
-.ls-question-card,
-.ls-share-item,
-.ls-album-item .cover,
-.ls-love-letter-item,
-.ls-calendar-wrapper {
-  background: rgba(255, 255, 255, 0.75) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
-  border-radius: 20px !important;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05) !important;
-  margin-bottom: 20px !important;
-}
 
-.ls-moment-card .author {
-  color: #222 !important;
-  font-weight: 700 !important;
-}
-.ls-moment-card .content {
-  color: #333 !important;
-}
-.ls-moment-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
-  background: rgba(255, 255, 255, 0.2) !important;
-}
 
-.ls-fab-btn {
-  bottom: 50px !important;
-  right: 30px !important;
-  background: #ffb6c1 !important;
-  color: #fff !important;
-  box-shadow: 0 8px 20px rgba(255, 182, 193, 0.5) !important;
-  border-radius: 50% !important;
-}
 
-/* 夜间模式 */
-#phone-screen.dark-mode .ls-moment-card,
-#phone-screen.dark-mode #ls-tab-bar {
-  background: rgba(30, 30, 30, 0.65) !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
-  color: #eee !important;
-}
+
+
 /* 休息聊天弹窗的消息气泡样式 */
 .pomodoro-break-bubble {
   padding: 8px 12px;
@@ -25345,208 +23164,10 @@ body {
   background-color: #4a2a30 !important; /* 深红色背景 */
   color: #ff8fab !important; /* 亮粉色文字 */
 }
-/* === Cute viewer refresh: letter, diary, pomodoro history === */
-#ls-letter-viewer-modal .ls-letter-viewer-content {
-  position: relative;
-  width: 92%;
-  max-width: 360px;
-  height: 76%;
-  background:
-    radial-gradient(
-      circle at 12% 10%,
-      rgba(255, 205, 220, 0.35),
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 88% 18%,
-      rgba(189, 224, 255, 0.3),
-      transparent 45%
-    ),
-    linear-gradient(145deg, rgba(255, 251, 255, 0.9), rgba(255, 242, 248, 0.96));
-  border: 2px solid rgba(255, 190, 210, 0.7);
-  border-radius: 18px;
-  box-shadow:
-    0 16px 40px rgba(255, 155, 176, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  overflow: hidden;
-}
-#ls-letter-viewer-modal .ls-letter-viewer-content::before {
-  content: "";
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 8px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #ffd8e6, #c7e7ff);
-  opacity: 0.6;
-}
-#ls-letter-viewer-modal .ls-letter-viewer-content::after {
-  content: "";
-  position: absolute;
-  inset: 14px 12px 12px;
-  border: 1px dashed rgba(255, 170, 195, 0.5);
-  border-radius: 14px;
-  pointer-events: none;
-}
-#ls-letter-viewer-modal .letter-viewer-header {
-  background: linear-gradient(
-    120deg,
-    rgba(255, 232, 242, 0.95),
-    rgba(255, 247, 230, 0.92)
-  );
-  border-bottom: 1px dashed #f3c5d8;
-  color: #754b55;
-  padding: 16px 18px;
-  gap: 12px;
-}
-#ls-letter-viewer-modal .letter-viewer-header .meta-avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  border: 2px solid #fff;
-  box-shadow: 0 4px 10px rgba(255, 143, 171, 0.35);
-}
-#ls-letter-viewer-modal .letter-viewer-body {
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(255, 232, 240, 0.6) 0,
-    rgba(255, 232, 240, 0.6) 28px,
-    rgba(255, 255, 255, 0.85) 28px,
-    rgba(255, 255, 255, 0.85) 56px
-  );
-  border-radius: 12px;
-  margin: 12px 14px;
-  padding: 18px 16px;
-  box-shadow: inset 0 1px 8px rgba(255, 170, 195, 0.18);
-  color: #514349;
-  line-height: 1.9;
-}
-#ls-letter-viewer-modal .letter-viewer-footer {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 240, 245, 0.9),
-    rgba(255, 250, 240, 0.92)
-  );
-  border-top: 1px dashed #f3c5d8;
-  padding: 14px 16px;
-}
-#ls-letter-viewer-modal .letter-actions button {
-  border-radius: 18px;
-  border: 1px solid #ffcde0;
-  background: #fff;
-  color: #d36d93;
-  box-shadow: 0 6px 16px rgba(255, 143, 171, 0.2);
-}
-#ls-letter-viewer-modal .letter-actions button.primary {
-  background: linear-gradient(135deg, #ff9ab3, #ffd2e4);
-  color: #fff;
-  border-color: transparent;
-}
-#ls-letter-viewer-modal .letter-actions button:hover {
-  transform: translateY(-1px);
-}
 
-/* Diary viewer */
-#ls-diary-viewer-modal .modal-content {
-  position: relative;
-  background: linear-gradient(135deg, #fff6fb 0%, #f7f9ff 55%, #fffaf2 100%);
-  border: 2px solid #ffe0ed;
-  border-radius: 18px;
-  box-shadow: 0 16px 42px rgba(255, 156, 193, 0.2);
-  overflow: hidden;
-}
-#ls-diary-viewer-modal .modal-content::before,
-#ls-diary-viewer-modal .modal-content::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(0.5px);
-}
-#ls-diary-viewer-modal .modal-content::before {
-  width: 160px;
-  height: 160px;
-  right: -40px;
-  top: -50px;
-  background: radial-gradient(
-    circle,
-    rgba(255, 208, 224, 0.35),
-    rgba(255, 208, 224, 0)
-  );
-}
-#ls-diary-viewer-modal .modal-content::after {
-  width: 140px;
-  height: 140px;
-  left: -30px;
-  bottom: -30px;
-  background: radial-gradient(
-    circle,
-    rgba(185, 222, 255, 0.3),
-    rgba(185, 222, 255, 0)
-  );
-}
-#ls-diary-viewer-modal .modal-header {
-  background: transparent;
-  color: #e07fb0;
-  border-bottom: 1px dashed #ffd6e8;
-  font-weight: 800;
-  letter-spacing: 0.4px;
-}
-#ls-diary-viewer-body {
-  padding: 18px 16px 22px;
-  background:
-    radial-gradient(
-      circle at 14% 18%,
-      rgba(255, 225, 239, 0.4),
-      transparent 45%
-    ),
-    radial-gradient(
-      circle at 85% 24%,
-      rgba(192, 228, 255, 0.3),
-      transparent 40%
-    );
-  gap: 16px !important;
-}
-#ls-diary-viewer-modal .ls-diary-entry-block {
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 14px;
-  border-left: 5px solid #ffb7ce;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  padding: 16px;
-  backdrop-filter: blur(4px);
-}
-#ls-diary-viewer-modal .ls-diary-entry-block + .ls-diary-entry-block {
-  border-left-color: #a6d8ff;
-}
-#ls-diary-viewer-modal .ls-diary-entry-block .entry-header .author {
-  color: #e07fb0;
-}
-#ls-diary-viewer-modal .ls-diary-entry-block .entry-content {
-  color: #524454;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 240, 246, 0.7),
-    rgba(255, 255, 255, 0.9)
-  );
-  padding: 12px 14px;
-  border-radius: 10px;
-  line-height: 1.8;
-}
 
-/* Pomodoro history */
-#ls-pomodoro-history-viewer-modal .modal-content {
-  background: linear-gradient(135deg, #fff4f8 0%, #fef6ff 55%, #fffaf2 100%);
-  border: 2px solid #ffd8e6;
-  border-radius: 18px;
-  box-shadow: 0 14px 36px rgba(255, 149, 180, 0.22);
-}
-#ls-pomodoro-history-viewer-modal .modal-header {
-  background: transparent;
-  color: #ff7aa2;
-  border-bottom: 1px dashed #ffd6e8;
-  font-weight: 800;
-}
+
+
 #pomodoro-history-viewer-content {
   position: relative;
   gap: 16px;
@@ -25584,17 +23205,9 @@ body {
   box-shadow: 0 0 0 6px rgba(255, 154, 179, 0.25);
 }
 
-/* Dark mode tweaks */
-#phone-screen.dark-mode #ls-letter-viewer-modal .ls-letter-viewer-content,
-#phone-screen.dark-mode #ls-diary-viewer-modal .modal-content,
-#phone-screen.dark-mode #ls-pomodoro-history-viewer-modal .modal-content {
-  background: linear-gradient(135deg, #2f2a35, #2a2731);
-  border-color: #4d3c55;
-  box-shadow: none;
-}
+
 #phone-screen.dark-mode .letter-viewer-body,
-#phone-screen.dark-mode .ls-diary-entry-block,
-#phone-screen.dark-mode .pomodoro-log-bubble {
+#phone-screen.dark-mode .pomodoro-log-bubble{
   background: rgba(48, 43, 56, 0.9);
   color: #f4e8f7;
   border-color: #5a4566;
@@ -25608,240 +23221,33 @@ body {
 /* === 💌 情书查看器 V3.0 (梦幻·高级·软萌限定版) === */
 /* ================================================================= */
 
-/* 1. 遮罩层：加一点粉色的氛围光 */
-#ls-letter-viewer-modal {
-  z-index: 2000 !important;
-  background-color: rgba(20, 0, 10, 0.3); /* 深色微红背景 */
-  backdrop-filter: blur(8px); /* 背景模糊 */
-  -webkit-backdrop-filter: blur(8px);
-}
 
-/* 2. 信纸主体：像一张厚实的高级卡纸 */
-#ls-letter-viewer-modal .ls-letter-viewer-content {
-  position: relative;
-  width: 88%;
-  max-width: 350px;
-  height: 78%;
 
-  /* 背景：极光般的柔和渐变，模拟高级纸张的反光 */
-  background:
-    radial-gradient(
-      circle at 0% 0%,
-      rgba(255, 235, 240, 0.8) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 100% 100%,
-      rgba(255, 218, 224, 0.6) 0%,
-      transparent 50%
-    ),
-    #fffafb; /* 底色是温暖的樱花白 */
 
-  /* 边框：双层边框设计，内实外虚，增加精致感 */
-  border: 4px solid #fff;
-  outline: 1px dashed #ffc2d1; /* 外圈虚线，像缝纫线 */
-  outline-offset: -10px; /* 虚线在内部 */
 
-  border-radius: 24px; /* 更大的圆角 */
 
-  /* 阴影：多层阴影营造悬浮感和光晕 */
-  box-shadow:
-    0 10px 40px rgba(255, 143, 171, 0.25),
-    /* 粉色氛围光 */ 0 0 0 8px rgba(255, 255, 255, 0.4); /* 外圈半透明白边 */
 
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  font-family: "Kaiti", "STKaiti", "Georgia", serif; /* 字体保持书卷气 */
-}
 
-/* 装饰：顶部的小爱心夹子 (拟物化) */
-#ls-letter-viewer-modal .ls-letter-viewer-content::before {
-  content: "♥";
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 40px;
-  color: #ff8fab;
-  z-index: 10;
-  text-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
-}
 
-/* 3. 头部：像信纸的抬头 */
-#ls-letter-viewer-modal .letter-viewer-header {
-  padding: 30px 25px 15px 25px; /* 顶部留多点空间给夹子 */
-  background: transparent;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-shrink: 0;
-  border-bottom: 1px solid rgba(255, 182, 193, 0.3);
-}
 
-/* 对方头像：像个小徽章 */
-#ls-letter-viewer-modal .letter-viewer-header .meta-avatar {
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
-  object-fit: cover;
-}
 
-#ls-letter-viewer-modal .recipient-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-#ls-letter-viewer-modal .recipient-info .label {
-  font-size: 10px;
-  color: #ffb7c5;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 800;
-}
-#ls-letter-viewer-modal .recipient-info .name {
-  font-size: 20px;
-  color: #6d4c41; /* 摩卡棕色 */
-  font-weight: 700;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-}
 
-/* 4. 正文：信纸线条与手写感 */
-#ls-letter-viewer-modal .letter-viewer-body {
-  flex-grow: 1;
-  padding: 20px 30px;
-  overflow-y: auto;
 
-  /* 核心：更细腻的信纸横线 */
-  background-image: linear-gradient(
-    rgba(200, 100, 100, 0.1) 1px,
-    transparent 1px
-  );
-  background-size: 100% 30px; /* 行高控制 */
-  background-attachment: local;
 
-  font-size: 16px;
-  line-height: 30px; /* 严格对齐横线 */
-  color: #5d4037; /* 深咖啡色 */
-  white-space: pre-wrap;
-  word-break: break-word;
 
-  /* 增加底部留白 */
-  mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
-}
 
-/* 5. 底部：精致的落款与按钮 */
-#ls-letter-viewer-modal .letter-viewer-footer {
-  padding: 15px 25px 25px 25px;
-  background: linear-gradient(to top, #fff0f5 0%, rgba(255, 255, 255, 0) 100%);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end; /* 底部对齐 */
-  flex-shrink: 0;
-}
 
-/* 发信人信息 */
-#ls-letter-viewer-modal .sender-info {
-  text-align: left;
-  font-size: 14px;
-  color: #8d6e63;
-  font-family: sans-serif; /* 用无衬线体做对比 */
-}
-#ls-letter-viewer-modal .sender-info .timestamp {
-  display: block;
-  font-size: 10px;
-  color: #bcaaa4;
-  margin-top: 3px;
-  font-weight: 500;
-}
 
-/* 按钮组 */
-#ls-letter-viewer-modal .letter-actions {
-  display: flex;
-  gap: 12px;
-}
 
-/* 通用按钮样式 */
-#ls-letter-viewer-modal .letter-actions button {
-  border: none;
-  border-radius: 20px;
-  padding: 8px 18px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
 
-/* "关闭" 按钮 */
-#ls-letter-viewer-modal #ls-close-letter-viewer-btn {
-  background: #fff;
-  color: #999;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  border: 1px solid #eee;
-}
-#ls-letter-viewer-modal #ls-close-letter-viewer-btn:hover {
-  background: #f5f5f5;
-  transform: translateY(-2px);
-}
 
-/* "回信" 按钮 (高光重点) */
-#ls-letter-viewer-modal #ls-reply-letter-btn {
-  /* 糖果渐变色 */
-  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-  color: white;
-  box-shadow: 0 6px 15px rgba(255, 154, 158, 0.4);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-#ls-letter-viewer-modal #ls-reply-letter-btn::before {
-  content: "✎";
-  font-size: 14px;
-}
-#ls-letter-viewer-modal #ls-reply-letter-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 154, 158, 0.6);
-}
-#ls-letter-viewer-modal #ls-reply-letter-btn:active {
-  transform: scale(0.95);
-}
 
-/* --- 6. 夜间模式适配 (保持暗色高级感) --- */
-#phone-screen.dark-mode #ls-letter-viewer-modal .ls-letter-viewer-content {
-  background: #231e1e; /* 深红褐底色 */
-  border-color: #3e2723;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-  outline-color: #4e342e;
-}
-#phone-screen.dark-mode #ls-letter-viewer-modal .letter-viewer-body {
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0.05) 1px,
-    transparent 1px
-  );
-  color: #d7ccc8; /* 浅米色文字 */
-}
-#phone-screen.dark-mode #ls-letter-viewer-modal .letter-viewer-header {
-  border-bottom-color: rgba(255, 255, 255, 0.1);
-}
-#phone-screen.dark-mode #ls-letter-viewer-modal .recipient-info .name {
-  color: #ef9a9a; /* 浅粉色名字 */
-}
-#phone-screen.dark-mode #ls-letter-viewer-modal .sender-info {
-  color: #a1887f;
-}
-#phone-screen.dark-mode #ls-letter-viewer-modal .letter-viewer-footer {
-  background: linear-gradient(to top, #1a1a1a 0%, transparent 100%);
-}
-#phone-screen.dark-mode #ls-letter-viewer-modal #ls-close-letter-viewer-btn {
-  background: #333;
-  color: #ccc;
-  border-color: #444;
-}
+
+
+
+
+
+
 /* ================================================================= */
 /* === 📚 圈子书架 & 目录 - 实体书信息流版 (V6.0 Fixed) === */
 /* ================================================================= */
@@ -26134,151 +23540,28 @@ input:checked + .slider::after {
 /* === 💎 情侣空间 V12.0 终极重构：杂志封面·沉浸式布局 💎 === */
 /* ================================================================= */
 
-/* --- 1. 头部容器调整：给背景图留出展示空间 --- */
-#ls-header {
-  height: 320px !important; /* 不需要过高，320px 是展示背景图的黄金高度 */
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-end; /* 关键：让内容沉底，留出上方空间看图 */
-  padding-bottom: 50px !important; /* 底部留白，给Tab栏腾位置 */
-  box-sizing: border-box !important;
 
-  /* 添加底部渐变遮罩，保证白色文字在浅色背景上也清晰 */
-  background: transparent !important;
-}
 
-/* --- 2. 顶部操作栏：保持在最上方 --- */
-.ls-header-top-bar {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  box-sizing: border-box;
-  /* 增加一点顶部渐变，防止白色按钮看不清 */
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.3),
-    transparent
-  ) !important;
-  padding-bottom: 20px !important;
-}
+
 
 /* --- 3. 头像与计数器：居中沉底布局 --- */
-/* 这是最核心的改动：不再绝对定位，而是自然流式布局 */
-.ls-avatar-and-counter-wrapper {
-  position: static !important; /* 取消固定坐标 */
-  transform: none !important;
 
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 12px !important;
 
-  /* 给左右留出余地，防止在大屏iPad上太散 */
-  width: 100% !important;
-  margin-bottom: 10px !important; /* 和下方Tab栏的间距 */
-}
 
-/* --- 4. 头像组：精致重叠风 --- */
-.ls-header-avatars {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  position: relative !important; /* 为爱心图标定位 */
-}
 
-.ls-header-avatars img {
-  width: 68px !important;
-  height: 68px !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
 
-  /* 精致白边 + 柔光阴影 */
-  border: 3px solid rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
 
-  /* 稍微分开一点，显得大气 */
-  margin: 0 15px !important;
-}
 
-/* 中间的爱心/音波图标：悬浮正中 */
-.ls-header-avatars .heart-icon {
-  position: absolute !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) !important;
 
-  /* 调整尺寸，让它连接两个头像 */
-  width: 100px !important;
-  height: 30px !important;
-  background-size: contain !important;
-  z-index: 10 !important; /* 在头像上面 */
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)); /* 增加立体感 */
-}
 
-/* --- 5. 天数计数器：精致胶囊风格 --- */
-#ls-days-counter {
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  color: #fff !important;
-  letter-spacing: 1px;
 
-  /* 胶囊背景：半透明磨砂黑/白混合 */
-  background: rgba(255, 255, 255, 0.2) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
 
-  padding: 6px 16px !important;
-  border-radius: 20px !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
 
-  /* 移除之前的左边框样式，改为纯净胶囊 */
-  border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
-  margin: 0 !important;
-}
 
-/* --- 6. Tab导航栏：嵌入式悬浮 --- */
-#ls-tab-bar {
-  /* 使用 margin-top 把它往上拉，卡在 Header 背景图的边缘 */
-  margin-top: -35px !important;
 
-  /* 左右边距 */
-  margin-left: 15px !important;
-  margin-right: 15px !important;
-  margin-bottom: 15px !important;
 
-  /* 视觉升级：更加清透 */
-  background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.6) !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
 
-  /* 圆角 */
-  border-radius: 22px !important;
-  padding: 6px !important;
-  z-index: 20 !important;
-}
 
-/* 激活的 Tab 按钮 */
-.ls-tab-item.active {
-  background: #fff !important;
-  border-radius: 16px !important;
-  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.15) !important;
-  color: #ff6b81 !important; /* 珊瑚粉 */
-  transform: translateY(-1px); /* 微微浮起 */
-}
-
-/* 未激活的 Tab 图标颜色 */
-.ls-tab-item:not(.active) svg {
-  color: #888 !important;
-}
-
-/* --- 7. 下方内容区：微调顶部间距 --- */
-#ls-content-area,
-.ls-view {
-  padding-top: 5px !important; /* 不需要太多，紧凑一点更好看 */
-}
 /* === 修复记忆互通下拉框样式 === */
 
 /* 1. 列表容器：设置为绝对定位的浮层，限制高度并允许滚动 */
@@ -26739,247 +24022,44 @@ input:checked + .slider::after {
 .pomo-playlist-item.active .playing-icon-gif {
   display: block;
 }
-/* 确保网格布局正确 */
-#ls-album-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 一行3个，或者根据你的需求调整 */
-  gap: 10px;
-  padding: 15px;
-}
 
-/* 强制相册项有高度 */
-.ls-album-item {
-  aspect-ratio: 1 / 1; /* 保持正方形 */
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: #f0f0f0; /* 给个灰色背景，防止加载失败时全白看不见 */
-}
 
-/* 删除按钮定位 */
-.ls-photo-delete-btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 20px;
-  height: 20px;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  font-size: 14px;
-  line-height: 1;
-  cursor: pointer;
-  z-index: 10; /* 确保在图片上面 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
+
+
 /* === 情侣空间照片详情页 - 萌系美化 === */
 
-/* 1. 弹窗容器 */
-.ls-photo-modal-content {
-  background-color: #fff0f3 !important; /* 浅粉色背景 */
-  border-radius: 24px !important;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  max-height: 90%;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 10px 30px rgba(255, 143, 171, 0.3) !important;
-  border: 3px solid #fff;
-}
 
-/* 2. 头部 */
-.ls-photo-modal-header {
-  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-  padding: 15px 20px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #fff;
-}
-.ls-photo-modal-header .close-btn {
-  background: rgba(255, 255, 255, 0.3);
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 20px;
-  transition: 0.2s;
-}
-.ls-photo-modal-header .close-btn:hover {
-  background: rgba(255, 255, 255, 0.6);
-  transform: rotate(90deg);
-}
 
-/* 3. 中间内容区 */
-.ls-photo-modal-body {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px;
-  background-image: radial-gradient(
-    #ffdde1 10%,
-    transparent 10%
-  ); /* 波点背景 */
-  background-size: 20px 20px;
-}
 
-/* 4. 拍立得风格照片容器 */
-.ls-polaroid-container {
-  background: white;
-  padding: 12px 12px 20px 12px;
-  border-radius: 8px;
-  box-shadow:
-    0 4px 15px rgba(0, 0, 0, 0.05),
-    0 0 0 1px rgba(0, 0, 0, 0.02);
-  transform: rotate(-2deg); /* 微微倾斜，更俏皮 */
-  margin-bottom: 25px;
-  text-align: center;
-  transition: transform 0.3s;
-}
-.ls-polaroid-container:hover {
-  transform: rotate(0deg) scale(1.02);
-}
 
-.ls-photo-wrapper {
-  border-radius: 4px;
-  overflow: hidden;
-  border: 1px solid #eee;
-  background: #f8f8f8;
-}
-.ls-photo-wrapper img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
 
-.ls-photo-desc {
-  font-size: 15px;
-  color: #555;
-  margin-top: 15px;
-  font-family:
-    "Comic Sans MS", "Chalkboard SE", sans-serif; /* 尝试用可爱字体 */
-  line-height: 1.5;
-}
 
-.ls-photo-date {
-  font-size: 12px;
-  color: #bbb;
-  margin-top: 5px;
-}
 
-/* 5. 评论区 */
-.ls-comments-section-title {
-  font-size: 14px;
-  color: #ff8fa3;
-  font-weight: bold;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
 
-.ls-comments-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
 
-/* 单条评论项 */
-.ls-photo-comment-item {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
 
-.ls-photo-comment-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  object-fit: cover;
-  flex-shrink: 0;
-}
 
-.ls-photo-comment-bubble {
-  background: white;
-  padding: 8px 12px;
-  border-radius: 12px;
-  border-top-left-radius: 2px; /* 气泡尖角 */
-  position: relative;
-  box-shadow: 0 2px 8px rgba(255, 143, 171, 0.1);
-  font-size: 13px;
-  color: #444;
-  line-height: 1.4;
-  flex: 1;
-}
-.ls-photo-comment-item.is-me .ls-photo-comment-bubble {
-  background: #ffeff4;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 2px;
-  color: #d63384;
-}
-.ls-photo-comment-item.is-me {
-  flex-direction: row-reverse; /* 我发的在右边 */
-}
 
-.ls-comment-author {
-  font-size: 11px;
-  color: #aaa;
-  margin-bottom: 2px;
-  display: block;
-}
 
-/* 6. 底部输入栏 */
-.ls-photo-modal-footer {
-  padding: 12px;
-  background: white;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03);
-}
 
-#ls-photo-comment-input {
-  flex: 1;
-  background: #f0f2f5;
-  border: 2px solid transparent;
-  padding: 10px 15px;
-  border-radius: 20px;
-  font-size: 14px;
-  outline: none;
-  transition: 0.3s;
-}
-#ls-photo-comment-input:focus {
-  background: #fff;
-  border-color: #ffb7b2;
-  box-shadow: 0 0 0 3px rgba(255, 183, 178, 0.2);
-}
 
-#ls-photo-comment-send-btn {
-  background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-  color: white;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(255, 154, 158, 0.4);
-  transition: transform 0.1s;
-}
-#ls-photo-comment-send-btn:active {
-  transform: scale(0.95);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* =========================================
    🐰 兔k记账 - 全新高级萌系主题
    ========================================= */
@@ -26997,23 +24077,9 @@ input:checked + .slider::after {
   --tukey-radius: 20px; /* 统一大圆角 */
 }
 
-/* 1. 全局容器背景 */
-#tukey-accounting-screen {
-  background-color: var(--tukey-bg) !important;
-  font-family: "PingFang SC", "Microsoft YaHei", sans-serif; /* 确保字体圆润 */
-}
 
-/* 2. 头部美化 */
-#tukey-accounting-screen .header {
-  background: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: none !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-}
-#tukey-accounting-screen .header span {
-  color: var(--tukey-text-main);
-  font-weight: 600;
-}
+
+
 
 /* 3. 钱包视图 - 资产卡片 (高级渐变 + 玻璃质感) */
 #wallet-summary-card {
@@ -27074,15 +24140,7 @@ input:checked + .slider::after {
   margin-top: 2px;
 }
 
-/* 4. 账户列表美化 */
-.tukey-account-category-card {
-  background: #fff;
-  border-radius: 16px;
-  margin: 15px;
-  padding: 5px 0;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.02);
-}
+
 
 .category-header {
   padding: 12px 15px;
@@ -27096,17 +24154,7 @@ input:checked + .slider::after {
   font-weight: bold;
 }
 
-.tukey-account-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  transition: background 0.2s;
-  cursor: pointer;
-}
-.tukey-account-item:active {
-  background-color: #fff0f5;
-}
+
 
 .account-info {
   display: flex;
@@ -27144,8 +24192,7 @@ input:checked + .slider::after {
 }
 
 /* 5. 悬浮按钮 (FAB) - 萌系加成 */
-#add-new-account-fab,
-#tukey-add-record-btn {
+#add-new-account-fab{
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -27161,36 +24208,17 @@ input:checked + .slider::after {
   z-index: 100;
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 弹性动画 */
 }
-#add-new-account-fab:active,
-#tukey-add-record-btn:active {
+#add-new-account-fab:active{
   transform: scale(0.9) rotate(90deg);
 }
-#add-new-account-fab svg,
-#tukey-add-record-btn::before {
+#add-new-account-fab svg{
   color: white;
 }
-/* 记一笔按钮的加号 */
-#tukey-add-record-btn {
-  color: white;
-  font-size: 30px;
-  font-weight: 300;
-  padding-bottom: 4px; /* 微调加号位置 */
-}
 
-/* 6. 记账群聊列表 (气泡美化) */
-#tukey-records-list {
-  background-color: var(--tukey-bg) !important;
-  padding: 15px;
-}
 
-/* 包装器，用于头像和气泡的布局 */
-.tukey-record-wrapper.user-record {
-  display: flex;
-  justify-content: flex-end; /* 用户消息靠右 */
-  align-items: flex-start;
-  margin-bottom: 20px;
-  gap: 10px;
-}
+
+
+
 
 /* 头像样式 */
 .record-user-avatar {
@@ -27202,26 +24230,9 @@ input:checked + .slider::after {
   order: 2; /* 头像在右边 */
 }
 
-/* 记账气泡样式 */
-.tukey-record-bubble {
-  background: #fff;
-  border-radius: 18px 4px 18px 18px; /* 右上角尖角 */
-  padding: 12px 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-  min-width: 180px;
-  max-width: 70%;
-  order: 1; /* 气泡在头像左边 */
-  position: relative;
-  border: 1px solid rgba(0, 0, 0, 0.03);
-}
 
-/* 收入/支出的颜色区分条 */
-.tukey-record-bubble.expense {
-  border-left: 4px solid #ff9a9e;
-}
-.tukey-record-bubble.income {
-  border-left: 4px solid #84fab0;
-}
+
+
 
 .record-header {
   display: flex;
@@ -27252,12 +24263,6 @@ input:checked + .slider::after {
   font-weight: bold;
   font-family: "DIN Alternate", sans-serif; /* 数字字体 */
 }
-.tukey-record-bubble.expense .record-amount {
-  color: var(--tukey-text-main);
-}
-.tukey-record-bubble.income .record-amount {
-  color: #4caf50;
-}
 
 .record-remarks {
   font-size: 13px;
@@ -27271,47 +24276,13 @@ input:checked + .slider::after {
   text-align: right;
 }
 
-/* 7. AI 回复气泡美化 */
-.tukey-replies-container {
-  background: transparent;
-  padding: 0;
-  margin-top: -10px; /* 紧贴上一条 */
-  margin-bottom: 20px;
-  margin-right: 50px; /* 给用户头像留空 */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end; /* 靠右对齐 */
-}
 
-.tukey-reply-item {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: row-reverse; /* AI头像在右，气泡在左（看起来像群聊里的其他人回复我）*/
-  /* 但等等，群聊逻辑应该是：我是右边，其他人是左边。
-       这里修正：记账记录是我发的（右边），AI回复是AI发的（左边）。
-    */
-  flex-direction: row;
-  align-self: flex-start; /* AI回复整体靠左 */
-  margin-top: 10px;
-  max-width: 85%;
-}
 
-/* 修正后的 AI 回复样式 */
-.tukey-replies-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* AI 回复靠左 */
-  margin-top: 5px;
-  padding-left: 10px;
-}
 
-.tukey-reply-item {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 10px;
-  animation: slideInLeft 0.3s ease;
-}
+
+
+
+
 
 .reply-avatar {
   width: 36px;
@@ -27344,11 +24315,7 @@ input:checked + .slider::after {
   line-height: 1.5;
 }
 
-/* 8. 记账输入卡片 (Keyboard/Modal) */
-#tukey-record-input-card {
-  border-radius: 24px 24px 0 0;
-  box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.1);
-}
+
 .type-selector {
   background: #f5f5f5;
   padding: 4px;
@@ -27382,19 +24349,6 @@ input:checked + .slider::after {
   font-weight: bold;
   color: var(--tukey-text-main);
 }
-#tukey-card-amount-input {
-  font-size: 36px;
-  font-family: "DIN Alternate", sans-serif;
-  font-weight: bold;
-  color: var(--tukey-text-main);
-  border: none;
-  background: transparent;
-  width: 100%;
-  margin-left: 10px;
-}
-#tukey-card-amount-input::placeholder {
-  color: #eee;
-}
 
 /* 分类网格 */
 .category-grid {
@@ -27403,63 +24357,10 @@ input:checked + .slider::after {
   gap: 15px 10px;
   padding: 10px 0;
 }
-.tukey-category-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  opacity: 0.6;
-  transition: all 0.2s;
-}
-.tukey-category-item.selected {
-  opacity: 1;
-  transform: scale(1.1);
-}
-.tukey-category-item img {
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  background: #f8f9fa;
-  border-radius: 14px;
-  box-sizing: border-box;
-}
-.tukey-category-item.selected img {
-  background: var(--tukey-primary-light);
-}
-.tukey-category-item span {
-  font-size: 11px;
-}
 
-/* 底部按钮 */
-#tukey-save-from-card-btn {
-  background: linear-gradient(135deg, #ff9a9e, #fecfef);
-  border: none;
-  border-radius: 20px;
-  color: #fff; /* 这里要用白色 */
-  font-weight: bold;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 10px rgba(255, 154, 158, 0.4);
-}
 
-/* 9. 底部导航栏 */
-#tukey-bottom-nav {
-  border-top: none;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03);
-  padding-bottom: env(safe-area-inset-bottom);
-}
-.tukey-nav-item span {
-  font-size: 10px;
-  margin-top: 2px;
-}
-.tukey-nav-item.active svg path {
-  fill: var(--tukey-primary);
-}
-.tukey-nav-item.active span {
-  color: var(--tukey-primary);
-  font-weight: bold;
-}
+
+
 
 /* 动画效果 */
 @keyframes slideInLeft {
@@ -27472,176 +24373,46 @@ input:checked + .slider::after {
     transform: translateX(0);
   }
 }
-/* 兔k记账重Roll按钮样式 */
-.tukey-reroll-btn {
-  font-size: 12px;
-  color: #888;
-  cursor: pointer;
-  margin-top: 5px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 12px;
-  transition: all 0.2s;
-  align-self: flex-start; /* 让按钮靠左对齐 */
-}
 
-.tukey-reroll-btn:hover {
-  background-color: #fff;
-  color: #007bff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
 
-.tukey-replies-container {
-  /* 确保容器是列布局，方便我们把按钮放在回复下面 */
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-/* 兔k记账重Roll按钮样式 */
-.tukey-reroll-btn {
-  font-size: 12px;
-  color: #888;
-  cursor: pointer;
-  margin-top: 5px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 12px;
-  transition: all 0.2s;
-  align-self: flex-start; /* 让按钮靠左对齐 */
-}
 
-.tukey-reroll-btn:hover {
-  background-color: #fff;
-  color: #007bff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
 
-.tukey-replies-container {
-  /* 确保容器是列布局，方便我们把按钮放在回复下面 */
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-#tukey-accounting-screen,
+
+
+
+
+
+
 #kk-house-view-screen,
 #date-a-live-screen,
-#taobao-screen,
-#lovers-space-screen,
-#wallpaper-screen {
+#wallpaper-screen{
   height: 100vh;
 }
 /* --- 情侣空间分享列表 - 萌系改造样式 --- */
 
-/* 容器：去掉默认的边框和背景，改用 flex 布局 */
-.ls-list-item.ls-share-item {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 5px 0 !important;
-  margin-bottom: 15px !important;
-  cursor: default; /* 内部有点击事件，外层默认 */
-}
 
-/* 包装器：负责左右布局 */
-.ls-share-wrapper {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 0 10px;
-}
 
-/* 如果是"我"发的，反转布局 */
-.ls-share-wrapper.is-me {
-  flex-direction: row-reverse;
-}
 
-/* 头像样式 */
-.ls-share-avatar {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  object-fit: cover;
-  flex-shrink: 0;
-}
 
-/* 气泡卡片主体 */
-.ls-share-bubble {
-  position: relative;
-  padding: 12px;
-  border-radius: 16px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
-  max-width: 75%;
-  transition: transform 0.2s;
-  cursor: pointer;
-}
 
-.ls-share-bubble:active {
-  transform: scale(0.98);
-}
 
-/* 气泡小尾巴 (对方) */
-.ls-share-wrapper:not(.is-me) .ls-share-bubble::before {
-  content: "";
-  position: absolute;
-  top: 15px;
-  left: -6px;
-  width: 10px;
-  height: 10px;
-  background-color: inherit; /* 继承气泡背景色 */
-  border-left: inherit; /* 继承边框 */
-  border-bottom: inherit;
-  transform: rotate(45deg);
-}
 
-/* 气泡小尾巴 (我) */
-.ls-share-wrapper.is-me .ls-share-bubble::before {
-  content: "";
-  position: absolute;
-  top: 15px;
-  right: -6px;
-  width: 10px;
-  height: 10px;
-  background-color: inherit;
-  border-right: inherit;
-  border-top: inherit;
-  transform: rotate(45deg);
-}
 
-/* 头部：标签和时间 */
-.ls-share-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
 
-.ls-share-label {
-  font-size: 10px;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-weight: bold;
-}
 
-.ls-share-time {
-  font-size: 10px;
-  color: #999;
-}
 
-/* 内容盒子 */
-.ls-share-content-box {
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 8px;
-  padding: 8px;
-  margin-bottom: 8px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 .share-card-title {
   font-size: 15px;
@@ -27681,96 +24452,22 @@ input:checked + .slider::after {
   margin: 0 2px;
 }
 
-/* 空状态占位符 */
-.ls-empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 300px;
-  color: #999;
-  text-align: center;
-}
+
 /* === 情侣空间分享详情弹窗 Ver 2.0 === */
 
-/* 弹窗主体容器 */
-.ls-share-card-container {
-  padding: 0 !important;
-  width: 320px !important;
-  max-width: 90% !important;
-  background: #fff !important;
-  border-radius: 24px !important;
-  overflow: visible !important; /* 允许头像凸出去 */
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
-}
 
-/* 顶部彩色背景 */
-.ls-share-header-bg {
-  height: 80px;
-  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); /* 默认粉色 */
-  border-radius: 24px 24px 0 0;
-}
 
-/* 头像包装器 (让头像悬浮在背景和内容之间) */
-.ls-share-avatar-wrapper {
-  position: relative;
-  margin-top: -50px; /* 向上偏移 */
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
 
-/* 角色大头像 */
-.ls-share-avatar-img {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  border: 4px solid #fff;
-  object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background: #fff;
-  z-index: 2;
-}
 
-/* 右下角的类型小徽章 */
-.ls-share-badge {
-  position: absolute;
-  bottom: 0;
-  right: 50%;
-  margin-right: -45px; /* 定位到头像右下角 */
-  background: #fff;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  z-index: 3;
-}
 
-/* 内容主体 */
-.ls-share-content-body {
-  padding: 10px 25px 20px 25px;
-  text-align: center;
-}
 
-/* 气泡风格推荐语 */
-.ls-share-speech-bubble {
-  background: #fff0f5; /* 浅粉色底 */
-  color: #555;
-  padding: 15px;
-  border-radius: 16px;
-  position: relative;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  line-height: 1.6;
-  font-style: italic;
-}
+
+
+
+
+
+
+
 
 /* 气泡的小三角 */
 .bubble-arrow {
@@ -27785,128 +24482,33 @@ input:checked + .slider::after {
   border-bottom: 8px solid #fff0f5;
 }
 
-/* 信息卡片 (简介部分) */
-.ls-share-info-box {
-  background: #f9f9f9;
-  border-radius: 16px;
-  padding: 15px;
-  border: 1px solid #f0f0f0;
-}
 
-.ls-share-info-box h3 {
-  margin: 0 0 8px 0;
-  font-size: 17px;
-  color: #333;
-  font-weight: 700;
-}
 
-.ls-share-pill {
-  display: inline-block;
-  font-size: 11px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  background: #e0e0e0;
-  color: #666;
-  margin-bottom: 10px;
-}
 
-.ls-share-divider {
-  height: 1px;
-  background: #eee;
-  width: 100%;
-  margin: 10px 0;
-}
 
-.ls-share-summary-text {
-  font-size: 13px;
-  color: #666;
-  text-align: left;
-  line-height: 1.6;
-  max-height: 120px;
-  overflow-y: auto;
-}
 
-/* 底部按钮区 */
-.ls-share-footer-action {
-  padding: 0 25px 25px 25px;
-}
 
-#ls-share-detail-close-btn {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 30px;
-  background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 100%);
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4);
-  transition: transform 0.1s;
-}
-#ls-share-detail-close-btn:active {
-  transform: scale(0.98);
-}
 
-/* === 动态配色方案 === */
-/* 电影 (蓝紫色调) */
-.modal-content.theme-movie .ls-share-header-bg {
-  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
-}
-.modal-content.theme-movie .ls-share-pill {
-  background: #f3e5f5;
-  color: #9c27b0;
-}
-.modal-content.theme-movie .ls-share-speech-bubble {
-  background: #f3e5f5;
-  color: #7b1fa2;
-}
+
+
+
+
+
+
+
+
 .modal-content.theme-movie .bubble-arrow {
   border-bottom-color: #f3e5f5;
 }
-.modal-content.theme-movie #ls-share-detail-close-btn {
-  background: linear-gradient(90deg, #a18cd1 0%, #fbc2eb 100%);
-  box-shadow: 0 4px 15px rgba(161, 140, 209, 0.4);
-}
 
-/* 书籍 (绿色调) */
-.modal-content.theme-book .ls-share-header-bg {
-  background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
-}
-.modal-content.theme-book .ls-share-pill {
-  background: #e8f5e9;
-  color: #43a047;
-}
-.modal-content.theme-book .ls-share-speech-bubble {
-  background: #e8f5e9;
-  color: #2e7d32;
-}
+
 .modal-content.theme-book .bubble-arrow {
   border-bottom-color: #e8f5e9;
 }
-.modal-content.theme-book #ls-share-detail-close-btn {
-  background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
-  box-shadow: 0 4px 15px rgba(132, 250, 176, 0.4);
-}
 
-/* 游戏 (橙色调) */
-.modal-content.theme-game .ls-share-header-bg {
-  background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-}
-.modal-content.theme-game .ls-share-pill {
-  background: #fff3e0;
-  color: #ef6c00;
-}
-.modal-content.theme-game .ls-share-speech-bubble {
-  background: #fff3e0;
-  color: #e65100;
-}
+
 .modal-content.theme-game .bubble-arrow {
   border-bottom-color: #fff3e0;
-}
-.modal-content.theme-game #ls-share-detail-close-btn {
-  background: linear-gradient(90deg, #f6d365 0%, #fda085 100%);
-  box-shadow: 0 4px 15px rgba(246, 211, 101, 0.4);
 }
 /* =========================================
    兔兔记账 - 报表与气泡美化 (高级萌版)
@@ -27925,34 +24527,11 @@ input:checked + .slider::after {
   transform: scale(1.01) translateX(2px); /* 鼠标悬停时微微放大 */
 }
 
-/* 2. 气泡主体：核心美化区 */
-.tukey-record-bubble {
-  flex-grow: 1;
-  position: relative;
-  padding: 12px 16px;
-  border-radius: 18px; /* 大圆角 */
-  /* 默认背景 (兜底) */
-  background: #fff;
-  /* 玻璃拟态阴影 */
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.03),
-    0 1px 2px rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  overflow: hidden;
-}
 
-/* --- 支出气泡 (Expense) - 暖色调/奶油粉 --- */
-.tukey-record-bubble.expense {
-  /* 使用柔和的渐变，更有质感 */
-  background: linear-gradient(135deg, #fff0f0 0%, #ffecec 100%);
-  border-left: 4px solid #ff9a9e; /* 左侧强调条 */
-}
 
-/* --- 收入气泡 (Income) - 冷色调/清新绿 --- */
-.tukey-record-bubble.income {
-  background: linear-gradient(135deg, #f0fff4 0%, #e6fcf5 100%);
-  border-left: 4px solid #4caf50;
-}
+
+
+
 
 /* 3. 气泡内部布局 */
 .record-main-row {
@@ -28020,23 +24599,9 @@ input:checked + .slider::after {
   flex-shrink: 0;
 }
 
-/* 支出金额颜色 */
-.tukey-record-bubble.expense .record-amount,
-.tukey-record-bubble.expense .record-amount-num {
-  color: #ff5252;
-  font-weight: bold;
-  font-size: 16px;
-  font-family: "Din Alternate", "Roboto", sans-serif; /* 数字字体优化 */
-}
 
-/* 收入金额颜色 */
-.tukey-record-bubble.income .record-amount,
-.tukey-record-bubble.income .record-amount-num {
-  color: #2e7d32;
-  font-weight: bold;
-  font-size: 16px;
-  font-family: "Din Alternate", "Roboto", sans-serif;
-}
+
+
 
 /* 4. 删除按钮美化 */
 .delete-record-btn {
@@ -28096,20 +24661,7 @@ input:checked + .slider::after {
   color: #aaa;
 }
 
-/* 适配深色模式 (自动反色) */
-.dark-mode .tukey-record-bubble {
-  background: #1c1c1e;
-  border-color: #333;
-  box-shadow: none;
-}
-.dark-mode .tukey-record-bubble.expense {
-  background: linear-gradient(135deg, #2c1a1a 0%, #251818 100%);
-  border-left-color: #ff5e67;
-}
-.dark-mode .tukey-record-bubble.income {
-  background: linear-gradient(135deg, #1a2a20 0%, #16241b 100%);
-  border-left-color: #66bb6a;
-}
+
 .dark-mode .record-category-name {
   color: #eee;
 }
@@ -29117,5 +25669,55 @@ input:checked + .slider::after {
   }
   50% {
     height: 90%;
+  }
+}
+
+/* === Deepgram 语音输入按钮 === */
+#voice-input-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: var(--moe-accent, #e8c5c5);
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+#voice-input-btn:hover {
+  background: var(--moe-accent-hover, #d4a5a5);
+}
+
+#voice-input-btn.recording {
+  background: #ef4444;
+  color: #fff;
+  animation: micPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes micPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+  }
+}
+
+#voice-input-btn.recording svg {
+  animation: micBounce 0.6s ease-in-out infinite;
+}
+
+@keyframes micBounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
   }
 }
