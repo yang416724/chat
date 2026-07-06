@@ -29119,3 +29119,87 @@ input:checked + .slider::after {
     height: 90%;
   }
 }
+
+/* ============================================================ */
+/* 【已停用功能】情侣空间 / 桃宝(淘宝) / 兔兔记账 / X社交
+   说明：以下功能已下线，对应的桌面入口图标已在 HTML 中移除。
+   为彻底切断访问并避免其专属样式影响其它功能，
+   在此用 display:none !important 统一屏蔽这些功能的
+   屏幕(screen)与弹窗(modal)，确保无法被任何代码显示出来。
+   保留的 HTML/JS 是惰性的，不会触发，也不影响其它功能。 */
+/* ============================================================ */
+#lovers-space-screen,
+#ls-char-selector-modal,
+#ls-create-moment-modal,
+#ls-create-album-modal,
+#ls-create-letter-modal,
+#ls-letter-viewer-modal,
+#ls-settings-modal,
+#ls-ask-question-modal,
+#ls-answer-question-modal,
+#ls-pomodoro-setup-modal,
+#ls-pomodoro-history-viewer-modal,
+#ls-diary-editor-modal,
+#ls-diary-viewer-modal,
+#ls-activity-calendar-modal,
+#ls-photo-detail-modal,
+#ls-share-detail-modal,
+#taobao-screen,
+#tukey-accounting-screen,
+#tukey-export-modal,
+#tukey-group-manager-modal,
+#tukey-reply-settings-modal,
+#tukey-record-editor-modal,
+#x-social-screen {
+  display: none !important;
+}
+
+/* ============================================================ */
+/* Deepgram 实时语音输入 - 麦克风按钮样式 */
+/* ============================================================ */
+.deepgram-mic-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background-color: #f1f1f1;
+  color: #555;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease,
+    box-shadow 0.2s ease;
+  flex-shrink: 0;
+}
+.deepgram-mic-btn:hover {
+  background-color: #e3e3e3;
+}
+.deepgram-mic-btn:active {
+  transform: scale(0.92);
+}
+.deepgram-mic-btn .mic-icon-idle,
+.deepgram-mic-btn .mic-icon-recording {
+  pointer-events: none;
+}
+/* 录音中状态 */
+.deepgram-mic-btn.recording {
+  background-color: #ff3b30;
+  color: #fff;
+  box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.6);
+  animation: deepgram-mic-pulse 1.4s ease-out infinite;
+}
+@keyframes deepgram-mic-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(255, 59, 48, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+  }
+}
+
+

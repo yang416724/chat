@@ -354,31 +354,8 @@
                 </div>
                 <span class="label">圈子</span>
               </div>
-              <div class="desktop-app-icon" id="lovers-space-app-icon">
-                <div class="icon-bg-desktop">
-                  <img
-                    id="icon-img-lovers-space"
-                    src="https://i.postimg.cc/d1wZ39xW/lovers-space-icon.png"
-                    alt="情侣空间"
-                  />
-                </div>
-                <span class="label">情侣空间</span>
-              </div>
+              <!-- 情侣空间 / X社交 图标已移除 -->
 
-              <div
-                id="second-page-x-social-app"
-                class="desktop-app-icon"
-                onclick="showScreen('x-social-screen')"
-              >
-                <div class="icon-bg-desktop">
-                  <img
-                    id="icon-img-x-social"
-                    src="https://i.postimg.cc/8P1H0vQ8/x-logo.png"
-                    alt="X社交"
-                  />
-                </div>
-                <span class="label">X社交</span>
-              </div>
               <div style="position: absolute; top: 100px; right: 85px">
                 <div
                   class="desktop-app-icon"
@@ -486,25 +463,8 @@
                 可编辑文字
               </div>
             </div>
-            <div style="position: absolute; bottom: 105px; left: 35px">
-              <div class="desktop-app-icon" id="taobao-app-icon">
-                <div class="icon-bg-desktop">
-                  <img
-                    id="icon-img-taobao"
-                    src="https://i.postimg.cc/k47tXg1j/taologo.png"
-                    alt="桃宝"
-                  />
-                </div>
-                <span
-                  class="label"
-                  style="
-                    color: white;
-                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-                  "
-                  >桃宝</span
-                >
-              </div>
-            </div>
+            <!-- 桃宝图标已移除 -->
+
             <div style="position: absolute; bottom: 105px; left: 120px">
               <div class="desktop-app-icon" id="date-a-live-app-icon">
                 <div class="icon-bg-desktop">
@@ -543,25 +503,8 @@
                 >
               </div>
             </div>
-            <div style="position: absolute; bottom: 15px; left: 35px">
-              <div class="desktop-app-icon" id="tukey-accounting-app-icon">
-                <div class="icon-bg-desktop">
-                  <img
-                    id="icon-img-tukey-accounting"
-                    src="https://i.postimg.cc/k4fZKVXP/tu-tu.png"
-                    alt="兔兔记账"
-                  />
-                </div>
-                <span
-                  class="label"
-                  style="
-                    color: white;
-                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-                  "
-                  >兔兔记账</span
-                >
-              </div>
-            </div>
+            <!-- 兔兔记账图标已移除 -->
+
           </div>
         </div>
 
@@ -1231,6 +1174,46 @@
               >
                 🎵 拉取语音模型
               </button>
+            </div>
+          </div>
+
+          <!-- 2.5 Deepgram 实时语音识别卡片 (语音输入用) -->
+          <div class="moe-card">
+            <div class="moe-card-header">
+              <span class="icon">🎙️</span>
+              <h3>Deepgram 语音识别</h3>
+            </div>
+            <div class="moe-card-body">
+              <div class="form-group">
+                <label>API Key</label>
+                <input
+                  type="password"
+                  id="deepgram-api-key"
+                  class="moe-input"
+                  placeholder="用于视频通话/聊天页的实时语音输入"
+                />
+              </div>
+              <div class="form-group">
+                <label class="toggle-switch-label">
+                  <span class="toggle-switch-text"
+                    >通话中自动发送（VAD 终局判断后）</span
+                  >
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="deepgram-auto-send-switch" checked />
+                    <span class="slider"></span>
+                  </label>
+                </label>
+              </div>
+              <p
+                style="
+                  font-size: 12px;
+                  color: #888;
+                  margin: 6px 0 0 0;
+                  line-height: 1.5;
+                "
+              >
+                密钥仅保存在本地浏览器，不会硬编码或上传。留空则禁用麦克风实时识别。
+              </p>
             </div>
           </div>
 
@@ -2633,6 +2616,43 @@
                   src="https://i.postimg.cc/q72zq80N/ECE92-BBC-BE57-48-E9-BB2-C-345-B6019-C4-B2.png"
                   alt="等待回复"
                 />
+              </button>
+              <button
+                id="deepgram-mic-btn"
+                class="action-button deepgram-mic-btn"
+                title="语音输入（说完自动发送，再次点击关闭）"
+                type="button"
+              >
+                <svg
+                  class="mic-icon-idle"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="23"></line>
+                  <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+                <svg
+                  class="mic-icon-recording"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="display: none"
+                >
+                  <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" stroke="none"></rect>
+                </svg>
               </button>
               <button id="send-btn" class="action-button">发送</button>
             </div>
@@ -22042,6 +22062,19 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
             state.apiConfig.minimaxApiKey || "";
           document.getElementById("minimax-provider-select").value =
             state.apiConfig.minimaxProvider || "cn";
+
+          // --- Deepgram 设置 ---
+          const deepgramKeyInput = document.getElementById("deepgram-api-key");
+          if (deepgramKeyInput) {
+            deepgramKeyInput.value = state.apiConfig.deepgramApiKey || "";
+          }
+          const deepgramAutoSendSwitch = document.getElementById(
+            "deepgram-auto-send-switch",
+          );
+          if (deepgramAutoSendSwitch) {
+            deepgramAutoSendSwitch.checked =
+              state.apiConfig.deepgramAutoSend !== false; // 默认开启
+          }
 
           // 2：Minimax 语音模型下拉框回显
           const speechModelSelect = document.getElementById(
@@ -54612,6 +54645,331 @@ ${libraryList}
             chatInput.style.height = chatInput.scrollHeight + "px";
           });
 
+          // ============================================================
+          // Deepgram 实时语音输入模块
+          // ------------------------------------------------------------
+          // - 在聊天输入框旁的麦克风按钮上 toggle
+          // - 浏览器采集麦克风 → 降采样到 16kHz 单声道 Int16 PCM
+          //   → WebSocket 直连 Deepgram 实时 ASR
+          // - interim 结果实时填入输入框；speech_final(VAD 终局) 后自动发送
+          // - 发送后麦克风保持开启，连续对话，直到用户再次点击关闭
+          // - 保留原打字输入与 MiniMax TTS 朗读逻辑（通过点击 #send-btn 复用）
+          //
+          // 技术适配说明（与原始需求稿的差异，均为浏览器限制所致）：
+          // 1) 浏览器无法为 WebSocket 设置 Authorization 请求头，因此使用
+          //    Deepgram 官方支持的 ?token=<KEY> 查询参数鉴权（密钥仍来自
+          //    设置界面，未硬编码）。
+          // 2) MediaRecorder 产出的 opus 包在 webm/matroska 容器里，Deepgram
+          //    流式接口无法在流中途解析该容器；故改用 linear16 + 16kHz PCM，
+          //    这是 Deepgram 官方浏览器示例的可靠做法。
+          // 3) vad_turnoff=true 会在 VAD 触发后关闭 socket，与"连续对话"冲突，
+          //    故改用 endpointing=300 + vad_events=true，由 speech_final 判断
+          //    说完，socket 保持开启以支持连续对话。
+          // ============================================================
+          const DeepgramVoiceInput = (function () {
+            const micBtn = document.getElementById("deepgram-mic-btn");
+            const idleIcon = micBtn
+              ? micBtn.querySelector(".mic-icon-idle")
+              : null;
+            const recIcon = micBtn
+              ? micBtn.querySelector(".mic-icon-recording")
+              : null;
+
+            let isActive = false;
+            let mediaStream = null;
+            let audioContext = null;
+            let sourceNode = null;
+            let processorNode = null;
+            let muteGain = null;
+            let socket = null;
+            let finalizedAccumulator = ""; // 当前这一句话已敲定的文字
+            let reconnectTimer = null;
+
+            // 降采样（线性插值/最近邻，语音足够）
+            function downsample(buffer, inRate, outRate) {
+              if (outRate === inRate) return buffer;
+              const ratio = inRate / outRate;
+              const newLen = Math.round(buffer.length / ratio);
+              const result = new Float32Array(newLen);
+              let offsetResult = 0;
+              let offsetBuffer = 0;
+              while (offsetResult < newLen) {
+                const nextOffsetBuffer = Math.round((offsetResult + 1) * ratio);
+                let accum = 0;
+                let count = 0;
+                for (
+                  let i = offsetBuffer;
+                  i < nextOffsetBuffer && i < buffer.length;
+                  i++
+                ) {
+                  accum += buffer[i];
+                  count++;
+                }
+                result[offsetResult] = count > 0 ? accum / count : 0;
+                offsetResult++;
+                offsetBuffer = nextOffsetBuffer;
+              }
+              return result;
+            }
+
+            function float32ToInt16(buffer) {
+              const out = new Int16Array(buffer.length);
+              for (let i = 0; i < buffer.length; i++) {
+                let s = Math.max(-1, Math.min(1, buffer[i]));
+                out[i] = s < 0 ? s * 0x8000 : s * 0x7fff;
+              }
+              return out;
+            }
+
+            function getApiKey() {
+              return (state.apiConfig && state.apiConfig.deepgramApiKey) || "";
+            }
+
+            function isAutoSendEnabled() {
+              return !state.apiConfig || state.apiConfig.deepgramAutoSend !== false;
+            }
+
+            function buildSocketUrl() {
+              // 默认中文（应用为中文环境），如需多语言可改 language 或去掉让 Deepgram 默认
+              const params = new URLSearchParams({
+                encoding: "linear16",
+                sample_rate: "16000",
+                channels: "1",
+                interim_results: "true",
+                endpointing: "300",
+                vad_events: "true",
+                punctuate: "true",
+                smart_format: "true",
+                language: "zh",
+                model: "general",
+                token: getApiKey(),
+              });
+              return "wss://api.deepgram.com/v1/listen?" + params.toString();
+            }
+
+            function setUiRecording(recording) {
+              if (!micBtn) return;
+              if (recording) {
+                micBtn.classList.add("recording");
+                if (idleIcon) idleIcon.style.display = "none";
+                if (recIcon) recIcon.style.display = "inline-block";
+              } else {
+                micBtn.classList.remove("recording");
+                if (idleIcon) idleIcon.style.display = "inline-block";
+                if (recIcon) recIcon.style.display = "none";
+              }
+            }
+
+            function updateInputBox() {
+              const text = finalizedAccumulator.replace(/\s+/g, " ").trim();
+              chatInput.value = text;
+              chatInput.style.height = "auto";
+              chatInput.style.height = chatInput.scrollHeight + "px";
+              chatInput.dispatchEvent(new Event("input", { bubbles: true }));
+            }
+
+            function handleSocketMessage(event) {
+              let data;
+              try {
+                data = JSON.parse(event.data);
+              } catch (e) {
+                return;
+              }
+              // Deepgram 流式返回：data.channel.alternatives[0].transcript
+              const alt =
+                data.channel &&
+                data.channel.alternatives &&
+                data.channel.alternatives[0];
+              const transcript = alt ? alt.transcript || "" : "";
+
+              if (data.is_final) {
+                if (transcript.trim()) {
+                  finalizedAccumulator += (finalizedAccumulator ? " " : "") + transcript;
+                  updateInputBox();
+                }
+                // speech_final：VAD 判断用户说完了一整句
+                if (data.speech_final && isAutoSendEnabled()) {
+                  if (finalizedAccumulator.trim()) {
+                    const toSend = finalizedAccumulator;
+                    finalizedAccumulator = "";
+                    // 复用已有发送逻辑（包含 MiniMax TTS 朗读）
+                    chatInput.value = toSend;
+                    const sendBtn = document.getElementById("send-btn");
+                    if (sendBtn) sendBtn.click();
+                  }
+                } else if (data.speech_final && !isAutoSendEnabled()) {
+                  // 自动发送关闭：文字留在输入框，等用户手动发送，不主动清空累积
+                  updateInputBox();
+                }
+              } else {
+                // interim：实时显示 已敲定 + 当前临时
+                if (transcript) {
+                  const live = (
+                    finalizedAccumulator +
+                    " " +
+                    transcript
+                  ).replace(/\s+/g, " ").trim();
+                  chatInput.value = live;
+                  chatInput.style.height = "auto";
+                  chatInput.style.height = chatInput.scrollHeight + "px";
+                }
+              }
+            }
+
+            function teardownAudio() {
+              try {
+                if (processorNode) processorNode.disconnect();
+                if (sourceNode) sourceNode.disconnect();
+                if (muteGain) muteGain.disconnect();
+                if (audioContext && audioContext.state !== "closed") {
+                  audioContext.close();
+                }
+              } catch (e) {
+                /* ignore */
+              }
+              processorNode = null;
+              sourceNode = null;
+              muteGain = null;
+              audioContext = null;
+              if (mediaStream) {
+                mediaStream.getTracks().forEach((t) => t.stop());
+                mediaStream = null;
+              }
+            }
+
+            function teardownSocket() {
+              if (reconnectTimer) {
+                clearTimeout(reconnectTimer);
+                reconnectTimer = null;
+              }
+              if (socket) {
+                try {
+                  socket.onopen = null;
+                  socket.onmessage = null;
+                  socket.onerror = null;
+                  socket.onclose = null;
+                  if (socket.readyState === WebSocket.OPEN) socket.close();
+                } catch (e) {
+                  /* ignore */
+                }
+                socket = null;
+              }
+            }
+
+            async function start() {
+              if (isActive) return;
+              const apiKey = getApiKey();
+              if (!apiKey) {
+                alert("请先在 API 设置中填写 Deepgram API Key。");
+                return;
+              }
+              try {
+                mediaStream = await navigator.mediaDevices.getUserMedia({
+                  audio: {
+                    channelCount: 1,
+                    echoCancellation: true,
+                    noiseSuppression: true,
+                    autoGainControl: true,
+                  },
+                });
+              } catch (e) {
+                alert("无法访问麦克风：" + (e.message || e.name));
+                teardownAudio();
+                return;
+              }
+
+              try {
+                audioContext = new (window.AudioContext ||
+                  window.webkitAudioContext)();
+                if (audioContext.state === "suspended") {
+                  await audioContext.resume();
+                }
+                sourceNode = audioContext.createMediaStreamSource(mediaStream);
+                // ScriptProcessor 在主线程跑，单文件 PWA 无需额外 worklet 文件
+                processorNode = audioContext.createScriptProcessor(4096, 1, 1);
+                const targetRate = 16000;
+                processorNode.onaudioprocess = (e) => {
+                  if (!socket || socket.readyState !== WebSocket.OPEN) return;
+                  const input = e.inputBuffer.getChannelData(0);
+                  const down = downsample(
+                    input,
+                    audioContext.sampleRate,
+                    targetRate,
+                  );
+                  const pcm16 = float32ToInt16(down);
+                  socket.send(pcm16.buffer);
+                };
+                // 连接到一个静音 Gain，避免麦克风音频回放到扬声器
+                muteGain = audioContext.createGain();
+                muteGain.gain.value = 0;
+                sourceNode.connect(processorNode);
+                processorNode.connect(muteGain);
+                muteGain.connect(audioContext.destination);
+              } catch (e) {
+                alert("音频初始化失败：" + (e.message || e.name));
+                teardownAudio();
+                return;
+              }
+
+              finalizedAccumulator = "";
+              openSocket();
+
+              isActive = true;
+              setUiRecording(true);
+            }
+
+            function openSocket() {
+              socket = new WebSocket(buildSocketUrl());
+              socket.onopen = () => {
+                console.log("[Deepgram] WebSocket 已连接");
+              };
+              socket.onmessage = handleSocketMessage;
+              socket.onerror = (e) => {
+                console.error("[Deepgram] WebSocket 错误:", e);
+              };
+              socket.onclose = (e) => {
+                console.log("[Deepgram] WebSocket 关闭:", e.code, e.reason);
+                // 仍在录音状态且非用户主动关闭 → 断线自动重连，保证连续对话
+                if (isActive) {
+                  reconnectTimer = setTimeout(() => {
+                    if (isActive) openSocket();
+                  }, 800);
+                }
+              };
+            }
+
+            function stop() {
+              if (!isActive) return;
+              isActive = false;
+              teardownSocket();
+              teardownAudio();
+              finalizedAccumulator = "";
+              setUiRecording(false);
+            }
+
+            function toggle() {
+              if (isActive) stop();
+              else start();
+            }
+
+            // 发送（无论手动或自动）后清空累积，避免下一句拼接旧内容
+            if (document.getElementById("send-btn")) {
+              document
+                .getElementById("send-btn")
+                .addEventListener("click", () => {
+                  finalizedAccumulator = "";
+                });
+            }
+            if (micBtn) {
+              micBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                toggle();
+              });
+            }
+
+            return { start, stop, toggle, isActive: () => isActive };
+          })();
+
           document
             .getElementById("wallpaper-upload-input")
             .addEventListener("change", async (event) => {
@@ -54768,6 +55126,16 @@ ${libraryList}
               state.apiConfig.minimaxSpeechModel = document.getElementById(
                 "minimax-speech-model-select",
               ).value;
+              // --- 保存 Deepgram 设置 ---
+              state.apiConfig.deepgramApiKey = (
+                document.getElementById("deepgram-api-key").value || ""
+              ).trim();
+              const _deepgramAutoSendEl = document.getElementById(
+                "deepgram-auto-send-switch",
+              );
+              state.apiConfig.deepgramAutoSend = _deepgramAutoSendEl
+                ? _deepgramAutoSendEl.checked
+                : true;
               // --- 保存 GitHub 备份设置 ---
               state.apiConfig.githubToken = document
                 .getElementById("github-token")
@@ -61915,13 +62283,17 @@ ${libraryList}
             });
 
           // 1. 绑定主屏幕上的“兔k记账”图标点击事件
-          document
-            .getElementById("tukey-accounting-app-icon")
-            .addEventListener("click", () => {
+          // (兔兔记账功能已移除，图标不再存在，做容错处理)
+          const _tukeyIcon = document.getElementById(
+            "tukey-accounting-app-icon",
+          );
+          if (_tukeyIcon) {
+            _tukeyIcon.addEventListener("click", () => {
               // 打开时，确保默认显示记账群聊
               switchTukeyView("tukey-group-chat-view");
               showScreen("tukey-accounting-screen");
             });
+          }
 
           // 2. 为“兔k记账”的底部导航栏绑定事件委托
           document
