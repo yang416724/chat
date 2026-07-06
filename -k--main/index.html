@@ -63,16 +63,12 @@
     <script src="main-app.js" defer></script>
     <script src="game-hall.js" defer></script>
     <script src="forum.js" defer></script>
-    <script src="lovers-space.js" defer></script>
-    <script src="taobao.js" defer></script>
-    <script src="weibo.js" defer></script>
     <script src="date.js" defer></script>
     <script src="studio.js" defer></script>
     <script src="sw.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.84/darkreader.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-    <script src="tukey-accounting.js" defer></script>
     <script src="kk-checkin.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
@@ -286,16 +282,7 @@
                     </div>
                     <span class="label">查手机</span>
                   </div>
-                  <div class="desktop-app-icon" id="weibo-app-icon">
-                    <div class="icon-bg-desktop">
-                      <img
-                        id="icon-img-weibo"
-                        src="https://i.postimg.cc/PqBY5wBq/weibo-icon.png"
-                        alt="微博"
-                      />
-                    </div>
-                    <span class="label">微博</span>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -354,31 +341,9 @@
                 </div>
                 <span class="label">圈子</span>
               </div>
-              <div class="desktop-app-icon" id="lovers-space-app-icon">
-                <div class="icon-bg-desktop">
-                  <img
-                    id="icon-img-lovers-space"
-                    src="https://i.postimg.cc/d1wZ39xW/lovers-space-icon.png"
-                    alt="情侣空间"
-                  />
-                </div>
-                <span class="label">情侣空间</span>
-              </div>
 
-              <div
-                id="second-page-x-social-app"
-                class="desktop-app-icon"
-                onclick="showScreen('x-social-screen')"
-              >
-                <div class="icon-bg-desktop">
-                  <img
-                    id="icon-img-x-social"
-                    src="https://i.postimg.cc/8P1H0vQ8/x-logo.png"
-                    alt="X社交"
-                  />
-                </div>
-                <span class="label">X社交</span>
-              </div>
+
+
               <div style="position: absolute; top: 100px; right: 85px">
                 <div
                   class="desktop-app-icon"
@@ -486,25 +451,7 @@
                 可编辑文字
               </div>
             </div>
-            <div style="position: absolute; bottom: 105px; left: 35px">
-              <div class="desktop-app-icon" id="taobao-app-icon">
-                <div class="icon-bg-desktop">
-                  <img
-                    id="icon-img-taobao"
-                    src="https://i.postimg.cc/k47tXg1j/taologo.png"
-                    alt="桃宝"
-                  />
-                </div>
-                <span
-                  class="label"
-                  style="
-                    color: white;
-                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-                  "
-                  >桃宝</span
-                >
-              </div>
-            </div>
+
             <div style="position: absolute; bottom: 105px; left: 120px">
               <div class="desktop-app-icon" id="date-a-live-app-icon">
                 <div class="icon-bg-desktop">
@@ -543,25 +490,7 @@
                 >
               </div>
             </div>
-            <div style="position: absolute; bottom: 15px; left: 35px">
-              <div class="desktop-app-icon" id="tukey-accounting-app-icon">
-                <div class="icon-bg-desktop">
-                  <img
-                    id="icon-img-tukey-accounting"
-                    src="https://i.postimg.cc/k4fZKVXP/tu-tu.png"
-                    alt="兔兔记账"
-                  />
-                </div>
-                <span
-                  class="label"
-                  style="
-                    color: white;
-                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-                  "
-                  >兔兔记账</span
-                >
-              </div>
-            </div>
+
           </div>
         </div>
 
@@ -626,353 +555,6 @@
         <div class="pagination-dots">
           <span class="dot active"></span>
           <span class="dot"></span>
-        </div>
-      </div>
-
-      <div id="weibo-screen" class="screen">
-        <!-- 这个容器将存放微博的所有页面 -->
-        <div id="weibo-page-container">
-          <!-- 页面1: 我的主页 (已改造) -->
-          <div id="weibo-my-profile-view" class="weibo-view active">
-            <!-- 头部  -->
-            <div class="header">
-              <span class="back-btn" onclick="showScreen('home-screen')">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </span>
-              <span>我的主页</span>
-              <div class="header-actions">
-                <!-- 新的私信按钮 -->
-                <span class="action-btn" id="weibo-my-dms-btn" title="我的私信">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                    ></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                  </svg>
-                </span>
-
-                <!-- 新增“编辑”按钮 -->
-                <span
-                  class="action-btn"
-                  id="edit-weibo-profile-btn"
-                  title="编辑资料"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M12 20h9"></path>
-                    <path
-                      d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
-                    ></path>
-                  </svg>
-                </span>
-                <span
-                  class="action-btn"
-                  id="create-weibo-post-btn"
-                  style="font-size: 28px; font-weight: 300"
-                  >+</span
-                >
-              </div>
-            </div>
-            <!-- 主页内容区 -->
-            <div id="weibo-profile-page">
-              <div class="weibo-profile-header">
-                <img
-                  id="weibo-background-img"
-                  src="https://i.postimg.cc/mk93Y3j1/weibo-bg-default.jpg"
-                  class="weibo-background"
-                />
-
-                <div class="weibo-avatar-container">
-                  <img
-                    id="weibo-avatar-img"
-                    src="https://files.catbox.moe/q6z5fc.jpeg"
-                    class="weibo-avatar"
-                  />
-
-                  <img
-                    id="weibo-avatar-frame"
-                    class="weibo-avatar-frame"
-                    src=""
-                    style="display: none"
-                  />
-                </div>
-
-                <div class="weibo-nickname" id="weibo-nickname">你的昵称</div>
-
-                <div id="weibo-user-profession-display">点击设置职业</div>
-
-                <div class="weibo-stats">
-                  <div id="weibo-following-btn" class="weibo-stat-item">
-                    <span id="weibo-following-count" class="weibo-stat-number"
-                      >0</span
-                    >
-                    <span class="weibo-stat-label">关注</span>
-                  </div>
-                  <div id="weibo-posts-item" class="weibo-stat-item">
-                    <span id="weibo-posts-count" class="weibo-stat-number"
-                      >0</span
-                    >
-                    <span class="weibo-stat-label">微博</span>
-                  </div>
-                  <div id="weibo-fans-item" class="weibo-stat-item">
-                    <span id="weibo-fans-count" class="weibo-stat-number"
-                      >0</span
-                    >
-                    <span class="weibo-stat-label">粉丝</span>
-                  </div>
-                </div>
-              </div>
-              <div
-                id="my-weibo-feed-list"
-                style="
-                  padding: 15px;
-                  display: flex;
-                  flex-direction: column;
-                  gap: 15px;
-                "
-              ></div>
-            </div>
-          </div>
-
-          <!-- 页面2: 关注的人 (保持不变) -->
-          <div id="weibo-following-view" class="weibo-view">
-            <div class="header">
-              <span class="back-btn" onclick="showScreen('home-screen')">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </span>
-              <span>关注的人</span>
-              <span
-                class="action-btn"
-                id="clear-following-feed-btn"
-                style="font-size: 16px; font-weight: 500"
-                >清空</span
-              >
-            </div>
-            <div
-              id="weibo-following-feed-list"
-              style="
-                flex-grow: 1;
-                overflow-y: auto;
-                padding: 15px;
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-              "
-            >
-              <!-- 关注的人的微博列表将由JS动态生成在这里 -->
-            </div>
-          </div>
-
-          <!-- 页面3: 热搜 (保持不变) -->
-          <div id="weibo-hot-search-view" class="weibo-view">
-            <div class="header">
-              <span class="back-btn" onclick="showScreen('home-screen')">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </span>
-              <span>热搜</span>
-              <div class="header-actions">
-                <span
-                  class="action-btn"
-                  id="generate-hot-search-btn"
-                  title="生成热搜"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </span>
-              </div>
-            </div>
-            <div
-              id="weibo-hot-search-list"
-              style="flex-grow: 1; overflow-y: auto"
-            >
-              <p style="text-align: center; color: #8a8a8a; margin-top: 50px">
-                点击右上角放大镜生成热搜
-              </p>
-            </div>
-          </div>
-
-          <!-- 页面4: 广场 (保持不变) -->
-          <div id="weibo-plaza-view" class="weibo-view">
-            <div class="header">
-              <span class="back-btn" onclick="showScreen('home-screen')">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </span>
-              <span>广场</span>
-              <div class="header-actions">
-                <span
-                  class="action-btn"
-                  id="generate-plaza-feed-btn"
-                  title="生成广场动态"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </span>
-              </div>
-            </div>
-            <div
-              id="weibo-plaza-feed-list"
-              style="flex-grow: 1; overflow-y: auto; padding: 0"
-            >
-              <p style="text-align: center; color: #8a8a8a; margin-top: 50px">
-                点击右上角放大镜生成广场动态
-              </p>
-            </div>
-          </div>
-
-          <!-- 页面5: 热搜详情页 (保持不变) -->
-          <div id="weibo-hottopic-feed-view" class="weibo-view">
-            <div class="header">
-              <span class="back-btn" id="back-from-hottopic-btn">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </span>
-              <span id="weibo-hottopic-title">热搜话题</span>
-              <div class="header-actions">
-                <span
-                  class="action-btn"
-                  id="refresh-hottopic-feed-btn"
-                  title="换一批"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="23 4 23 10 17 10"></polyline>
-                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
-                  </svg>
-                </span>
-              </div>
-            </div>
-            <div
-              id="weibo-hottopic-feed-list"
-              style="flex-grow: 1; overflow-y: auto; padding: 0"
-            >
-              <!-- 热搜微博列表将由JS动态生成 -->
-            </div>
-          </div>
-        </div>
-
-        <!-- 底部导航栏 -->
-        <div id="weibo-bottom-nav">
-          <div class="weibo-nav-item" data-view="weibo-hot-search-view">
-            热搜
-          </div>
-          <div class="weibo-nav-item" data-view="weibo-plaza-view">广场</div>
-          <div class="weibo-nav-item" data-view="weibo-following-view">
-            关注的人
-          </div>
-          <div class="weibo-nav-item active" data-view="weibo-my-profile-view">
-            我的微博
-          </div>
         </div>
       </div>
 
@@ -1231,6 +813,33 @@
               >
                 🎵 拉取语音模型
               </button>
+            </div>
+          </div>
+
+          <!-- Deepgram 实时语音识别卡片 -->
+          <div class="moe-card">
+            <div class="moe-card-header">
+              <span class="icon">🎙️</span>
+              <h3>Deepgram 语音识别</h3>
+            </div>
+            <div class="moe-card-body">
+              <div class="form-group">
+                <label>API Key</label>
+                <input type="password" id="deepgram-api-key" class="moe-input" placeholder="输入 Deepgram API Key" />
+              </div>
+              <div class="form-group">
+                <label>语音识别语言</label>
+                <select id="deepgram-language-select" class="moe-input">
+                  <option value="zh-CN">中文 (zh-CN)</option>
+                  <option value="en-US">英文 (en-US)</option>
+                  <option value="ja-JP">日文 (ja-JP)</option>
+                  <option value="ko-KR">韩文 (ko-KR)</option>
+                  <option value="multi">多语言自动检测</option>
+                </select>
+              </div>
+              <p style="font-size:11px;color:var(--text-secondary);margin:4px 0 0 0;">
+                用于聊天界面麦克风实时语音输入，边说边出字。密钥保存在本地数据库，不会上传。
+              </p>
             </div>
           </div>
 
@@ -2622,6 +2231,20 @@
             </button>
           </div>
           <div id="chat-input-main-row">
+            <button id="mic-btn" class="action-button" title="语音输入">
+              <svg id="mic-btn-icon-off" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <path d="M12 19v4"/>
+                <path d="M8 23h8"/>
+              </svg>
+              <svg id="mic-btn-icon-on" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" fill="currentColor"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <path d="M12 19v4"/>
+                <path d="M8 23h8"/>
+              </svg>
+            </button>
             <textarea
               id="chat-input"
               rows="1"
@@ -4893,378 +4516,6 @@
         <div class="password-actions">
           <button id="password-cancel-btn">取消</button>
           <button id="password-confirm-btn">进入</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="lovers-space-screen" class="screen">
-      <!-- 头部 -->
-      <div id="ls-header">
-        <div class="ls-header-overlay"></div>
-        <div class="ls-header-top-bar">
-          <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
-          <span id="ls-char-name"></span>
-          <div class="header-actions">
-            <span class="action-btn" id="ls-settings-btn" title="空间设置">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="3"></circle>
-                <path
-                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
-                ></path>
-              </svg>
-            </span>
-            <span class="action-btn" id="ls-change-bg-btn" title="更换背景">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                <polyline points="21 15 16 10 5 21"></polyline>
-              </svg>
-            </span>
-            <span class="action-btn" id="ls-switch-char-btn">切换</span>
-          </div>
-        </div>
-        <div class="ls-avatar-and-counter-wrapper">
-          <div class="ls-header-avatars">
-            <img id="ls-user-avatar" src="" />
-            <span class="heart-icon">❤</span>
-            <img id="ls-char-avatar" src="" />
-          </div>
-          <div id="ls-days-counter"></div>
-        </div>
-      </div>
-
-      <div id="ls-tab-bar">
-        <div
-          class="ls-tab-item active"
-          data-view="ls-moments-view"
-          title="说说"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-            ></path>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-album-view" title="相册">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <circle cx="8.5" cy="8.5" r="1.5"></circle>
-            <polyline points="21 15 16 10 5 21"></polyline>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-letters-view" title="情书">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-            ></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-shares-view" title="分享">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="18" cy="5" r="3"></circle>
-            <circle cx="6" cy="12" r="3"></circle>
-            <circle cx="18" cy="19" r="3"></circle>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-questions-view" title="提问">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-diary-view" title="日记">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-pomodoro-view" title="番茄钟">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-        </div>
-        <div class="ls-tab-item" data-view="ls-activity-view" title="今日足迹">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-          </svg>
-        </div>
-      </div>
-
-      <!-- 内容显示区域 -->
-      <div id="ls-content-area">
-        <div id="ls-moments-view" class="ls-view active">
-          <div id="ls-moments-list"></div>
-          <button id="ls-add-moment-btn" class="ls-fab-btn">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="12"
-                y1="5"
-                x2="12"
-                y2="19"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-              <line
-                x1="5"
-                y1="12"
-                x2="19"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-        <div id="ls-album-view" class="ls-view">
-          <div id="ls-album-list"></div>
-          <button id="ls-add-album-btn" class="ls-fab-btn">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="12"
-                y1="5"
-                x2="12"
-                y2="19"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-              <line
-                x1="5"
-                y1="12"
-                x2="19"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div id="ls-letters-view" class="ls-view">
-          <div id="ls-letters-list"></div>
-          <button id="ls-add-letter-btn" class="ls-fab-btn">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="12"
-                y1="5"
-                x2="12"
-                y2="19"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-              <line
-                x1="5"
-                y1="12"
-                x2="19"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div id="ls-shares-view" class="ls-view">
-          <div id="ls-shares-list"></div>
-        </div>
-        <div id="ls-questions-view" class="ls-view">
-          <div id="ls-questions-list"></div>
-          <button id="ls-add-question-btn" class="ls-fab-btn">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="12"
-                y1="5"
-                x2="12"
-                y2="19"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-              <line
-                x1="5"
-                y1="12"
-                x2="19"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div id="ls-diary-view" class="ls-view">
-          <!-- 日历和心情罐子的内容将由JS动态生成在这里 -->
-        </div>
-
-        <!-- ★★★ 这就是我们为番茄钟准备的全新界面 ★★★ -->
-        <div id="ls-pomodoro-view" class="ls-view">
-          <!-- 番茄钟主页，显示历史记录和开始按钮 -->
-          <div id="ls-pomodoro-home">
-            <div id="ls-pomodoro-start-btn-container">
-              <div id="ls-pomodoro-start-icon">＋</div>
-              <p>开启新的专注时光</p>
-            </div>
-            <div id="ls-pomodoro-history-list">
-              <!-- 历史记录会由JS生成在这里 -->
-            </div>
-          </div>
-          <div id="ls-pomodoro-timer-active" style="display: none">
-            <div class="pomodoro-char-avatar-container">
-              <img id="pomodoro-char-avatar" src="" />
-              <div id="pomodoro-char-log"></div>
-            </div>
-            <div class="pomodoro-timer-display">
-              <div id="pomodoro-current-task"></div>
-              <div id="pomodoro-time">25:00</div>
-            </div>
-            <div
-              class="pomodoro-controls"
-              style="display: flex; gap: 15px; margin-top: 20px"
-            >
-              <!-- 新的萌系音乐按钮 -->
-              <button id="pomodoro-music-btn" title="音乐歌单">
-                <!-- 这里用一个SVG图标代替简单的音符字符，更精致 -->
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M9 18V5l12-2v13"></path>
-                  <circle cx="6" cy="18" r="3"></circle>
-                  <circle cx="18" cy="16" r="3"></circle>
-                </svg>
-              </button>
-              <button
-                id="pomodoro-pause-btn"
-                style="background-color: #ffca28; color: #fff"
-              >
-                暂停 / 休息
-              </button>
-              <button id="pomodoro-end-btn">结束专注</button>
-            </div>
-          </div>
-        </div>
-        <div id="ls-activity-view" class="ls-view">
-          <!-- 今日足迹的内容将由JS动态生成在这里 -->
         </div>
       </div>
     </div>
@@ -10858,246 +10109,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
       </div>
     </div>
 
-    <!-- index.html -->
-
-    <div id="taobao-screen" class="screen">
-      <div class="header">
-        <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
-        <span>桃宝</span>
-        <div class="header-actions">
-          <span
-            class="action-btn"
-            id="clear-taobao-products-btn"
-            style="font-size: 16px; font-weight: 500"
-            >清空</span
-          >
-          <span class="action-btn" id="add-product-btn" title="添加商品"
-            >+</span
-          >
-        </div>
-      </div>
-
-      <!-- 1. 顶部页签导航 (已加入“饿了么”) -->
-      <div class="taobao-tabs">
-        <button class="taobao-tab active" data-view="products-view">
-          首页
-        </button>
-
-        <button class="taobao-tab" data-view="eleme-view">饿了么</button>
-
-        <button class="taobao-tab" data-view="cart-view">
-          购物车<span id="cart-item-count-badge" style="display: none">0</span>
-        </button>
-        <button class="taobao-tab" data-view="orders-view">我的订单</button>
-        <button class="taobao-tab" data-view="my-view">我的</button>
-      </div>
-
-      <!-- 2. 页面内容容器 -->
-      <div class="taobao-content">
-        <!-- “首页”视图 (保持不变) -->
-        <div id="products-view" class="taobao-view active">
-          <div class="taobao-search-bar">
-            <input
-              type="search"
-              id="product-search-input"
-              placeholder="搜一搜，让AI为你创造好物！"
-            />
-            <button id="product-search-btn">搜索</button>
-          </div>
-          <div id="product-category-tabs"></div>
-          <div id="product-grid" class="product-grid"></div>
-        </div>
-
-        <div id="eleme-view" class="taobao-view">
-          <div class="taobao-search-bar">
-            <!-- 新增：这是第一行的“搜索”组 -->
-            <div class="eleme-search-group">
-              <input
-                type="search"
-                id="eleme-search-input"
-                placeholder="想吃点什么？让AI帮你找！"
-              />
-              <button id="eleme-search-btn">搜索</button>
-            </div>
-
-            <!-- 新增：这是第二行的“功能”组 -->
-            <div class="eleme-actions-group">
-              <button
-                id="eleme-add-manual-btn"
-                class="header-actions"
-                title="手动添加美食"
-              >
-                +
-              </button>
-              <button
-                id="eleme-generate-ai-btn"
-                class="header-actions"
-                title="AI生成美食"
-              >
-                ✨
-              </button>
-              <button id="eleme-clear-all-btn" class="header-btn">🗑️</button>
-            </div>
-          </div>
-
-          <div id="eleme-grid" class="product-grid">
-            <!-- 美食列表将由JS动态生成在这里 -->
-          </div>
-        </div>
-
-        <!-- “购物车”视图 -->
-        <div id="cart-view" class="taobao-view">
-          <div id="cart-item-list"></div>
-          <div id="cart-checkout-bar" style="display: none">
-            <div class="total-price">
-              合计: <span id="cart-total-price">¥ 0.00</span>
-            </div>
-            <div style="display: flex; gap: 10px">
-              <button id="share-cart-to-char-btn">分享给Ta代付</button>
-              <button id="buy-for-char-btn">为Ta购买</button>
-              <button id="checkout-btn">结算(0)</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- “我的订单”视图 -->
-        <div id="orders-view" class="taobao-view">
-          <div id="order-list" class="order-list"></div>
-        </div>
-
-        <!-- “我的”视图 -->
-        <div id="my-view" class="taobao-view">
-          <div id="user-balance-container">
-            <p>我的余额</p>
-            <h2 id="user-balance-display">¥ 0.00</h2>
-            <button id="top-up-btn" class="form-button">给钱包充点钱</button>
-          </div>
-          <div
-            id="balance-details-list"
-            class="order-list"
-            style="padding: 0 15px"
-          ></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="product-detail-modal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span>商品详情</span>
-        </div>
-        <div class="modal-body" id="product-detail-body">
-          <!-- 详情内容将由JS动态生成 -->
-        </div>
-        <!-- 评价区域 -->
-        <div id="product-reviews-section">
-          <h3>宝贝评价</h3>
-          <div id="product-reviews-list"></div>
-          <button
-            id="generate-reviews-btn"
-            class="form-button form-button-secondary"
-          >
-            ✨ AI生成评价
-          </button>
-        </div>
-
-        <div class="modal-footer">
-          <button class="cancel" id="close-product-detail-btn">关闭</button>
-          <button class="save" id="detail-add-to-cart-btn">加入购物车</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. 添加商品的方式选择弹窗 -->
-    <div id="add-product-choice-modal" class="modal">
-      <div id="custom-modal" style="width: 250px">
-        <div class="custom-modal-header">选择添加方式</div>
-        <div class="custom-modal-footer">
-          <button id="add-product-manual-btn">手动添加</button>
-          <button id="add-product-link-btn">识别链接</button>
-          <button id="add-product-ai-btn">AI生成</button>
-          <button
-            id="cancel-add-choice-btn"
-            style="
-              margin-top: 8px;
-              border-radius: 8px;
-              background-color: #f0f0f0;
-            "
-          >
-            取消
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3. 手动添加/编辑商品弹窗 -->
-    <div id="product-editor-modal" class="modal">
-      <div class="modal-content" style="height: auto">
-        <div class="modal-header">
-          <span id="product-editor-title">添加新商品</span>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="product-name-input">商品名称</label>
-            <input type="text" id="product-name-input" />
-          </div>
-          <div class="form-group">
-            <label for="product-price-input">价格 (元)</label>
-            <input type="number" id="product-price-input" />
-          </div>
-          <div class="form-group">
-            <label for="product-image-input">图片 URL</label>
-            <input type="text" id="product-image-input" />
-          </div>
-          <div class="form-group">
-            <label for="product-category-input">分类 (选填)</label>
-            <input
-              type="text"
-              id="product-category-input"
-              placeholder="例如：衣服, 零食..."
-            />
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="cancel-product-editor-btn">取消</button>
-          <button class="save" id="save-product-btn">保存</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. 识别链接弹窗 -->
-    <div id="add-from-link-modal" class="modal">
-      <div class="modal-content" style="height: auto">
-        <div class="modal-header">
-          <span>粘贴分享文案</span>
-        </div>
-        <div class="modal-body">
-          <textarea
-            id="link-paste-area"
-            rows="6"
-            placeholder="请在这里粘贴完整的淘宝或拼多多分享文案..."
-          ></textarea>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="cancel-link-paste-btn">取消</button>
-          <button class="save" id="confirm-link-paste-btn">识别</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 物流详情页面 -->
-    <div id="logistics-screen" class="screen">
-      <div class="header">
-        <span class="back-btn" id="logistics-back-btn">‹</span>
-        <span>物流详情</span>
-        <span style="width: 30px"></span>
-        <!-- 占位符，让标题居中 -->
-      </div>
-      <div id="logistics-content-area" class="list-container">
-        <!-- 物流信息将由JS动态生成在这里 -->
-      </div>
-    </div>
-
     <!-- 1. “谁是卧底”游戏设置屏幕 -->
     <div id="undercover-setup-screen" class="screen">
       <div class="header">
@@ -12892,442 +11903,6 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
       accept="image/*"
       hidden
     />
-
-    <div id="tukey-accounting-screen" class="screen">
-      <!-- 1. 页面头部 (保持不变) -->
-      <div class="header">
-        <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
-        <span id="tukey-header-title">记账群聊</span>
-        <span style="width: 30px"></span>
-      </div>
-
-      <!-- 2. 页面内容容器 (保持不变) -->
-      <div class="tukey-content">
-        <!-- 视图1: 钱包 (这是我们要修改的核心) -->
-        <div id="tukey-wallet-view" class="tukey-view">
-          <div id="wallet-summary-card">
-            <div class="summary-item net-assets">
-              <span class="label">净资产</span>
-              <span class="value" id="net-assets-value">¥ 0.00</span>
-            </div>
-            <div class="summary-details">
-              <div class="summary-item">
-                <span class="label">总资产</span>
-                <span class="value" id="total-assets-value">¥ 0.00</span>
-              </div>
-              <div class="summary-item">
-                <span class="label">总负债</span>
-                <span class="value" id="total-liabilities-value">¥ 0.00</span>
-              </div>
-            </div>
-          </div>
-          <div id="wallet-accounts-list">
-            <!-- 账户列表将由JS动态生成在这里 -->
-          </div>
-          <button
-            id="add-new-account-fab"
-            class="ls-fab-btn"
-            title="添加新账户"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="12"
-                y1="5"
-                x2="12"
-                y2="19"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-              <line
-                x1="5"
-                y1="12"
-                x2="19"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div id="tukey-reports-view" class="tukey-view">
-          <!-- 1. 报表控制/筛选区域 -->
-          <div class="report-controls">
-            <select id="report-account-filter">
-              <!-- 账户选项将由JS动态生成 -->
-            </select>
-            <select id="report-month-filter">
-              <!-- 月份选项将由JS动态生成 -->
-            </select>
-            <select id="report-type-filter">
-              <option value="daily_details">每日明细</option>
-              <option value="monthly_summary">月度统计</option>
-            </select>
-          </div>
-
-          <!-- 2. 报表内容显示区域 -->
-          <div id="report-display-area">
-            <!-- 视图切换容器 -->
-            <div id="daily-report-view" class="report-view active">
-              <!-- 每日明细将由JS动态生成在这里 -->
-              <p class="report-placeholder">正在加载报表...</p>
-            </div>
-            <div id="monthly-report-view" class="report-view">
-              <!-- 月度统计将由JS动态生成在这里 -->
-              <div id="monthly-summary-card">
-                <!-- 月度总收支 -->
-              </div>
-              <div class="chart-container">
-                <h3>支出分类占比</h3>
-                <canvas id="category-pie-chart"></canvas>
-              </div>
-              <div class="chart-container">
-                <h3>月度支出趋势</h3>
-                <canvas id="expenditure-line-chart"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="tukey-group-chat-view" class="tukey-view active">
-          <!-- 这个容器会在没有群聊时显示 -->
-          <div id="tukey-no-group-placeholder">
-            <p>你还没有创建记账群聊哦</p>
-            <button id="tukey-create-group-btn" class="form-button">
-              立即创建
-            </button>
-          </div>
-
-          <div id="tukey-group-chat-container" style="display: none">
-            <div id="tukey-group-chat-header">
-              <span id="tukey-group-name">群聊名称</span>
-              <button id="tukey-group-settings-btn" title="群聊设置">⚙️</button>
-            </div>
-
-            <!-- 记账和回复历史记录 -->
-            <div id="tukey-records-list">
-              <!-- JS会在这里渲染内容 -->
-            </div>
-
-            <!-- 记账输入区域 -->
-            <div id="tukey-record-input-area">
-              <button id="tukey-add-record-btn">+</button>
-            </div>
-
-            <div id="tukey-record-input-card">
-              <div class="card-header">
-                <button class="close-card-btn">×</button>
-                <div class="type-selector">
-                  <button class="type-btn active" data-type="expense">
-                    支出
-                  </button>
-                  <button class="type-btn" data-type="income">收入</button>
-                </div>
-              </div>
-              <div class="card-body">
-                <!-- 金额和备注输入区域 -->
-                <div class="input-fields">
-                  <div class="amount-input-wrapper">
-                    <span class="currency-symbol">¥</span>
-                    <input
-                      type="number"
-                      id="tukey-card-amount-input"
-                      placeholder="0.00"
-                    />
-                    <!-- 已选分类显示区 -->
-                    <div id="tukey-card-selected-category">
-                      <img src="" alt="" />
-                      <span>请选择分类</span>
-                    </div>
-                  </div>
-                  <input
-                    type="text"
-                    id="tukey-card-remarks-input"
-                    placeholder="点击输入备注..."
-                  />
-                </div>
-                <!-- 分类网格 -->
-                <div class="category-grid">
-                  <!-- 分类将由JS动态生成 -->
-                </div>
-              </div>
-              <div class="card-footer">
-                <!-- 账户和时间选择器 -->
-                <div class="additional-options">
-                  <div class="option-item">
-                    <label for="tukey-card-account-select">账户</label>
-                    <select id="tukey-card-account-select">
-                      <!-- 账户将由JS动态生成 -->
-                    </select>
-                  </div>
-                  <div class="option-item">
-                    <label for="tukey-card-time-input">时间</label>
-                    <input type="datetime-local" id="tukey-card-time-input" />
-                  </div>
-                </div>
-                <button id="tukey-save-from-card-btn">保 存</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="tukey-settings-view" class="tukey-view">
-          <div class="form-container" style="padding-top: 20px">
-            <!-- 1. 个人资料设置 -->
-            <div class="form-group">
-              <label>我的个人资料</label>
-              <div class="avatar-upload">
-                <img
-                  id="tukey-user-avatar-preview"
-                  src="https://i.postimg.cc/PxZrFFFL/o-o-1.jpg"
-                />
-                <button
-                  onclick="
-                    document.getElementById('tukey-user-avatar-input').click()
-                  "
-                >
-                  上传我的头像
-                </button>
-                <input
-                  type="file"
-                  id="tukey-user-avatar-input"
-                  accept="image/*"
-                  hidden
-                />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="tukey-user-name-input">用户名</label>
-              <input
-                type="text"
-                id="tukey-user-name-input"
-                placeholder="输入你在群聊中显示的昵称"
-              />
-            </div>
-            <div class="form-group">
-              <label for="tukey-user-profession-input">职业 (选填)</label>
-              <input
-                type="text"
-                id="tukey-user-profession-input"
-                placeholder="你的职业，会展示给群友"
-              />
-            </div>
-
-            <hr style="opacity: 0.2; margin: 20px 0" />
-
-            <!-- 2. 同步设置 -->
-            <div class="form-group">
-              <label for="sync-to-taobao-toggle" class="toggle-switch-label">
-                <span class="toggle-switch-text">
-                  同步至桃宝余额
-                  <p
-                    style="
-                      font-size: 12px;
-                      font-weight: normal;
-                      color: #999;
-                      margin-top: 5px;
-                    "
-                  >
-                    开启后，所有记账记录将同步影响桃宝的余额和收支明细。
-                  </p>
-                </span>
-                <input type="checkbox" id="sync-to-taobao-toggle" />
-                <span class="toggle-switch-slider"></span>
-              </label>
-            </div>
-
-            <hr style="opacity: 0.2; margin: 20px 0" />
-
-            <!-- 3. 导出设置 (新增) -->
-            <div class="form-group">
-              <label>数据导出</label>
-              <button
-                id="export-tukey-report-btn"
-                class="form-button form-button-secondary"
-              >
-                导出账单为 Excel
-              </button>
-            </div>
-
-            <button class="form-button" id="save-tukey-settings-btn">
-              保存所有设置
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. 底部导航栏 (保持不变) -->
-      <div id="tukey-bottom-nav">
-        <div class="tukey-nav-item" data-view="tukey-wallet-view">
-          <svg width="24" height="24" viewBox="0 0 1024 1024">
-            <path
-              d="M517.7 660c-4 26.6-19.2 46.3-37.3 46.3H290.1c-21.2 0-38.4-27-38.4-60.3V435.3c0-33.3 17.2-60.3 38.4-60.3h190.3c17.6 0 32.5 18.7 37 44.1"
-              fill="#BAF4EA"
-            ></path>
-            <path
-              d="M668.7 761.8H321.6c-54 0-97.9-43.9-97.9-97.9V419.6c0-54 43.9-97.9 97.9-97.9h347.1c43.8 0 82.6 29.5 94.4 71.6 4.1 14.9-4.6 30.3-19.5 34.5-14.9 4.1-30.3-4.6-34.5-19.5-5-18-21.6-30.6-40.4-30.6H321.6c-23.1 0-41.9 18.8-41.9 41.9v244.3c0 23.1 18.8 41.9 41.9 41.9h347.1c19.5 0 36.3-13.2 40.8-32.2 3.6-15 18.7-24.3 33.7-20.8 15 3.6 24.3 18.7 20.8 33.7-5 21.1-17.1 40.2-34.1 53.8-17.3 13.9-39 21.5-61.2 21.5z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M719.9 614.4H641c-39.9 0-72.6-32.7-72.6-72.6 0-39.9 32.7-72.6 72.6-72.6h78.9c39.9 0 72.6 32.7 72.6 72.6 0 39.9-32.7 72.6-72.6 72.6z"
-              fill="#BAF4EA"
-            ></path>
-            <path
-              d="M719.9 642.4H641c-55.5 0-100.6-45.1-100.6-100.6 0-55.5 45.1-100.6 100.6-100.6h78.9c55.5 0 100.6 45.1 100.6 100.6 0 55.4-45.2 100.6-100.6 100.6zM641 497.1c-24.6 0-44.6 20-44.6 44.6s20 44.6 44.6 44.6h78.9c24.6 0 44.6-20 44.6-44.6s-20-44.6-44.6-44.6H641z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M650.1 542.4m-0.4 0a0.4 0.4 0 1 0 0.8 0 0.4 0.4 0 1 0-0.8 0Z"
-              fill="#FFFFFF"
-            ></path>
-            <path
-              d="M650.1 570.8c-15.7 0-28.4-12.7-28.4-28.4s12.7-28.4 28.4-28.4 28.4 12.7 28.4 28.4-12.7 28.4-28.4 28.4z m0-56c-15.2 0-27.6 12.4-27.6 27.6s12.4 27.6 27.6 27.6 27.6-12.4 27.6-27.6-12.4-27.6-27.6-27.6z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M155.2 152.2c12 0 21.7 9.7 21.7 21.7s-9.7 21.7-21.7-21.7-21.7-9.7-21.7-21.7 9.7-21.7 21.7-21.7m0-40c-34 0-61.7 27.7-61.7 61.7s27.7 61.7 61.7 61.7 61.7-27.7 61.7-61.7-27.7-61.7-61.7-61.7zM162.7 956.8h-0.2c-8.3-0.1-14.9-6.9-14.8-15.2l1-69.5c0.1-8.2 6.8-14.8 15-14.8h0.2c8.3 0.1 14.9 6.9 14.8 15.2l-1 69.5c-0.1 8.2-6.8 14.8-15 14.8z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M212.9 907.5v0.2c-0.1 8.3-6.9 14.9-15.2 14.8l-69.5-1c-8.2-0.1-14.8-6.8-14.8-15v-0.2c0.1-8.3 6.9-14.9 15.2-14.8l69.5 1c8.3 0.2 14.8 6.9 14.8 15z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M895.4 905.5m-30.9 0a30.9 30.9 0 1 0 61.8 0 30.9 30.9 0 1 0-61.8 0Z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M121.4 613.5m-20.7 0a20.7 20.7 0 1 0 41.4 0 20.7 20.7 0 1 0-41.4 0Z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M861.5 115.5v30.8M861.5 156.3c-5.5 0-10-4.5-10-10v-30.8c0-5.5 4.5-10 10-10s10 4.5 10 10v30.8c0 5.5-4.5 10-10 10zM804.8 172.2h30.8M835.6 182.2h-30.8c-5.5 0-10-4.5-10-10s4.5-10 10-10h30.8c5.5 0 10 4.5 10 10s-4.5 10-10 10zM887.4 172.2h30.8M918.2 182.2h-30.8c-5.5 0-10-4.5-10-10s4.5-10 10-10h30.8c5.5 0 10 4.5 10 10s-4.5 10-10 10z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M821.4 212.3l21.8-21.8M821.4 222.3c-2.6 0-5.1-1-7.1-2.9-3.9-3.9-3.9-10.2 0-14.1l21.8-21.8c3.9-3.9 10.2-3.9 14.1 0 3.9 3.9 3.9 10.2 0 14.1l-21.8 21.8c-1.8 1.9-4.4 2.9-7 2.9z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M879.8 153.9l21.8-21.8M879.8 163.9c-2.6 0-5.1-1-7.1-2.9-3.9-3.9-3.9-10.2 0-14.1l21.8-21.8c3.9-3.9 10.2-3.9 14.1 0 3.9 3.9 3.9 10.2 0 14.1L886.9 161c-2 1.9-4.5 2.9-7.1 2.9z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M901.6 212.3l-21.8-21.8M901.6 222.3c-2.6 0-5.1-1-7.1-2.9l-21.8-21.8c-3.9-3.9-3.9-10.2 0-14.1 3.9-3.9 10.2-3.9 14.1 0l21.8 21.8c3.9 3.9 3.9 10.2 0 14.1-1.9 1.9-4.5 2.9-7 2.9z"
-              fill="#2D5B56"
-            ></path>
-            <path
-              d="M843.2 153.9l-21.8-21.8M843.2 163.9c-2.6 0-5.1-1-7.1-2.9l-21.8-21.8c-3.9-3.9-3.9-10.2 0-14.1 3.9-3.9 10.2-3.9 14.1 0l21.8 21.8c3.9 3.9 3.9 10.2 0 14.1-1.9 1.9-4.4 2.9-7 2.9z"
-              fill="#2D5B56"
-            ></path>
-          </svg>
-          <span>钱包</span>
-        </div>
-        <div class="tukey-nav-item" data-view="tukey-reports-view">
-          <svg width="24" height="24" viewBox="0 0 1024 1024">
-            <path
-              d="M692.24 787.29h-175.3a24.65 24.65 0 0 1 0-49.3h175.3a24.65 24.65 0 0 1 0 49.3z"
-              fill="#303030"
-              p-id="13093"
-            ></path>
-            <path
-              d="M692.24 186.92v89.18H336.29v463.27h-89.34V186.92h445.29z"
-              fill="#279ACC"
-              p-id="13094"
-            ></path>
-            <path
-              d="M810.83 869.58H322.21V660.12a24.65 24.65 0 0 1 49.3 0v160.16h390V318.74h-390v148.19a24.65 24.65 0 1 1-49.3 0V269.44h488.62z"
-              fill="#303030"
-              p-id="13095"
-            ></path>
-            <path
-              d="M346.86 767H225.28V166.87H713.9v127.22a24.65 24.65 0 1 1-49.29 0v-77.93h-390v501.55h72.28a24.65 24.65 0 1 1 0 49.29z"
-              fill="#303030"
-              p-id="13096"
-            ></path>
-            <path
-              d="M751.63 395.07m-78.65 0a78.65 78.65 0 1 0 157.3 0 78.65 78.65 0 1 0-157.3 0Z"
-              fill="#279ACC"
-              p-id="13097"
-            ></path>
-            <path
-              d="M317.28 626.59a24.65 24.65 0 0 1-17.42-42.07l89.58-89.59c10.84-10.85 25-16.36 40.58-16.34a55.34 55.34 0 0 1 39.89 18l64.43 69.85 150.17-148a24.65 24.65 0 0 1 34.63 35.08l-150 148.05a49.43 49.43 0 0 1-71-1.66L433.68 530a6.42 6.42 0 0 0-4.65-2.1 5.84 5.84 0 0 0-4.73 1.91l-89.59 89.59a24.58 24.58 0 0 1-17.43 7.19z"
-              fill="#303030"
-              p-id="13098"
-            ></path>
-            <path
-              d="M751.63 481.75a86.67 86.67 0 1 1 86.67-86.67 86.77 86.77 0 0 1-86.67 86.67z m0-124A37.38 37.38 0 1 0 789 395.08a37.42 37.42 0 0 0-37.37-37.38z"
-              fill="#303030"
-              p-id="13099"
-            ></path>
-          </svg>
-          <span>报表</span>
-        </div>
-        <div class="tukey-nav-item active" data-view="tukey-group-chat-view">
-          <svg width="24" height="24" viewBox="0 0 1024 1024">
-            <path
-              d="M134.588 151C118.247 151 105 164.247 105 180.584v557.964c0 16.339 13.255 29.584 29.599 29.584h155.746l31.872 99.6c2.489 7.777 8.981 9.197 14.504 3.169l94.146-102.769h457.72c16.341 0 29.59-13.247 29.59-29.584V180.584c0-16.339-13.248-29.584-29.588-29.584H134.588z"
-              fill="#0FC8B2"
-              p-id="32320"
-            ></path>
-            <path
-              d="M511.213 422c19.045 0 34.484 15.44 34.484 34.486s-15.44 34.483-34.484 34.483c-19.046 0-34.485-15.438-34.485-34.483 0-19.046 15.439-34.486 34.485-34.486z m-199.727 0c19.046 0 34.483 15.44 34.483 34.486s-15.437 34.483-34.483 34.483S277 475.531 277 456.486C277 437.44 292.44 422 311.486 422z m399.454 0c19.045 0 34.485 15.439 34.485 34.484 0 19.046-15.439 34.483-34.485 34.483-19.045 0-34.485-15.438-34.485-34.483 0-19.045 15.44-34.484 34.485-34.484z"
-              fill="#FFFFFF"
-              p-id="32321"
-            ></path>
-          </svg>
-          <span>记账群聊</span>
-        </div>
-        <div class="tukey-nav-item" data-view="tukey-settings-view">
-          <svg width="24" height="24" viewBox="0 0 1024 1024">
-            <path
-              d="M785.749333 564.770133a231.150933 231.150933 0 0 0 47.035734-258.730666l-145.476267 145.442133a41.5744 41.5744 0 0 1-58.811733 0l-55.876267-55.876267a41.5744 41.5744 0 0 1 0-58.811733l145.476267-145.476267a230.843733 230.843733 0 0 0-305.834667 305.664l-263.509333 263.406934a41.5744 41.5744 0 0 0 0 58.811733l55.842133 55.842133a41.5744 41.5744 0 0 0 58.811733 0l263.406934-263.3728a230.638933 230.638933 0 0 0 258.730666-47.069866l0.170667 0.170666z"
-              fill="#FFFFFF"
-              p-id="33627"
-            ></path>
-            <path
-              d="M435.2 214.084267a264.977067 264.977067 0 0 1 297.028267-53.828267 34.133333 34.133333 0 0 1 10.001066 55.227733l-145.476266 145.442134a7.441067 7.441067 0 0 0 0 10.581333l55.876266 55.842133a7.441067 7.441067 0 0 0 10.5472 0l145.476267-145.476266a34.133333 34.133333 0 0 1 55.227733 10.069333 265.216 265.216 0 0 1-54.033066 296.96 34.474667 34.474667 0 0 1-3.208534 2.833067l-0.238933 0.170666-3.925333 3.822934a264.704 264.704 0 0 1-262.144 57.7536l-5.290667-1.8432-247.5008 247.534933a75.707733 75.707733 0 0 1-102.741333 4.027733l-4.334934-4.027733-55.876266-55.842133a75.707733 75.707733 0 0 1 0-107.1104l247.7056-247.569067-1.809067-5.2224a265.216 265.216 0 0 1 57.719467-262.075733l6.997333-7.2704z m211.285333-7.850667a196.539733 196.539733 0 0 0-163.0208 56.1152 196.983467 196.983467 0 0 0-40.072533 220.535467 34.133333 34.133333 0 0 1-6.9632 38.229333l-263.5776 263.406933a7.441067 7.441067 0 0 0 0 10.513067l55.876267 55.876267a7.441067 7.441067 0 0 0 10.5472 0l263.406933-263.406934a34.133333 34.133333 0 0 1 38.229333-6.929066 196.5056 196.5056 0 0 0 220.501334-40.072534l1.9456-1.7408 4.334933-4.5056a196.8128 196.8128 0 0 0 50.107733-156.672l-1.058133-7.304533-105.301333 105.335467a75.707733 75.707733 0 0 1-102.741334 4.027733l-4.334933-4.027733-55.876267-55.876267a75.707733 75.707733 0 0 1 0-107.076267l105.3696-105.3696-7.3728-1.058133z"
-              fill="#222222"
-              p-id="33628"
-            ></path>
-            <path
-              d="M284.8768 690.858667a34.133333 34.133333 0 0 1 48.298667 48.264533l-61.781334 61.7472a34.133333 34.133333 0 1 1-48.264533-48.264533l61.781333-61.781334z"
-              fill="#009898"
-              p-id="33629"
-            ></path>
-          </svg>
-          <span>设置</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ... </div> 标签来自 id="tukey-accounting-screen" -->
-
-    <!-- 兔k记账导出选项模态框 -->
-    <div id="tukey-export-modal" class="modal">
-      <div class="modal-content" style="height: auto; max-height: 70%">
-        <div class="modal-header">
-          <span>选择要导出的账户</span>
-        </div>
-        <div class="modal-body">
-          <div id="tukey-export-account-list" class="contact-picker-list">
-            <!-- 账户列表将由JS动态生成 -->
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="cancel" id="cancel-tukey-export-btn">取消</button>
-          <button class="save" id="confirm-tukey-export-btn">确认导出</button>
-        </div>
-      </div>
-    </div>
 
     <!-- 1. 查岗 - 角色选择屏幕 -->
     <div id="kk-char-selection-screen" class="screen">
@@ -20905,6 +19480,8 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
             minimaxProvider: "cn",
             minimaxSpeechModel: "speech-01-turbo",
             pollinationsApiKey: "", // <--- 新增这一行
+            deepgramApiKey: "",
+            deepgramLanguage: "zh-CN",
           };
 
           // 兼容旧数据，如果加载的设置里没有温度，也给一个默认值
@@ -22042,6 +20619,12 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
             state.apiConfig.minimaxApiKey || "";
           document.getElementById("minimax-provider-select").value =
             state.apiConfig.minimaxProvider || "cn";
+
+          // --- Deepgram 语音识别设置 ---
+          document.getElementById("deepgram-api-key").value =
+            state.apiConfig.deepgramApiKey || "";
+          document.getElementById("deepgram-language-select").value =
+            state.apiConfig.deepgramLanguage || "zh-CN";
 
           // 2：Minimax 语音模型下拉框回显
           const speechModelSelect = document.getElementById(
@@ -27906,12 +26489,9 @@ ${libraryList}
 
                   showNotification(chatId, `${chat.name} 发了一条新微博`);
 
-                  if (
-                    document
-                      .getElementById("weibo-screen")
-                      .classList.contains("active")
-                  ) {
-                    await renderFollowingWeiboFeed();
+                  const _weiboScreen = document.getElementById("weibo-screen");
+                  if (_weiboScreen && _weiboScreen.classList.contains("active")) {
+                    if (typeof renderFollowingWeiboFeed === "function") await renderFollowingWeiboFeed();
                   }
 
                   continue; // 这是后台操作，用 continue 跳过
@@ -27945,7 +26525,7 @@ ${libraryList}
 
                     // 5. 刷新“我的微博”和“关注的人”两个列表，让新评论显示出来
                     await renderMyWeiboFeed();
-                    await renderFollowingWeiboFeed();
+                    if (typeof renderFollowingWeiboFeed === "function") await renderFollowingWeiboFeed();
                   }
                   continue; // 处理完后，继续处理AI可能返回的其他指令
                 }
@@ -27979,7 +26559,7 @@ ${libraryList}
 
                       // 3. 同样，刷新所有列表
                       await renderMyWeiboFeed();
-                      await renderFollowingWeiboFeed();
+                      if (typeof renderFollowingWeiboFeed === "function") await renderFollowingWeiboFeed();
                     }
                   }
                   continue; // 继续处理
@@ -38627,7 +37207,7 @@ ${libraryList}
             if (charChat) {
               charChat.settings.weiboAvatarFrame = url;
               await db.chats.put(charChat);
-              await renderWeiboCharProfile(currentViewingWeiboProfileId);
+              if (typeof renderWeiboCharProfile === "function") await renderWeiboCharProfile(currentViewingWeiboProfileId);
             }
           } else if (type === "home_profile") {
             if (!state.globalSettings) state.globalSettings = {};
@@ -47478,12 +46058,10 @@ ${libraryList}
 
             // 5. 保存、关闭弹窗、跳转、触发回应
             await db.chats.put(chat);
-            document
-              .getElementById("ls-settings-modal")
-              .classList.remove("visible");
-            document
-              .getElementById("lovers-space-screen")
-              .classList.remove("visible");
+            const _lsModal = document.getElementById("ls-settings-modal");
+            if (_lsModal) _lsModal.classList.remove("visible");
+            const _lsScreen = document.getElementById("lovers-space-screen");
+            if (_lsScreen) _lsScreen.classList.remove("visible");
 
             openChat(activeLoversSpaceCharId);
 
@@ -54027,9 +52605,8 @@ ${libraryList}
               }
             });
 
-          document
-            .getElementById("create-weibo-post-btn")
-            .addEventListener("click", openWeiboPublisherClean);
+          const _weiboPostBtn = document.getElementById("create-weibo-post-btn");
+          if (_weiboPostBtn) _weiboPostBtn.addEventListener("click", openWeiboPublisherClean);
 
           document
             .getElementById("delete-expired-songs-btn")
@@ -54556,7 +53133,7 @@ ${libraryList}
                   await db.weiboPosts.add(newPost);
 
                   // 刷新“关注的人”列表，新微博就会出现了！
-                  await renderFollowingWeiboFeed();
+                  if (typeof renderFollowingWeiboFeed === "function") await renderFollowingWeiboFeed();
 
                   await showCustomAlert(
                     "操作成功",
@@ -54611,6 +53188,196 @@ ${libraryList}
             chatInput.style.height = "auto";
             chatInput.style.height = chatInput.scrollHeight + "px";
           });
+
+          // ===================================================================
+          // Deepgram 实时语音识别模块
+          // ===================================================================
+          (function initDeepgramSTT() {
+            let dgWs = null;          // Deepgram WebSocket
+            let mediaRecorder = null; // 浏览器录音器
+            let mediaStream = null;   // 麦克风音频流
+            let isRecording = false;  // 当前是否录音中
+            let finalTranscript = ""; // 已确定的文字（final 累积）
+            let autoSendTimer = null; // 自动发送的延时器
+
+            const micBtn = document.getElementById("mic-btn");
+
+            if (!micBtn) return;
+
+            micBtn.addEventListener("click", () => {
+              if (isRecording) {
+                stopRecording();
+              } else {
+                startRecording();
+              }
+            });
+
+            async function startRecording() {
+              const apiKey = state.apiConfig.deepgramApiKey;
+              if (!apiKey) {
+                alert("请先在 API 设置中填写 Deepgram API Key");
+                return;
+              }
+
+              try {
+                mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+              } catch (err) {
+                console.error("[Deepgram STT] 无法获取麦克风权限:", err);
+                alert("无法获取麦克风权限，请检查浏览器设置");
+                return;
+              }
+
+              isRecording = true;
+              finalTranscript = "";
+              micBtn.classList.add("recording");
+              chatInput.placeholder = "正在听你说话...";
+
+              // 构建 Deepgram WebSocket URL
+              const lang = state.apiConfig.deepgramLanguage || "zh-CN";
+              let langParam = "";
+              if (lang === "multi") {
+                langParam = "&detect_language=true";
+              } else {
+                langParam = "&language=" + lang;
+              }
+              const wsUrl =
+                "wss://api.deepgram.com/v1/listen?encoding=opus&sample_rate=16000&interim_results=true&vad_events=true&utterance_end_ms=1500" +
+                langParam;
+
+              try {
+                dgWs = new WebSocket(wsUrl, ["token", apiKey]);
+              } catch (err) {
+                console.error("[Deepgram STT] WebSocket 创建失败:", err);
+                alert("WebSocket 连接失败");
+                cleanupRecording();
+                return;
+              }
+
+              dgWs.onopen = () => {
+                console.log("[Deepgram STT] WebSocket 已连接");
+                // 使用 MediaRecorder 采集 Opus 音频
+                try {
+                  mediaRecorder = new MediaRecorder(mediaStream, {
+                    mimeType: "audio/webm;codecs=opus",
+                  });
+                } catch (e) {
+                  // 如果不支持 opus 编码，回退到默认
+                  mediaRecorder = new MediaRecorder(mediaStream);
+                }
+
+                mediaRecorder.ondataavailable = (event) => {
+                  if (event.data.size > 0 && dgWs && dgWs.readyState === WebSocket.OPEN) {
+                    dgWs.send(event.data);
+                  }
+                };
+
+                mediaRecorder.start(250); // 每 250ms 发送一块音频
+              };
+
+              dgWs.onmessage = (event) => {
+                let result;
+                try {
+                  result = JSON.parse(event.data);
+                } catch (e) {
+                  return;
+                }
+
+                if (result.type === "Results") {
+                  const channel = result.channel;
+                  if (!channel || !channel.alternatives || channel.alternatives.length === 0) return;
+
+                  const alt = channel.alternatives[0];
+                  const transcript = alt.transcript || "";
+
+                  if (result.is_final) {
+                    // Deepgram 返回了确认结果
+                    finalTranscript += transcript;
+                    // 更新输入框（final + 后续 interim 不再包含这段）
+                    chatInput.value = finalTranscript;
+                    chatInput.style.height = "auto";
+                    chatInput.style.height = chatInput.scrollHeight + "px";
+
+                    // 清除之前的自动发送计时器
+                    if (autoSendTimer) clearTimeout(autoSendTimer);
+                    // 设置新的自动发送计时：收到 final 后等 800ms 无新 final 就自动发送
+                    autoSendTimer = setTimeout(() => {
+                      autoSendMessage();
+                    }, 800);
+                  } else {
+                    // interim 结果：实时显示
+                    chatInput.value = finalTranscript + transcript;
+                    chatInput.style.height = "auto";
+                    chatInput.style.height = chatInput.scrollHeight + "px";
+                  }
+                }
+
+                // 处理 utterance_end 事件（Deepgram VAD 判断说完了一段话）
+                if (result.type === "UtteranceEnd") {
+                  if (autoSendTimer) clearTimeout(autoSendTimer);
+                  autoSendTimer = setTimeout(() => {
+                    autoSendMessage();
+                  }, 300);
+                }
+              };
+
+              dgWs.onerror = (err) => {
+                console.error("[Deepgram STT] WebSocket 错误:", err);
+              };
+
+              dgWs.onclose = (event) => {
+                console.log("[Deepgram STT] WebSocket 已关闭, code:", event.code, "reason:", event.reason);
+                // 如果仍在录音状态且非手动关闭，尝试重连
+                if (isRecording && event.code !== 1000) {
+                  console.log("[Deepgram STT] 非手动关闭，将在1秒后重连...");
+                  setTimeout(() => {
+                    if (isRecording) startRecording();
+                  }, 1000);
+                }
+              };
+            }
+
+            function stopRecording() {
+              isRecording = false;
+              if (autoSendTimer) {
+                clearTimeout(autoSendTimer);
+                autoSendTimer = null;
+              }
+              // 如果有未发送的文字，先发送
+              if (finalTranscript.trim()) {
+                autoSendMessage();
+              }
+              cleanupRecording();
+            }
+
+            function cleanupRecording() {
+              if (mediaRecorder && mediaRecorder.state !== "inactive") {
+                try { mediaRecorder.stop(); } catch (e) {}
+              }
+              mediaRecorder = null;
+              if (mediaStream) {
+                mediaStream.getTracks().forEach((t) => t.stop());
+                mediaStream = null;
+              }
+              if (dgWs) {
+                try { dgWs.close(1000); } catch (e) {}
+                dgWs = null;
+              }
+              finalTranscript = "";
+              micBtn.classList.remove("recording");
+              chatInput.placeholder = "输入消息...";
+            }
+
+            function autoSendMessage() {
+              const content = chatInput.value.trim();
+              if (!content || !state.activeChatId) return;
+              // 重置 final 文字，防止重复发送
+              finalTranscript = "";
+              // 点击发送按钮（复用现有发送逻辑）
+              document.getElementById("send-btn").click();
+              // 发送后麦克风保持开启，清空输入框后继续监听
+              chatInput.placeholder = "正在听你说话...";
+            }
+          })();
 
           document
             .getElementById("wallpaper-upload-input")
@@ -54794,6 +53561,13 @@ ${libraryList}
               state.apiConfig.pollinationsApiKey = document
                 .getElementById("pollinations-api-key")
                 .value.trim();
+              // --- 保存 Deepgram 语音识别设置 ---
+              state.apiConfig.deepgramApiKey = document
+                .getElementById("deepgram-api-key")
+                .value.trim();
+              state.apiConfig.deepgramLanguage = document.getElementById(
+                "deepgram-language-select",
+              ).value;
 
               // 如果开启了自动备份，立即重启定时器
               handleAutoBackupTimer();
@@ -61914,38 +60688,7 @@ ${libraryList}
               }
             });
 
-          // 1. 绑定主屏幕上的“兔k记账”图标点击事件
-          document
-            .getElementById("tukey-accounting-app-icon")
-            .addEventListener("click", () => {
-              // 打开时，确保默认显示记账群聊
-              switchTukeyView("tukey-group-chat-view");
-              showScreen("tukey-accounting-screen");
-            });
-
-          // 2. 为“兔k记账”的底部导航栏绑定事件委托
-          document
-            .getElementById("tukey-bottom-nav")
-            .addEventListener("click", (e) => {
-              const navItem = e.target.closest(".tukey-nav-item");
-              if (navItem && navItem.dataset.view) {
-                switchTukeyView(navItem.dataset.view);
-              }
-            });
-
-          // 报表页面的点击事件（处理删除）
-          document
-            .getElementById("tukey-reports-view")
-            .addEventListener("click", (e) => {
-              // 检查是否点击了删除按钮
-              const deleteBtn = e.target.closest(".delete-record-btn");
-              if (deleteBtn) {
-                const recordId = parseInt(deleteBtn.dataset.id);
-                if (!isNaN(recordId)) {
-                  deleteTukeyAccountingRecord(recordId);
-                }
-              }
-            });
+          // "kk查岗"功能事件监听器
 
           // “kk查岗”功能事件监听器
           document
