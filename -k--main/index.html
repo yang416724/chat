@@ -1234,7 +1234,29 @@
             </div>
           </div>
 
-          <!-- 3. 后台活动卡片 -->
+          <!-- 3. Deepgram 语音识别卡片 -->
+          <div class="moe-card">
+            <div class="moe-card-header">
+              <span class="icon">🎤</span>
+              <h3>Deepgram 语音识别</h3>
+            </div>
+            <div class="moe-card-body">
+              <div class="form-group">
+                <label>API Key</label>
+                <input type="password" id="deepgram-api-key" class="moe-input" placeholder="输入你的 Deepgram API Key" />
+              </div>
+              <div class="form-group">
+                <label>语言</label>
+                <select id="deepgram-language-select" class="moe-input">
+                  <option value="zh">中文 (Chinese)</option>
+                  <option value="en">英文 (English)</option>
+                  <option value="auto">自动检测</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. 后台活动卡片 -->
           <div class="moe-card">
             <div class="moe-card-header">
               <span class="icon">🤖</span>
@@ -2628,6 +2650,14 @@
               placeholder="输入消息..."
             ></textarea>
             <div id="input-actions-wrapper">
+              <button id="voice-input-btn" class="action-button" title="语音输入">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="23"></line>
+                  <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+              </button>
               <button id="wait-reply-btn" title="等待回复">
                 <img
                   src="https://i.postimg.cc/q72zq80N/ECE92-BBC-BE57-48-E9-BB2-C-345-B6019-C4-B2.png"
@@ -19827,6 +19857,8 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
               backupObj.apiConfig.githubToken = "";
               // 清空 Minimax Key
               backupObj.apiConfig.minimaxApiKey = "";
+              // 清空 Deepgram Key
+              backupObj.apiConfig.deepgramApiKey = "";
             }
 
             // 重新转换回 JSON 字符串
@@ -22042,6 +22074,12 @@ lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer
             state.apiConfig.minimaxApiKey || "";
           document.getElementById("minimax-provider-select").value =
             state.apiConfig.minimaxProvider || "cn";
+
+          // --- Deepgram 设置 ---
+          document.getElementById("deepgram-api-key").value =
+            state.apiConfig.deepgramApiKey || "";
+          document.getElementById("deepgram-language-select").value =
+            state.apiConfig.deepgramLanguage || "zh";
 
           // 2：Minimax 语音模型下拉框回显
           const speechModelSelect = document.getElementById(
@@ -52216,6 +52254,7 @@ ${libraryList}
                   data.apiKey = "";
                   data.githubToken = "";
                   data.minimaxApiKey = "";
+                  data.deepgramApiKey = "";
                 }
               }
 
@@ -54612,6 +54651,208 @@ ${libraryList}
             chatInput.style.height = chatInput.scrollHeight + "px";
           });
 
+          // ==================== 语音输入功能 ====================
+          let isVoiceRecording = false;
+          let mediaRecorder = null;
+          let audioStream = null;
+          let deepgramWs = null;
+          let audioContext = null;
+          let mediaSource = null;
+          let scriptProcessor = null;
+          let lastFinalResult = "";
+
+          const voiceInputBtn = document.getElementById("voice-input-btn");
+
+          async function startVoiceRecording() {
+            const deepgramApiKey = state.apiConfig.deepgramApiKey;
+            const deepgramLang = state.apiConfig.deepgramLanguage || "zh";
+
+            if (!deepgramApiKey) {
+              alert("请先在API设置中配置Deepgram API Key！");
+              return;
+            }
+
+            try {
+              audioStream = await navigator.mediaDevices.getUserMedia({
+                audio: {
+                  echoCancellation: true,
+                  noiseSuppression: true,
+                  autoGainControl: true,
+                  sampleRate: 16000,
+                },
+              });
+
+              audioContext = new AudioContext({ sampleRate: 16000 });
+              mediaSource = audioContext.createMediaStreamSource(audioStream);
+              scriptProcessor = audioContext.createScriptProcessor(4096, 1, 1);
+
+              const queryParams = new URLSearchParams({
+                encoding: "linear16",
+                sample_rate: "16000",
+                interim_results: "true",
+                vad_turnoff: "true",
+                model: "nova-2",
+              });
+
+              if (deepgramLang !== "auto") {
+                queryParams.set("language", deepgramLang);
+              }
+
+              deepgramWs = new WebSocket(
+                `wss://api.deepgram.com/v1/listen?${queryParams.toString()}`,
+                [],
+                {
+                  headers: {
+                    Authorization: `Token ${deepgramApiKey}`,
+                  },
+                }
+              );
+
+              deepgramWs.onopen = () => {
+                isVoiceRecording = true;
+                updateVoiceButtonState(true);
+                chatInput.placeholder = "正在听你说话...";
+              };
+
+              deepgramWs.onmessage = (event) => {
+                const response = JSON.parse(event.data);
+                handleDeepgramResponse(response);
+              };
+
+              deepgramWs.onerror = (error) => {
+                console.error("Deepgram WebSocket error:", error);
+                stopVoiceRecording();
+                alert("语音识别连接失败，请检查网络或API Key");
+              };
+
+              deepgramWs.onclose = () => {
+                if (isVoiceRecording) {
+                  stopVoiceRecording();
+                }
+              };
+
+              scriptProcessor.onaudioprocess = (event) => {
+                if (!isVoiceRecording || !deepgramWs || deepgramWs.readyState !== WebSocket.OPEN) return;
+
+                const inputBuffer = event.inputBuffer;
+                const channelData = inputBuffer.getChannelData(0);
+
+                const pcmData = new Int16Array(channelData.length);
+                for (let i = 0; i < channelData.length; i++) {
+                  const s = Math.max(-1, Math.min(1, channelData[i]));
+                  pcmData[i] = s < 0 ? s * 0x8000 : s * 0x7fff;
+                }
+
+                deepgramWs.send(pcmData.buffer);
+              };
+
+              mediaSource.connect(scriptProcessor);
+              scriptProcessor.connect(audioContext.destination);
+
+            } catch (error) {
+              console.error("启动录音失败:", error);
+              alert("无法访问麦克风，请检查权限设置");
+            }
+          }
+
+          function stopVoiceRecording() {
+            isVoiceRecording = false;
+            updateVoiceButtonState(false);
+            chatInput.placeholder = "输入消息...";
+
+            if (deepgramWs) {
+              if (deepgramWs.readyState === WebSocket.OPEN) {
+                deepgramWs.close();
+              }
+              deepgramWs = null;
+            }
+
+            if (scriptProcessor) {
+              scriptProcessor.disconnect();
+              scriptProcessor = null;
+            }
+
+            if (mediaSource) {
+              mediaSource.disconnect();
+              mediaSource = null;
+            }
+
+            if (audioContext) {
+              audioContext.close();
+              audioContext = null;
+            }
+
+            if (audioStream) {
+              audioStream.getTracks().forEach((track) => track.stop());
+              audioStream = null;
+            }
+
+            if (mediaRecorder) {
+              mediaRecorder = null;
+            }
+          }
+
+          function handleDeepgramResponse(response) {
+            if (!response || !response.results) return;
+
+            const results = response.results;
+            if (!results.channels || results.channels.length === 0) return;
+
+            const channel = results.channels[0];
+            if (!channel.alternatives || channel.alternatives.length === 0) return;
+
+            const alternative = channel.alternatives[0];
+            const transcript = alternative.transcript || "";
+
+            if (transcript) {
+              chatInput.value = transcript;
+              chatInput.style.height = "auto";
+              chatInput.style.height = chatInput.scrollHeight + "px";
+            }
+
+            if (results.channel_final) {
+              const finalTranscript = transcript.trim();
+              if (finalTranscript && isVoiceRecording) {
+                setTimeout(() => {
+                  if (chatInput.value.trim() === finalTranscript) {
+                    document.getElementById("send-btn").click();
+                  }
+                }, 300);
+              }
+            }
+          }
+
+          function updateVoiceButtonState(isRecording) {
+            if (!voiceInputBtn) return;
+
+            if (isRecording) {
+              voiceInputBtn.classList.add("recording");
+              voiceInputBtn.innerHTML = `
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="6" y="6" width="12" height="12" rx="2" ry="2"></rect>
+                </svg>
+              `;
+            } else {
+              voiceInputBtn.classList.remove("recording");
+              voiceInputBtn.innerHTML = `
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="23"></line>
+                  <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+              `;
+            }
+          }
+
+          voiceInputBtn.addEventListener("click", () => {
+            if (isVoiceRecording) {
+              stopVoiceRecording();
+            } else {
+              startVoiceRecording();
+            }
+          });
+
           document
             .getElementById("wallpaper-upload-input")
             .addEventListener("change", async (event) => {
@@ -54767,6 +55008,13 @@ ${libraryList}
               ).value;
               state.apiConfig.minimaxSpeechModel = document.getElementById(
                 "minimax-speech-model-select",
+              ).value;
+              // 保存 Deepgram 设置
+              state.apiConfig.deepgramApiKey = document
+                .getElementById("deepgram-api-key")
+                .value.trim();
+              state.apiConfig.deepgramLanguage = document.getElementById(
+                "deepgram-language-select",
               ).value;
               // --- 保存 GitHub 备份设置 ---
               state.apiConfig.githubToken = document
