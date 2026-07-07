@@ -727,6 +727,55 @@ body {
   height: 40px;
   padding: 0 15px;
 }
+
+/* 语音输入按钮样式 */
+#voice-input-btn {
+  background-color: transparent;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+#voice-input-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+#voice-input-btn.recording {
+  background-color: var(--accent-color);
+  color: white;
+  animation: pulse-recording 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-recording {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+  }
+}
+
+#voice-input-btn.recording svg {
+  animation: mic-pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes mic-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
 .modal {
   /* ▼▼▼ 核心修改：将定位方式从 absolute 改为 fixed ▼▼▼ */
   position: fixed;
@@ -8134,6 +8183,13 @@ body {
 #phone-screen.dark-mode #chat-input {
   background-color: var(--secondary-bg);
   color: var(--text-primary);
+}
+/* 深色模式下的语音输入按钮 */
+#phone-screen.dark-mode #voice-input-btn {
+  color: var(--text-secondary);
+}
+#phone-screen.dark-mode #voice-input-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 #phone-screen.dark-mode .modal-content,
 #phone-screen.dark-mode #custom-modal {
