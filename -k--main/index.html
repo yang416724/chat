@@ -4743,7 +4743,7 @@
           <button
             id="user-speak-btn-visual"
             class="control-btn speak-btn"
-            title="发言"
+            title="点击开始/停止说话"
           ></button>
           <!-- 切换镜头按钮 -->
           <button
@@ -4797,7 +4797,7 @@
             class="control-btn reroll-btn"
             title="重新生成"
           ></button>
-          <button id="user-speak-btn" class="control-btn speak-btn"></button>
+          <button id="user-speak-btn" class="control-btn speak-btn" title="点击开始/停止说话"></button>
           <button id="hang-up-btn" class="control-btn hangup-btn"></button>
           <button
             id="join-call-btn"
@@ -34626,8 +34626,16 @@ ${libraryList}
           participants: [],
           isUserParticipating: true,
 
-          callHistory: [], // 用于存储通话中的对话历史
-          preCallContext: "", // 用于存储通话前的聊天摘要
+          callHistory: [],
+          preCallContext: "",
+
+          isRecording: false,
+          speechRecognition: null,
+          interimTranscript: "",
+          finalTranscript: "",
+
+          isUserMain: false,
+          facingMode: "user",
         };
 
         let callTimerInterval = null; // 用于存储计时器的ID
@@ -34985,6 +34993,18 @@ ${libraryList}
           const v2 = document.querySelector("#video-pip-view video");
           if (v1) v1.srcObject = null;
           if (v2) v2.srcObject = null;
+          // ==========================================
+
+          // ==========================================
+          // 停止语音识别，释放麦克风资源
+          // ==========================================
+          if (videoCallState.speechRecognition) {
+            try {
+              videoCallState.speechRecognition.stop();
+            } catch (e) {}
+            videoCallState.speechRecognition = null;
+          }
+          videoCallState.isRecording = false;
           // ==========================================
 
           const duration = Math.floor(
@@ -35360,6 +35380,14 @@ ${libraryList}
             ? document.getElementById("video-call-messages-visual")
             : document.getElementById("video-call-main");
 
+          const speakBtns = document.querySelectorAll(
+            "#user-speak-btn, #user-speak-btn-visual",
+          );
+          speakBtns.forEach((btn) => {
+            btn.style.opacity = "0.5";
+            btn.style.pointerEvents = "none";
+          });
+
           const userNickname = chat.settings.myNickname || "我";
 
           let worldBookContent = "";
@@ -35624,6 +35652,14 @@ ${libraryList}
             videoCallState.callHistory.push({
               role: "assistant",
               content: `[ERROR: ${error.message}]`,
+            });
+          } finally {
+            const speakBtns = document.querySelectorAll(
+              "#user-speak-btn, #user-speak-btn-visual",
+            );
+            speakBtns.forEach((btn) => {
+              btn.style.opacity = "";
+              btn.style.pointerEvents = "";
             });
           }
         }
@@ -48785,13 +48821,205 @@ ${libraryList}
         }
 
         /**
-         * 处理用户在通话中点击“发言”按钮的逻辑
+         * 初始化语音识别
          */
-        async function handleUserSpeakInCall() {
-          // 安全检查，如果通话未激活则不执行
+        function initSpeechRecognition() {
+          if (
+            !("webkitSpeechRecognition" in window) &&
+            !("SpeechRecognition" in window)
+          ) {
+            console.warn("[语音识别] 当前浏览器不支持 Web Speech API");
+            return null;
+          }
+
+          const SpeechRecognition =
+            window.SpeechRecognition || window.webkitSpeechRecognition;
+          const recognition = new SpeechRecognition();
+
+          recognition.continuous = true;
+          recognition.interimResults = true;
+          recognition.lang = "zh-CN";
+
+          recognition.onstart = () => {
+            videoCallState.isRecording = true;
+            videoCallState.interimTranscript = "";
+            videoCallState.finalTranscript = "";
+            updateRecordingUI(true);
+          };
+
+          recognition.onresult = (event) => {
+            let interim = "";
+            let final = "";
+
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+              const transcript = event.results[i][0].transcript;
+              if (event.results[i].isFinal) {
+                final += transcript;
+              } else {
+                interim += transcript;
+              }
+            }
+
+            videoCallState.interimTranscript = interim;
+            if (final) {
+              videoCallState.finalTranscript += final;
+            }
+
+            updateRealTimeTranscript(
+              videoCallState.finalTranscript + videoCallState.interimTranscript,
+            );
+          };
+
+          recognition.onerror = (event) => {
+            console.error("[语音识别] 错误:", event.error);
+            if (event.error === "not-allowed") {
+              alert("麦克风权限被拒绝，请在浏览器设置中允许麦克风访问。");
+            }
+            stopSpeechRecognition();
+          };
+
+          recognition.onend = () => {
+            if (videoCallState.isRecording) {
+              const fullText = (
+                videoCallState.finalTranscript +
+                videoCallState.interimTranscript
+              ).trim();
+              if (fullText) {
+                sendVoiceMessage(fullText);
+              } else {
+                updateRecordingUI(false);
+                removeRealTimeTranscript();
+              }
+              videoCallState.isRecording = false;
+            }
+          };
+
+          return recognition;
+        }
+
+        /**
+         * 开始语音识别
+         */
+        function startSpeechRecognition() {
+          if (!videoCallState.speechRecognition) {
+            videoCallState.speechRecognition = initSpeechRecognition();
+          }
+
+          if (!videoCallState.speechRecognition) {
+            handleUserSpeakInCallFallback();
+            return;
+          }
+
+          if (videoCallState.isRecording) {
+            stopSpeechRecognition();
+            return;
+          }
+
+          try {
+            videoCallState.speechRecognition.start();
+          } catch (e) {
+            console.error("[语音识别] 启动失败:", e);
+            handleUserSpeakInCallFallback();
+          }
+        }
+
+        /**
+         * 停止语音识别
+         */
+        function stopSpeechRecognition() {
+          if (
+            videoCallState.speechRecognition &&
+            videoCallState.isRecording
+          ) {
+            videoCallState.isRecording = false;
+            try {
+              videoCallState.speechRecognition.stop();
+            } catch (e) {
+              console.error("[语音识别] 停止失败:", e);
+            }
+          }
+        }
+
+        /**
+         * 发送语音识别后的消息
+         */
+        function sendVoiceMessage(text) {
+          updateRecordingUI(false);
+          removeRealTimeTranscript();
+
+          const chat = state.chats[videoCallState.activeChatId];
+          if (!chat) return;
+
+          const userAvatar = document.querySelector(
+            '.participant-avatar-wrapper[data-participant-id="user"] .participant-avatar',
+          );
+          if (userAvatar) {
+            userAvatar.classList.remove("speaking");
+          }
+
+          if (text && text.trim()) {
+            triggerAiInCallAction(text.trim());
+          }
+        }
+
+        /**
+         * 更新录音状态UI
+         */
+        function updateRecordingUI(isRecording) {
+          const speakBtns = document.querySelectorAll(
+            "#user-speak-btn, #user-speak-btn-visual",
+          );
+          speakBtns.forEach((btn) => {
+            if (isRecording) {
+              btn.classList.add("recording");
+            } else {
+              btn.classList.remove("recording");
+            }
+          });
+        }
+
+        /**
+         * 更新实时转写文字
+         */
+        function updateRealTimeTranscript(text) {
+          let transcriptEl = document.getElementById("voice-transcript-bubble");
+          const chat = state.chats[videoCallState.activeChatId];
+          const isVisualMode = chat?.settings?.visualVideoCallEnabled;
+          const callFeed = isVisualMode
+            ? document.getElementById("video-call-messages-visual")
+            : document.getElementById("video-call-main");
+
+          if (!transcriptEl && callFeed) {
+            transcriptEl = document.createElement("div");
+            transcriptEl.id = "voice-transcript-bubble";
+            transcriptEl.className = isVisualMode
+              ? "visual-call-bubble user transcript"
+              : "call-message-bubble user-speech transcript";
+            callFeed.appendChild(transcriptEl);
+            callFeed.scrollTop = callFeed.scrollHeight;
+          }
+
+          if (transcriptEl) {
+            transcriptEl.textContent = text + "...";
+          }
+        }
+
+        /**
+         * 移除实时转写气泡
+         */
+        function removeRealTimeTranscript() {
+          const transcriptEl = document.getElementById("voice-transcript-bubble");
+          if (transcriptEl) {
+            transcriptEl.remove();
+          }
+        }
+
+        /**
+         * 旧版文字输入 fallback（当浏览器不支持语音识别时使用）
+         */
+        async function handleUserSpeakInCallFallback() {
           if (!videoCallState.isActive) return;
 
-          // 找到用户头像并添加“正在发言”的高亮效果，提升交互感
           const userAvatar = document.querySelector(
             '.participant-avatar-wrapper[data-participant-id="user"] .participant-avatar',
           );
@@ -48799,20 +49027,40 @@ ${libraryList}
             userAvatar.classList.add("speaking");
           }
 
-          // 弹出你已经写好的自定义输入框
           const userInput = await showCustomPrompt(
             "你说",
             "请输入你想说的话...",
           );
 
-          // 无论用户是否输入，只要输入框关闭，就立刻移除头像的高亮效果
           if (userAvatar) {
             userAvatar.classList.remove("speaking");
           }
 
-          // 如果用户确实输入了内容，就调用你已有的函数来触发AI响应
           if (userInput && userInput.trim()) {
             triggerAiInCallAction(userInput.trim());
+          }
+        }
+
+        /**
+         * 处理用户在通话中点击“发言”按钮的逻辑
+         */
+        function handleUserSpeakInCall() {
+          if (!videoCallState.isActive) return;
+
+          const userAvatar = document.querySelector(
+            '.participant-avatar-wrapper[data-participant-id="user"] .participant-avatar',
+          );
+
+          if (videoCallState.isRecording) {
+            stopSpeechRecognition();
+            if (userAvatar) {
+              userAvatar.classList.remove("speaking");
+            }
+          } else {
+            if (userAvatar) {
+              userAvatar.classList.add("speaking");
+            }
+            startSpeechRecognition();
           }
         }
 

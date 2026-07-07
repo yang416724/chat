@@ -3833,6 +3833,24 @@ body {
   background-size: 55%;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>');
 }
+.control-btn.speak-btn.recording {
+  background-color: #ff3b30;
+  animation: pulse-recording 1.2s ease-in-out infinite;
+}
+@keyframes pulse-recording {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(255, 59, 48, 0);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+    transform: scale(1);
+  }
+}
 .control-btn.hangup-btn {
   background-color: #ff3b30;
   background-size: 50%;
@@ -3875,6 +3893,16 @@ body {
 }
 .visual-call-bubble.ai {
   align-self: flex-start;
+}
+.visual-call-bubble.transcript {
+  opacity: 0.7;
+  font-style: italic;
+  border-style: dashed;
+}
+.call-message-bubble.transcript {
+  opacity: 0.7;
+  font-style: italic;
+  border: 1px dashed currentColor;
 }
 
 /* 文字模式的气泡 */
@@ -7237,6 +7265,17 @@ body {
 
 .visual-call-bubble.ai {
   align-self: flex-start; /* AI的发言靠左 */
+}
+
+.visual-call-bubble.transcript {
+  opacity: 0.7;
+  font-style: italic;
+  border-style: dashed;
+}
+.call-message-bubble.transcript {
+  opacity: 0.7;
+  font-style: italic;
+  border: 1px dashed currentColor;
 }
 
 /* 8. 顶部和底部栏的层级要最高 */
