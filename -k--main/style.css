@@ -9803,7 +9803,6 @@ body {
 }
 /* ▼▼▼ 第1步：从这里开始复制替换 ▼▼▼ */
 
-#lovers-space-screen {
   background-color: #f0f2f5; /* 保留一个备用背景色 */
   background-size: cover; /* 背景图覆盖整个区域 */
   background-position: center; /* 背景图居中显示 */
@@ -12025,7 +12024,6 @@ body {
 /* ▲▲▲ 新样式粘贴结束 ▲▲▲ */
 
 /* ▼▼▼ 【这是为你新增的X社交App图标样式】粘贴到 <style> 的末尾 ▼▼▼ */
-#second-page-x-social-app {
   position: absolute;
   /* 控制上下位置。我把值调大了，让它更靠下，和“圈子”图标对齐 */
   top: 100px; /* ★ 修改这里 ★ */
@@ -12035,7 +12033,6 @@ body {
 }
 
 /* 把新图标的文字也变成白色，和其他图标统一 */
-#second-page-x-social-app .label {
   color: white;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
@@ -13740,18 +13737,15 @@ body {
 /* ▼▼▼ 把这一整块全新的CSS，粘贴到 <style> 标签的最末尾 ▼▼▼ */
 
 /* --- “桃宝”App 整体布局 --- */
-#taobao-screen {
   background-color: #f0f2f5;
 }
 
 /* 顶部页签 */
-.taobao-tabs {
   display: flex;
   flex-shrink: 0;
   border-bottom: 1px solid var(--border-color);
   background-color: var(--secondary-bg);
 }
-.taobao-tab {
   flex: 1;
   padding: 12px 0;
   text-align: center;
@@ -13762,10 +13756,8 @@ body {
   cursor: pointer;
   position: relative;
 }
-.taobao-tab.active {
   color: #ff5722; /* 淘宝橙 */
 }
-.taobao-tab.active::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -13778,12 +13770,10 @@ body {
 }
 
 /* 内容区域 */
-.taobao-content {
   flex-grow: 1;
   position: relative;
   overflow: hidden;
 }
-.taobao-view {
   position: absolute;
   top: 0;
   left: 0;
@@ -13794,7 +13784,6 @@ body {
   padding: 15px;
   box-sizing: border-box;
 }
-.taobao-view.active {
   display: block;
 }
 
@@ -13927,7 +13916,6 @@ body {
 /* ▼▼▼ 把这一整块全新的CSS，粘贴到 <style> 标签的最末尾 ▼▼▼ */
 
 /* --- “桃宝”App 搜索栏样式 --- */
-.taobao-search-bar {
   display: flex;
   gap: 10px;
   padding: 0 0 15px 0; /* 只在下方留出间距 */
@@ -13988,7 +13976,6 @@ body {
 /* ▼▼▼ 把这一整块全新的CSS，粘贴到 <style> 标签的最末尾 ▼▼▼ */
 
 /* --- 购物车页签上的小红点 --- */
-.taobao-tab {
   position: relative;
 }
 #cart-item-count-badge {
@@ -15439,7 +15426,6 @@ body {
 }
 
 /* 2. 卡片主体样式 */
-.lovers-space-disconnect-card {
   width: 220px; /* 宽度可以自己调整 */
   background: linear-gradient(
     135deg,
@@ -15456,19 +15442,16 @@ body {
 }
 
 /* 3. 夜间模式下的卡片颜色 */
-#phone-screen.dark-mode .lovers-space-disconnect-card {
   background: linear-gradient(135deg, #495057, #343a40);
   border-color: #6c757d;
 }
 
 /* 4. 心碎 Emoji 图标的样式 */
-.lovers-space-disconnect-card .icon {
   font-size: 32px; /* Emoji 大小 */
   line-height: 1;
 }
 
 /* 5. 文字区域的样式 */
-.lovers-space-disconnect-card .text-content .title {
   font-weight: 600;
   font-size: 16px;
   color: var(--text-primary);
@@ -17830,7 +17813,6 @@ body {
 /* ▼▼▼ 这是为“首页”搜索栏新增的美化代码 ▼▼▼ */
 
 /* 1. 把首页的搜索栏容器变成一个圆润的白色“胶囊” */
-#products-view .taobao-search-bar {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -17869,7 +17851,6 @@ body {
 /* ▼▼▼ 这是为“饿了么”搜索栏新增的布局和美化代码 ▼▼▼ */
 
 /* 1. 将饿了么的搜索总容器改为垂直排列，让两组按钮上下堆叠 */
-#eleme-view .taobao-search-bar {
   display: flex;
   flex-direction: column; /* 改为垂直排列 */
   gap: 12px; /* 设置两行之间的垂直间距 */
@@ -18656,7 +18637,6 @@ body {
 
 /* ▲▲▲ 微调结束 ▲▲▲ */
 /* ▼▼▼ 【全新】兔k记账 App 样式 ▼▼▼ */
-#tukey-accounting-screen .tukey-content {
   flex-grow: 1;
   overflow-y: auto;
   padding: 15px;
@@ -18664,13 +18644,11 @@ body {
   flex-direction: column;
   gap: 15px;
 }
-#tukey-accounting-screen .tukey-view {
   display: none;
   height: 100%;
   flex-direction: column;
   gap: 15px;
 }
-#tukey-accounting-screen .tukey-view.active {
   display: flex;
 }
 #tukey-bottom-nav {
@@ -24700,7 +24678,6 @@ body {
 /* ================================================================= */
 
 /* --- 1. 全局容器与背景 --- */
-#lovers-space-screen {
   background-color: transparent !important;
   background-size: cover !important;
   background-position: center !important;
@@ -24708,7 +24685,6 @@ body {
 }
 
 /* 顶部加深渐变 */
-#lovers-space-screen::before {
   content: "";
   position: absolute;
   top: 0;
@@ -26998,19 +26974,16 @@ input:checked + .slider::after {
 }
 
 /* 1. 全局容器背景 */
-#tukey-accounting-screen {
   background-color: var(--tukey-bg) !important;
   font-family: "PingFang SC", "Microsoft YaHei", sans-serif; /* 确保字体圆润 */
 }
 
 /* 2. 头部美化 */
-#tukey-accounting-screen .header {
   background: rgba(255, 255, 255, 0.8) !important;
   backdrop-filter: blur(10px);
   border-bottom: none !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
-#tukey-accounting-screen .header span {
   color: var(--tukey-text-main);
   font-weight: 600;
 }
@@ -27528,11 +27501,8 @@ input:checked + .slider::after {
   flex-direction: column;
   gap: 8px;
 }
-#tukey-accounting-screen,
 #kk-house-view-screen,
 #date-a-live-screen,
-#taobao-screen,
-#lovers-space-screen,
 #wallpaper-screen {
   height: 100vh;
 }
