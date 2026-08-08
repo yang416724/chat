@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>中国AI大模型青年创始人TOP10</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: #FFF8F0;
+        }
+
+        .page {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, #FFF8F0 0%, #FFE8CC 50%, #FFD9B3 100%);
+        }
+
+        /* 顶部标题区域 */
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 24px 20px;
+            z-index: 10;
+            background: linear-gradient(180deg, rgba(255,248,240,0.98) 0%, rgba(255,248,240,0.85) 70%, transparent 100%);
+        }
+
+        .title-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .title-accent {
+            width: 5px;
+            height: 32px;
+            background: linear-gradient(180deg, #FF6B35 0%, #FF8C42 100%);
+            border-radius: 3px;
+        }
+
+        .main-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #2C1810;
+            letter-spacing: -0.5px;
+        }
+
+        .main-title .highlight {
+            color: #FF6B35;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #8B5A3C;
+            padding-left: 15px;
+            font-weight: 500;
+        }
+
+        .scroll-hint {
+            margin-top: 20px;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-hint span {
+            font-size: 12px;
+            color: #FF8C42;
+            font-weight: 600;
+        }
+
+        .scroll-arrow {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-right: 2.5px solid #FF8C42;
+            border-bottom: 2.5px solid #FF8C42;
+            transform: rotate(45deg);
+            margin-top: 6px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* 内容滚动区域 */
+        .content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding-top: 180px;
+            padding-bottom: 100px;
+        }
+
+        .content-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* 页面分组 */
+        .group-section {
+            min-height: calc(100vh - 100px);
+            padding: 0 16px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .group-label {
+            align-self: center;
+            padding: 8px 24px;
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 30px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.35);
+            letter-spacing: 1px;
+        }
+
+        /* 人物卡片容器 */
+        .cards-container {
+            display: flex;
+            gap: 10px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        /* 单个人物卡片 */
+        .person-card {
+            flex: 1;
+            min-width: 0;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFF5EB 100%);
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 6px 24px rgba(255, 107, 53, 0.12);
+            border: 1.5px solid rgba(255, 140, 66, 0.2);
+            position: relative;
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .person-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .person-card:nth-child(1).visible { transition-delay: 0.05s; }
+        .person-card:nth-child(2).visible { transition-delay: 0.15s; }
+        .person-card:nth-child(3).visible { transition-delay: 0.25s; }
+        .person-card:nth-child(4).visible { transition-delay: 0.35s; }
+        .person-card:nth-child(5).visible { transition-delay: 0.45s; }
+
+        /* 人物照片 */
+        .photo-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 150%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #FFE8CC 0%, #FFD1A6 100%);
+        }
+
+        .photo-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(transparent 0%, rgba(255, 140, 66, 0.85) 100%);
+            pointer-events: none;
+        }
+
+        .company-tag {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            right: 8px;
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* 信息区域 */
+        .info-section {
+            padding: 12px 8px 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFF8F0 100%);
+        }
+
+        .name-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .name-bar::before {
+            content: '';
+            display: block;
+            width: 3px;
+            height: 14px;
+            background: linear-gradient(180deg, #FF6B35, #FFA552);
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .person-name {
+            font-size: 14px;
+            font-weight: 800;
+            color: #2C1810;
+            letter-spacing: -0.3px;
+        }
+
+        .person-title {
+            font-size: 9px;
+            color: #8B5A3C;
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding-left: 9px;
+            line-height: 1.3;
+        }
+
+        /* 履历徽章 */
+        .badges-list {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            flex: 1;
+        }
+
+        .badge-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .badge-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFF5EB 0%, #FFE8CC 100%);
+            border: 1.5px solid rgba(255, 140, 66, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 800;
+            color: #FF6B35;
+            flex-shrink: 0;
+        }
+
+        .badge-text {
+            font-size: 8px;
+            color: #5C3D2E;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .prev-tag {
+            margin-top: 8px;
+            padding: 5px 4px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 140, 66, 0.12) 100%);
+            border-radius: 8px;
+            border: 1px dashed rgba(255, 140, 66, 0.4);
+        }
+
+        .prev-tag .badge-icon {
+            width: 22px;
+            height: 22px;
+            font-size: 8px;
+        }
+
+        .prev-tag-text {
+            font-size: 7.5px;
+            color: #D2691E;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 2px;
+            line-height: 1.2;
+        }
+
+        /* 底部提示 */
+        .footer-hint {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer-hint p {
+            font-size: 13px;
+            color: #A0674A;
+            font-weight: 600;
+            line-height: 1.7;
+        }
+
+        .divider {
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF6B35, #FFA552);
+            border-radius: 2px;
+            margin: 0 auto 12px;
+        }
+
+        /* 装饰元素 */
+        .deco {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .deco-1 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 140, 66, 0.15) 0%, transparent 70%);
+            top: -50px;
+            right: -50px;
+        }
+
+        .deco-2 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(255, 209, 102, 0.12) 0%, transparent 70%);
+            bottom: 10%;
+            left: -80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="deco deco-1"></div>
+        <div class="deco deco-2"></div>
+
+        <div class="header">
+            <div class="title-bar">
+                <div class="title-accent"></div>
+                <h1 class="main-title">中国AI大模型青年创始人<span class="highlight">TOP10</span></h1>
+            </div>
+            <p class="subtitle">改写中美科技格局的一批年轻人</p>
+            <div class="scroll-hint" id="scrollHint">
+                <div><span>上滑查看人物信息</span></div>
+                <div class="scroll-arrow"></div>
+            </div>
+        </div>
+
+        <div class="content-wrapper" id="contentWrapper">
+            <!-- 第一组 5人 -->
+            <div class="group-section" id="group1">
+                <div class="group-label">第 一 组 · 基 座 巨 头</div>
+                <div class="cards-container">
+                    <!-- 王小川 -->
+                    <div class="person-card" data-group="1">
+                        <div class="photo-wrapper">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20headshot%20portrait%20of%20Wang%20Xiaochuan%2C%20Chinese%20tech%20entrepreneur%2C%2040s%2C%20short%20black%20hair%2C%20friendly%20smile%2C%20wearing%20black%20casual%20shirt%2C%20orange%20gradient%20background%2C%20high%20quality%2C%20realistic%20photo&image_size=portrait_4_3" alt="王小川" onerror="this.style.background='linear-gradient(135deg,#FFB088,#FF8C42)';this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23FF8C42%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2280%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-weight=%22bold%22%3E%E7%8E%8B%3C/text%3E%3C/svg%3E'">
+                            <div class="photo-overlay"></div>
+                            <div class="company-tag">BAICHUAN AI</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="name-bar"><span class="person-name">王小川</span></div>
+                            <div class="person-title">百川智能创始人</div>
+                            <div class="badges-list">
+                                <div class="badge-item">
+                                    <div class="badge-icon">清华</div>
+                                    <div class="badge-text">清华大学 · 本科</div>
+                                </div>
+                                <div class="badge-item">
+                                    <div class="badge-icon">清华</div>
+                                    <div class="badge-text">清华大学 · 博士</div>
+                                </div>
+                                <div class="prev-tag">
+                                    <div class="badge-item">
+                                        <div class="badge-icon">前</div>
+                                        <div class="prev-tag-text">搜狗 · CEO</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 姜大昕 -->
+                    <div class="person-card" data-group="1">
+                        <div class="photo-wrapper">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20headshot%20portrait%20of%20Jiang%20Daxin%2C%20Chinese%20AI%20researcher%2C%2050s%2C%20short%20black%20hair%2C%20wearing%20glasses%2C%20dark%20suit%20and%20tie%2C%20confident%20smile%2C%20orange%20gradient%20background%2C%20high%20quality%2C%20realistic%20photo&image_size=portrait_4_3" alt="姜大昕" onerror="this.style.background='linear-gradient(135deg,#FFB088,#FF8C42)';this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23FFA552%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2280%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-weight=%22bold%22%3E%E5%A7%9C%3C/text%3E%3C/svg%3E'">
+                            <div class="photo-overlay"></div>
+                            <div class="company-tag">STEP FUN</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="name-bar"><span class="person-name">姜大昕</span></div>
+                            <div class="person-title">阶跃星辰创始人</div>
+                            <div class="badges-list">
+                                <div class="badge-item">
+                                    <div class="badge-icon">中科大</div>
+                                    <div class="badge-text">中科大 · 本科</div>
+                                </div>
+                                <div class="badge-item">
+                                    <div class="badge-icon">SUNY</div>
+                                    <div class="badge-text">纽约州立 · 博士</div>
+                                </div>
+                                <div class="prev-tag">
+                                    <div class="badge-item">
+                                        <div class="badge-icon">前</div>
+                                        <div class="prev-tag-text">微软 · 全球副总裁</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 袁进辉 -->
+                    <div class="person-card" data-group="1">
+                        <div class="photo-wrapper">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20headshot%20portrait%20of%20Yuan%20Jinhui%2C%20Chinese%20AI%20engineer%2C%2040s%2C%20short%20black%20hair%2C%20wearing%20glasses%2C%20dark%20blue%20shirt%2C%20friendly%20expression%2C%20orange%20gradient%20background%2C%20high%20quality%2C%20realistic%20photo&image_size=portrait_4_3" alt="袁进辉" onerror="this.style.background='linear-gradient(135deg,#FFB088,#FF8C42)';this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23FF9248%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2280%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-weight=%22bold%22%3E%E8%A2%81%3C/text%3E%3C/svg%3E'">
+                            <div class="photo-overlay"></div>
+                            <div class="company-tag">SILICONFLOW</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="name-bar"><span class="person-name">袁进辉</span></div>
+                            <div class="person-title">硅基流动创始人</div>
+                            <div class="badges-list">
+                                <div class="badge-item">
+                                    <div class="badge-icon">西电</div>
+                                    <div class="badge-text">西安电子科大 · 本科</div>
+                                </div>
+                                <div class="badge-item">
+                                    <div class="badge-icon">清华</div>
+                                    <div class="badge-text">清华大学 · 博士</div>
+                                </div>
+                                <div class="prev-tag">
+                                    <div class="badge-item">
+                                        <div class="badge-icon">前</div>
+                                        <div class="prev-tag-text">OneFlow · 创始人</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 夏立雪 -->
+                    <div class="person-card" data-group="1">
+                        <div class="photo-wrapper">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20headshot%20portrait%20of%20Xia%20Lixue%2C%20young%20Chinese%20entrepreneur%2C%2030s%2C%20short%20black%20hair%2C%20wearing%20glasses%2C%20dark%20suit%20holding%20microphone%20speaking%2C%20confident%2C%20orange%20gradient%20background%2C%20high%20quality%2C%20realistic%20photo&image_size=portrait_4_3" alt="夏立雪" onerror="this.style.background='linear-gradient(135deg,#FFB088,#FF8C42)';this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23FF8040%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2280%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-weight=%22bold%22%3E%E5%A4%8F%3C/text%3E%3C/svg%3E'">
+                            <div class="photo-overlay"></div>
+                            <div class="company-tag">INFINIGENCE</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="name-bar"><span class="person-name">夏立雪</span></div>
+                            <div class="person-title">无问芯穹联创/CEO</div>
+                            <div class="badges-list">
+                                <div class="badge-item">
+                                    <div class="badge-icon">清华</div>
+                                    <div class="badge-text">清华大学 · 本科</div>
+                                </div>
+                                <div class="badge-item">
+                                    <div class="badge-icon">清华</div>
+                                    <div class="badge-text">清华大学 · 博士</div>
+                                </div>
+                                <div class="prev-tag">
+                                    <div class="badge-item">
+                                        <div class="badge-icon">前</div>
+                                        <div class="prev-tag-text">阿里云 · 技术负责人</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 王长虎 -->
+                    <div class="person-card" data-group="1">
+                        <div class="photo-wrapper">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20headshot%20portrait%20of%20Wang%20Changhu%2C%20Chinese%20computer%20vision%20expert%2C%2040s%2C%20short%20black%20hair%2C%20wearing%20glasses%2C%20gray%20casual%20shirt%2C%20arms%20crossed%20confident%20look%2C%20orange%20gradient%20background%2C%20high%20quality%2C%20realistic%20photo&image_size=portrait_4_3" alt="王长虎" onerror="this.style.background='linear-gradient(135deg,#FFB088,#FF8C42)';this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23FF7733%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2280%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-weight=%22bold%22%3E%E7%8E%8B%3C/text%3E%3C/svg%3E'">
+                            <div class="photo-overlay"></div>
+                            <div class="company-tag">PIXVERSE</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="name-bar"><span class="person-name">王长虎</span></div>
+                            <div class="person-title">爱诗科技创始人</div>
+                            <div class="badges-list">
+                                <div class="badge-item">
+                                    <div class="badge-icon">中科大</div>
+                                    <div class="badge-text">中科大 · 本科</div>
+                                </div>
+                                <div class="badge-item">
+                                    <div class="badge-icon">中科大</div>
+                                    <div class="badge-text">中科大 · 博士</div>
+                                </div>
+                                <div class="prev-tag">
+                                    <div class="badge-item">
+                                        <div class="badge-icon">前</div>
+                                        <div class="prev-tag-text">字节 · 视觉负责人</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二组 5人 -->
+            <div class="group-section" id="group2" style="padding-top: 20px;">
+                <div class="group-label">第 二 组 · 明 星 新 锐</div>
+                <div class="cards-container">
+                    <!-- 梁文锋 -->
+                    <div class="person-card" data-group="2">
+                        <div class="photo-wrapper">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20headshot%20portrait%20of%20Liang%20Wenfeng%2C%20Chinese%20quant%20and%20AI%20founder%2C%2040s%2C%20short%20black%20hair%2C%20wearing%20glasses%2C%20blue%20suit%2C%20speaking%20at%20podium%20with%20microphone%2C%20orange%20gradient%20background%2C%20high%20quality%2C%20realistic%20photo&image_size=portrait_4_3" alt="梁文锋" onerror="this.style.background='linear-gradient(135deg,#FFB088,#FF8C42)';this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23FF8C42%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2280%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-weight=%22bold%22%3E%E6%A2%81%3C/text%3E%3C/svg%3E'">
+                            <div class="photo-overlay"></div>
+                            <div class="company-tag">DEEPSEEK</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="name-bar"><span class="person-name">梁文锋</span></div>
+                            <div class="person-title">DeepSeek创始人</div>
+                            <div class="badges-list">
+                                <div class="badge-item">
+                                    <div class="badge-icon">浙大</div>
+                                    <div class="badge-text">浙江大学 · 本科</div>
+                                </div>
+                                <div class="badge-item">
+                                    <div class="badge-icon">浙大</div>
+                                    <div class="badge-text">浙江大学 · 硕士</div>
+                                </div>
+                                <div class="prev-tag">
+                                    <div class="badge-item">
+                                        <div class="badge-icon">前</div>
+                                        <div class="prev-tag-text">幻方量化 · 创始人</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 杨植麟 -->
+                    <div class="person-card" data-group="2">
+                        <div class="photo-wrapper">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20headshot%20portrait%20of%20Yang%20Zhilin%2C%20young%20Chinese%20AI%20researcher%2C%2030s%2C%20short%20black%20hair%2C%20wearing%20glasses%2C%20black%20casual%20shirt%2C%20holding%20microphone%20speaking%2C%20orange%20gradient%20background%2C%20high%20quality%2C%20realistic%20photo&image_size=portrait_4_3" alt="杨植麟" onerror="this.style.background='linear-gradient(135deg,#FFB088,#FF8C42)';this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23FFA050%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2280%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-weight=%22bold%22%3E%E6%9D%A8%3C/text%3E%3C/svg%3E'">
+                            <div class="photo-overlay"></div>
+                            <div class="company-tag">MOONSHOT AI</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="name-bar"><span class="person-name">杨植麟</span></div>
+                            <div class="person-title">月之暗面创始人</div>
+                            <div class="badges-list">
+                                <div class="badge-item">
+                                    <div class="badge-icon">清华</div>
+                                    <div class="badge-text">清华大学 · 本科</div>
+                                </div>
+                                <div class="badge-item">
+                                    <div class="badge-icon">CMU</div>
+                                    <div class="badge-text">CMU · 博士</div>
+                                </div>
+                                <div class="prev-tag">
+                                    <div class="badge-item">
+                                        <div class="badge-icon">前</div>
+                                        <div class="prev-tag-text">谷歌大脑 · 研究员</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 闫俊杰 -->
+                    <div class="person-card" data-group="2">
+                        <div class="photo-wrapper">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20headshot%20portrait%20of%20Yan%20Junjie%2C%20Chinese%20AI%20entrepreneur%2C%2030s%2C%20short%20black%20hair%2C%20dark%20suit%20and%20tie%2C%20wearing%20award%20ribbon%2C%20confident%20smile%2C%20orange%20gradient%20background%2C%20high%20quality%2C%20realistic%20photo&image_size=portrait_4_3" alt="闫俊杰" onerror="this.style.background='linear-gradient(135deg,#FFB088,#FF8C42)';this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23FF9045%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2280%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-weight=%22bold%22%3E%E9%97%AB%3C/text%3E%3C/svg%3E'">
+                            <div class="photo-overlay"></div>
+                            <div class="company-tag">MINIMAX</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="name-bar"><span class="person-name">闫俊杰</span></div>
+                            <div class="person-title">MiniMax创始人</div>
+                            <div class="badges-list">
+                                <div class="badge-item">
+                                    <div class="badge-icon">东大</div>
+                                    <div class="badge-text">东南大学 · 本科</div>
+                                </div>
+                                <div class="badge-item">
+                                    <div class="badge-icon">中科院</div>
+                                    <div class="badge-text">中科院 · 博士</div>
+                                </div>
+                                <div class="prev-tag">
+                                    <div class="badge-item">
+                                        <div class="badge-icon">前</div>
+                                        <div class="prev-tag-text">商汤 · 副总裁</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 张鹏 -->
+                    <div class="person-card" data-group="2">
+                        <div class="photo-wrapper">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20headshot%20portrait%20of%20Zhang%20Peng%2C%20Chinese%20AI%20CEO%2C%2040s%2C%20short%20black%20hair%2C%20wearing%20glasses%2C%20dark%20suit%20and%20white%20shirt%2C%20holding%20blue%20microphone%20speaking%2C%20orange%20gradient%20background%2C%20high%20quality%2C%20realistic%20photo&image_size=portrait_4_3" alt="张鹏" onerror="this.style.background='linear-gradient(135deg,#FFB088,#FF8C42)';this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23FF7F3E%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2280%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-weight=%22bold%22%3E%E5%BC%A0%3C/text%3E%3C/svg%3E'">
+                            <div class="photo-overlay"></div>
+                            <div class="company-tag">ZHIPU AI</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="name-bar"><span class="person-name">张鹏</span></div>
+                            <div class="person-title">智谱AI创始人/CEO</div>
+                            <div class="badges-list">
+                                <div class="badge-item">
+                                    <div class="badge-icon">清华</div>
+                                    <div class="badge-text">清华大学 · 本科</div>
+                                </div>
+                                <div class="badge-item">
+                                    <div class="badge-icon">清华</div>
+                                    <div class="badge-text">清华大学 · 博士</div>
+                                </div>
+                                <div class="prev-tag">
+                                    <div class="badge-item">
+                                        <div class="badge-icon">前</div>
+                                        <div class="prev-tag-text">清华KEG实验室</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 刘知远 -->
+                    <div class="person-card" data-group="2">
+                        <div class="photo-wrapper">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20headshot%20portrait%20of%20Liu%20Zhiyuan%2C%20Chinese%20professor%20and%20AI%20scientist%2C%2040s%2C%20short%20black%20hair%2C%20wearing%20glasses%2C%20dark%20suit%20and%20tie%2C%20professional%20scholarly%20look%2C%20orange%20gradient%20background%2C%20high%20quality%2C%20realistic%20photo&image_size=portrait_4_3" alt="刘知远" onerror="this.style.background='linear-gradient(135deg,#FFB088,#FF8C42)';this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23FF7030%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2280%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-weight=%22bold%22%3E%E5%88%98%3C/text%3E%3C/svg%3E'">
+                            <div class="photo-overlay"></div>
+                            <div class="company-tag">MODELBEST</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="name-bar"><span class="person-name">刘知远</span></div>
+                            <div class="person-title">面壁智能联创</div>
+                            <div class="badges-list">
+                                <div class="badge-item">
+                                    <div class="badge-icon">清华</div>
+                                    <div class="badge-text">清华大学 · 本科</div>
+                                </div>
+                                <div class="badge-item">
+                                    <div class="badge-icon">清华</div>
+                                    <div class="badge-text">清华大学 · 博士</div>
+                                </div>
+                                <div class="prev-tag">
+                                    <div class="badge-item">
+                                        <div class="badge-icon">现</div>
+                                        <div class="prev-tag-text">清华大学 · 副教授</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部 -->
+            <div class="footer-hint">
+                <div class="divider"></div>
+                <p>撑起国产大模型浪潮的十位青年掌舵人<br>正在改写中美 AI 的科技格局</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const wrapper = document.getElementById('contentWrapper');
+        const scrollHint = document.getElementById('scrollHint');
+        const cards = document.querySelectorAll('.person-card');
+        let group1Shown = false;
+        let group2Shown = false;
+
+        function checkVisibility() {
+            const scrollTop = wrapper.scrollTop;
+            const viewportHeight = wrapper.clientHeight;
+
+            // 隐藏上滑提示
+            if (scrollTop > 50) {
+                scrollHint.style.opacity = Math.max(0, 1 - scrollTop / 150);
+            }
+
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const wrapperRect = wrapper.getBoundingClientRect();
+                const cardTop = rect.top - wrapperRect.top + scrollTop;
+                const triggerPoint = scrollTop + viewportHeight * 0.75;
+
+                if (cardTop < triggerPoint) {
+                    card.classList.add('visible');
+                }
+            });
+        }
+
+        // 触摸滑动处理 - 确保上划时5人一起出现的效果
+        let touchStartY = 0;
+        let isSwiping = false;
+
+        wrapper.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+            isSwiping = true;
+        }, { passive: true });
+
+        wrapper.addEventListener('touchmove', () => {
+            checkVisibility();
+        }, { passive: true });
+
+        wrapper.addEventListener('touchend', () => {
+            isSwiping = false;
+            setTimeout(checkVisibility, 100);
+        });
+
+        wrapper.addEventListener('scroll', () => {
+            requestAnimationFrame(checkVisibility);
+        });
+
+        // 初始化检查
+        window.addEventListener('load', () => {
+            setTimeout(checkVisibility, 300);
+        });
+
+        // 窗口大小改变时重新检查
+        window.addEventListener('resize', checkVisibility);
+
+        // 防止iOS橡皮筋效果
+        let lastY = 0;
+        wrapper.addEventListener('touchmove', (e) => {
+            const currentY = e.touches[0].clientY;
+            const diff = currentY - lastY;
+            lastY = currentY;
+            
+            if (wrapper.scrollTop <= 0 && diff > 0) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>
